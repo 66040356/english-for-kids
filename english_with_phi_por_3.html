@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English with Phi Por 3 - สื่อการเรียนรู้สำหรับเด็ก ป.3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #E0F7FA;
+            --card-bg: #FFFFFF;
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --yellow: #FFE66D;
+            --correct-bg: #DCFCE7;
+            --correct-text: #16A34A;
+            --wrong-bg: #FEE2E2;
+            --wrong-text: #DC2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#B2EBF2 2px, transparent 2px);
+            background-size: 30px 30px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            border: 6px solid #80DEEA;
+        }
+
+        /* Banner Header */
+        .header-banner {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+            margin-bottom: 5px;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.25);
+            display: inline-block;
+            padding: 4px 18px;
+            border-radius: 20px;
+        }
+
+        /* Stage Nav */
+        .stage-nav {
+            display: flex;
+            background: #E2F1F8;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .stage-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            background: white;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #546E7A;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 0px #CFD8DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .stage-btn.active {
+            background: #4E73DF;
+            color: white;
+            box-shadow: 0 4px 0px #2E59D9;
+        }
+
+        /* Main Content Area */
+        .game-body {
+            padding: 30px;
+        }
+
+        .question-card {
+            background: #FFF9C4;
+            border: 4px dashed #FBC02D;
+            border-radius: 28px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .stage-tag {
+            font-size: 16px;
+            font-weight: 700;
+            color: #F57F17;
+            margin-bottom: 10px;
+        }
+
+        .target-word {
+            font-size: 42px;
+            font-weight: 700;
+            color: #263238;
+            margin-bottom: 8px;
+        }
+
+        .meaning-text {
+            font-size: 20px;
+            color: #546E7A;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-game {
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-tts {
+            background: #29B6F6;
+            color: white;
+            box-shadow: 0 5px 0px #0288D1;
+        }
+
+        .btn-stt {
+            background: #FF5252;
+            color: white;
+            box-shadow: 0 5px 0px #D32F2F;
+        }
+
+        .btn-stt.recording {
+            animation: pulse-mic 1s infinite alternate;
+            background: #E53935;
+        }
+
+        @keyframes pulse-mic {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.06); }
+        }
+
+        /* 5 Stars & Word Feedback Section */
+        .feedback-card {
+            background: #F1F8E9;
+            border: 3px solid #AED581;
+            padding: 24px;
+            border-radius: 24px;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 5-Star Rating System */
+        .stars-container {
+            display: flex;
+            gap: 10px;
+            font-size: 38px;
+            color: #CFD8DC;
+            margin-bottom: 10px;
+        }
+
+        .stars-container i.active {
+            color: #FFB300;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: star-pop 0.4s ease;
+        }
+
+        @keyframes star-pop {
+            0% { transform: scale(0.5); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .feedback-status {
+            font-size: 18px;
+            font-weight: 700;
+            color: #37474F;
+            margin-bottom: 12px;
+        }
+
+        /* Words Green & Red Feedback */
+        .words-feedback-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .syllable-chip {
+            padding: 8px 18px;
+            border-radius: 16px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 0px rgba(0,0,0,0.1);
+        }
+
+        .syllable-chip.correct {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            border: 3px solid #86EFAC;
+        }
+
+        .syllable-chip.wrong {
+            background: var(--wrong-bg);
+            color: var(--wrong-text);
+            border: 3px solid #FCA5A5;
+        }
+
+        .syllable-chip.wrong::after {
+            content: "🔊 ฟังเสียงซ้ำ";
+            font-size: 11px;
+            background: var(--wrong-text);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .hint-footer {
+            font-size: 13px;
+            color: #78909C;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        /* Footer Navigation */
+        .footer-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .btn-nav {
+            background: #78909C;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #455A64;
+        }
+
+        .progress-indicator {
+            font-size: 18px;
+            font-weight: 700;
+            color: #455A64;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-card">
+        <!-- Banner Header -->
+        <div class="header-banner">
+            <h1>ENGLISH WITH PHI POR 3 🎈</h1>
+            <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับน้องๆ ป.3</p>
+        </div>
+
+        <!-- Stage Switcher -->
+        <div class="stage-nav">
+            <button class="stage-btn active" id="btn-stage1" onclick="switchStage(1)">
+                <i class="fa-solid fa-spell-check"></i> ด่าน 1: ออกเสียงคำเดี่ยว (20 ข้อ)
+            </button>
+            <button class="stage-btn" id="btn-stage2" onclick="switchStage(2)">
+                <i class="fa-solid fa-comments"></i> ด่าน 2: ทดสอบอ่านประโยค (20 ข้อ)
+            </button>
+        </div>
+
+        <!-- Main Body -->
+        <div class="game-body">
+            
+            <div class="question-card">
+                <div class="stage-tag" id="stage-tag-text">ด่านที่ 1 : ฝึกออกเสียงคำศัพท์</div>
+                <div class="target-word" id="display-target-word">Apple</div>
+                <div class="meaning-text" id="display-meaning">(แอปเปิ้ล)</div>
+                
+                <div class="action-buttons">
+                    <button class="btn-game btn-tts" onclick="playTargetTTS()">
+                        <i class="fa-solid fa-volume-high"></i> ฟังเสียงต้นฉบับ
+                    </button>
+
+                    <button class="btn-game btn-stt" id="record-btn" onclick="toggleSTT()">
+                        <i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Area -->
+            <div class="feedback-card">
+                <div class="stars-container" id="stars-display">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <div class="feedback-status" id="feedback-status-text">
+                    กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อพูดออกเสียงสิครับ!
+                </div>
+
+                <div class="words-feedback-box" id="visual-words-result"></div>
+
+                <div class="hint-footer">
+                    💡 หากมีคำที่เป็น <span style="color:red; font-weight:bold;">สีแดง</span> สามารถกดที่ตัวคำเพื่อฟังเสียงสอนพูดเฉพาะคำนั้นได้นะ!
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="footer-navigation">
+                <button class="btn-nav" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า</button>
+                <span class="progress-indicator" id="progress-text">ข้อที่ 1 / 20</span>
+                <button class="btn-nav" onclick="nextQuestion()">ข้อถัดไป <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const stage1Data = [
+            { word: "Apple", meaning: "แอปเปิ้ล" },
+            { word: "Banana", meaning: "กล้วย" },
+            { word: "Elephant", meaning: "ช้าง" },
+            { word: "Butterfly", meaning: "ผีเสื้อ" },
+            { word: "Computer", meaning: "คอมพิวเตอร์" },
+            { word: "Teacher", meaning: "คุณครู" },
+            { word: "Student", meaning: "นักเรียน" },
+            { word: "Hospital", meaning: "โรงพยาบาล" },
+            { word: "Umbrella", meaning: "ร่ม" },
+            { word: "Bicycle", meaning: "รถจักรยาน" },
+            { word: "Pencil", meaning: "ดินสอ" },
+            { word: "Notebook", meaning: "สมุดบันทึก" },
+            { word: "Kitchen", meaning: "ห้องครัว" },
+            { word: "Football", meaning: "ฟุตบอล" },
+            { word: "Doctor", meaning: "คุณหมอ" },
+            { word: "Rainbow", meaning: "สายรุ้ง" },
+            { word: "Dolphin", meaning: "โลมา" },
+            { word: "Sunlight", meaning: "แสงแดด" },
+            { word: "Breakfast", meaning: "อาหารเช้า" },
+            { word: "Kingdom", meaning: "อาณาจักร" }
+        ];
+
+        const stage2Data = [
+            { word: "Good morning teacher", meaning: "อรุณสวัสดิ์คุณครู" },
+            { word: "How are you today", meaning: "วันนี้คุณสบายดีไหม" },
+            { word: "I love English class", meaning: "ฉันชอบเรียนวิชาภาษาอังกฤษ" },
+            { word: "The sun is shining bright", meaning: "พระอาทิตย์ส่องแสงสว่างไสว" },
+            { word: "Cats and dogs are cute", meaning: "แมวและสุนัขน่ารักมาก" },
+            { word: "What is your name", meaning: "คุณชื่ออะไร" },
+            { word: "Nice to meet you", meaning: "ยินดีที่ได้รู้จัก" },
+            { word: "This is a red apple", meaning: "นี่คือแอปเปิ้ลสีแดง" },
+            { word: "I can ride a bike", meaning: "ฉันสามารถปั่นจักรยานได้" },
+            { word: "She goes to school", meaning: "เธอไปโรงเรียน" },
+            { word: "He likes playing football", meaning: "เขาชอบเล่นฟุตบอล" },
+            { word: "Open your English book", meaning: "เปิดหนังสือภาษาอังกฤษของคุณ" },
+            { word: "Where is the library", meaning: "ห้องสมุดอยู่ที่ไหน" },
+            { word: "It is raining outside", meaning: "ข้างนอกฝนกำลังตก" },
+            { word: "Thank you very much", meaning: "ขอบคุณมากๆ" },
+            { word: "Have a nice day", meaning: "ขอให้เป็นวันที่ดีนะ" },
+            { word: "Wash your hands please", meaning: "กรุณาล้างมือของคุณ" },
+            { word: "I drink milk every day", meaning: "ฉันดื่มนมทุกวัน" },
+            { word: "The dog is sleeping", meaning: "สุนัขกำลังนอนหลับ" },
+            { word: "See you again tomorrow", meaning: "พรุ่งนี้พบกันใหม่นะ" }
+        ];
+
+        let currentStage = 1;
+        let currentIndex = 0;
+        let isRecording = false;
+        let recognition = null;
+        let micPermissionGranted = false;
+        let audioStream = null;
+
+        function cleanText(text) {
+            return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase().trim();
+        }
+
+        // ขอสิทธิ์ไมค์ล่วงหน้าเพื่อให้ Browser จำ Permission ไว้ถาวรใน Session นี้
+        async function requestMicPermission() {
+            if (micPermissionGranted) return true;
+            try {
+                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                micPermissionGranted = true;
+                return true;
+            } catch (err) {
+                console.error("Microphone Access Denied:", err);
+                alert("กรุณากด 'Allow' หรืออนุญาตให้ใช้งานไมโครโฟน เพื่อใช้ฟังก์ชันนี้ครับ");
+                return false;
+            }
+        }
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            
+            // ปรับตั้งค่าให้ฟังเสียงต่อเนื่อง ไม่ปิดไมค์เอง
+            recognition.continuous = true;
+            recognition.interimResults = false;
+
+            recognition.onstart = function() {
+                isRecording = true;
+                const btn = document.getElementById('record-btn');
+                btn.classList.add('recording');
+                btn.innerHTML = '<i class="fa-solid fa-stop"></i> กำลังฟังเสียง... กดอีกครั้งเมื่อพูดจบ';
+                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียงพูดแบบต่อเนื่อง...";
+            };
+
+            recognition.onresult = function(event) {
+                let spokenText = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    spokenText += event.results[i][0].transcript + ' ';
+                }
+                evaluateSpeech(spokenText);
+            };
+
+            recognition.onerror = function(e) {
+                console.error("Speech Error:", e.error);
+                if (e.error !== 'no-speech') {
+                    document.getElementById('feedback-status-text').innerText = "ไม่พบเสียงพูด หรือไมค์มีปัญหา ลองกดใหม่อีกครั้งครับ";
+                }
+                stopRecordingState();
+            };
+
+            recognition.onend = function() {
+                stopRecordingState();
+            };
+        } else {
+            alert("เบราว์เซอร์นี้ไม่รองรับระบบตรวจจับเสียง แนะนำให้เปิดด้วย Google Chrome ครับ");
+        }
+
+        function stopRecordingState() {
+            isRecording = false;
+            const btn = document.getElementById('record-btn');
+            btn.classList.remove('recording');
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!';
+        }
+
+        function switchStage(stageNum) {
+            if (isRecording && recognition) recognition.stop();
+            currentStage = stageNum;
+            currentIndex = 0;
+            document.getElementById('btn-stage1').classList.toggle('active', stageNum === 1);
+            document.getElementById('btn-stage2').classList.toggle('active', stageNum === 2);
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            resetFeedbackArea();
+            const dataset = currentStage === 1 ? stage1Data : stage2Data;
+            const item = dataset[currentIndex];
+
+            if (currentStage === 1) {
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (ข้อที่ ${currentIndex + 1}/${dataset.length})`;
+            } else {
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : ทดสอบสำเนียงอ่านประโยค (ข้อที่ ${currentIndex + 1}/${dataset.length})`;
+            }
+
+            document.getElementById('display-target-word').innerText = item.word;
+            document.getElementById('display-meaning').innerText = `(${item.meaning})`;
+            document.getElementById('progress-text').innerText = `ข้อที่ ${currentIndex + 1} / ${dataset.length}`;
+        }
+
+        function playTargetTTS() {
+            const targetText = document.getElementById('display-target-word').innerText;
+            speakWord(targetText);
+        }
+
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        async function toggleSTT() {
+            if (!recognition) return;
+
+            // รันการขออนุญาตไมค์ก่อนครั้งแรก
+            const hasPermission = await requestMicPermission();
+            if (!hasPermission) return;
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                try {
+                    window.speechSynthesis.cancel();
+                    recognition.start();
+                } catch(e) {
+                    recognition.stop();
+                }
+            }
+        }
+
+        function evaluateSpeech(spokenText) {
+            const targetText = document.getElementById('display-target-word').innerText;
+            
+            const rawTargetWords = targetText.split(/\s+/);
+            const targetWordsClean = rawTargetWords.map(w => cleanText(w));
+            
+            const rawSpoken = cleanText(spokenText);
+            const spokenWordsClean = rawSpoken.split(/\s+/);
+
+            const resultContainer = document.getElementById('visual-words-result');
+            resultContainer.innerHTML = "";
+
+            let correctCount = 0;
+
+            rawTargetWords.forEach((originalWord, index) => {
+                const cleanedWord = targetWordsClean[index];
+                const chip = document.createElement('span');
+                chip.className = 'syllable-chip';
+                chip.innerText = originalWord;
+                
+                if (spokenWordsClean.includes(cleanedWord)) {
+                    chip.classList.add('correct');
+                    correctCount++;
+                } else {
+                    chip.classList.add('wrong');
+                    chip.onclick = function() {
+                        speakWord(originalWord);
+                    };
+                }
+                resultContainer.appendChild(chip);
+            });
+
+            const accuracy = (correctCount / targetWordsClean.length) * 100;
+            let stars = 1;
+
+            if (accuracy >= 90) {
+                stars = 5;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#16A34A;">🌟 สุดยอดมากๆ! สำเนียงเป๊ะครบถ้วน 5 ดาวเต็ม!</span>`;
+            } else if (accuracy >= 70) {
+                stars = 4;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#16A34A;">🎉 เก่งมากน้องๆ! อ่านออกเสียงถูกต้องเกือบทั้งหมดเลย</span>`;
+            } else if (accuracy >= 50) {
+                stars = 3;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#D97706;">👍 ทำได้ดีครับ! ลองฟังคำสีแดงแล้วกดพูดใหม่อีกรอบนะ</span>`;
+            } else if (accuracy >= 30) {
+                stars = 2;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#DC2626;">💪 พยายามอีกนิดนะ! ลองกดปุ่มฟังเสียงแล้วพูดตาม</span>`;
+            } else {
+                stars = 1;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#DC2626;">😊 ไม่เป็นไรนะ มาฝึกฟังเสียงต้นฉบับแล้วลองพูดใหม่กัน!</span>`;
+            }
+
+            set5Stars(stars);
+        }
+
+        function set5Stars(count) {
+            const stars = document.getElementById('stars-display').children;
+            for (let i = 0; i < 5; i++) {
+                if (i < count) {
+                    stars[i].classList.add('active');
+                } else {
+                    stars[i].classList.remove('active');
+                }
+            }
+        }
+
+        function resetFeedbackArea() {
+            set5Stars(0);
+            document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!";
+            document.getElementById('visual-words-result').innerHTML = "";
+        }
+
+        function nextQuestion() {
+            if (isRecording && recognition) recognition.stop();
+            const dataset = currentStage === 1 ? stage1Data : stage2Data;
+            if (currentIndex < dataset.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (isRecording && recognition) recognition.stop();
+            const dataset = currentStage === 1 ? stage1Data : stage2Data;
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = dataset.length - 1;
+            }
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
