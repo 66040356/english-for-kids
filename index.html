@@ -11,15 +11,23 @@
     
     <style>
         :root {
-            --bg-color: #E0F7FA;
+            /* โทนสีอุ่น พาสเทล (Warm Pastel Palette) */
+            --bg-color: #FFF8F0;           /* ครีมอุ่นนุ่มนวล */
             --card-bg: #FFFFFF;
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --yellow: #FFE66D;
-            --correct-bg: #DCFCE7;
-            --correct-text: #16A34A;
-            --wrong-bg: #FEE2E2;
-            --wrong-text: #DC2626;
+            --primary-coral: #FFB7B2;      /* พีช คอรัล อุ่นๆ */
+            --primary-orange: #FFDAC1;     /* ส้มสว่างพาสเทล */
+            --warm-yellow: #FFE5B4;        /* เหลืองนวล */
+            --accent-warm: #E27D60;        /* ส้มอิฐอุ่นใช้เน้นข้อความ */
+            --text-main: #5C4033;          /* น้ำตาลอบอุ่น แทนสีดำ/เทา */
+            --text-sub: #8D6E63;           /* น้ำตาลอ่อน */
+            
+            /* สีสำหรับสถานะ */
+            --correct-bg: #E8F5E9;
+            --correct-text: #2E7D32;
+            --correct-border: #A5D6A7;
+            --wrong-bg: #FFEBEE;
+            --wrong-text: #C62828;
+            --wrong-border: #EF9A9A;
         }
 
         * {
@@ -31,68 +39,74 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(#B2EBF2 2px, transparent 2px);
-            background-size: 30px 30px;
+            background-image: radial-gradient(#F5E6D3 3px, transparent 3px);
+            background-size: 32px 32px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: var(--text-main);
         }
 
         .game-card {
             background: var(--card-bg);
             width: 100%;
-            max-width: 800px;
-            border-radius: 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            max-width: 850px;
+            border-radius: 36px;
+            box-shadow: 0 20px 45px rgba(226, 125, 96, 0.08), 0 10px 20px rgba(0,0,0,0.03);
             overflow: hidden;
-            border: 6px solid #80DEEA;
+            border: 6px solid #FFE0B2;
         }
 
         /* Banner Header */
         .header-banner {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            color: white;
-            padding: 25px 20px;
+            background: linear-gradient(135deg, #FFB7B2, #FFDAC1);
+            color: #4A2E2B;
+            padding: 28px 20px;
             text-align: center;
+            position: relative;
         }
 
         .header-banner h1 {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 700;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
-            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
 
         .header-banner p {
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.5);
             display: inline-block;
-            padding: 4px 18px;
+            padding: 6px 20px;
             border-radius: 20px;
+            color: #5D4037;
+            font-weight: 600;
         }
 
         /* Stage Nav */
         .stage-nav {
             display: flex;
-            background: #E2F1F8;
-            padding: 10px;
+            background: #FFF3E0;
+            padding: 12px;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .stage-btn {
             flex: 1;
+            min-width: 200px;
             padding: 14px;
             border: none;
             background: white;
-            border-radius: 20px;
-            font-size: 16px;
+            border-radius: 22px;
+            font-size: 15px;
             font-weight: 700;
-            color: #546E7A;
+            color: var(--text-sub);
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 4px 0px #CFD8DC;
+            box-shadow: 0 4px 0px #FFE0B2;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -100,44 +114,77 @@
         }
 
         .stage-btn.active {
-            background: #4E73DF;
+            background: var(--accent-warm);
             color: white;
-            box-shadow: 0 4px 0px #2E59D9;
+            box-shadow: 0 4px 0px #C05C43;
         }
 
         /* Main Content Area */
         .game-body {
-            padding: 30px;
+            padding: 32px;
         }
 
         .question-card {
-            background: #FFF9C4;
-            border: 4px dashed #FBC02D;
-            border-radius: 28px;
-            padding: 25px;
+            background: #FFFDE7;
+            border: 3px dashed #FFE082;
+            border-radius: 30px;
+            padding: 28px;
             text-align: center;
             margin-bottom: 25px;
+            box-shadow: inset 0 0 15px rgba(255,245,205,0.5);
         }
 
         .stage-tag {
             font-size: 16px;
             font-weight: 700;
-            color: #F57F17;
-            margin-bottom: 10px;
+            color: var(--accent-warm);
+            margin-bottom: 12px;
         }
 
         .target-word {
-            font-size: 42px;
+            font-size: 46px;
             font-weight: 700;
-            color: #263238;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .phonetic-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #D84315;
             margin-bottom: 8px;
+            background: var(--warm-yellow);
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 16px;
         }
 
         .meaning-text {
             font-size: 20px;
-            color: #546E7A;
-            margin-bottom: 20px;
+            color: var(--text-sub);
+            margin-bottom: 22px;
             font-weight: 600;
+        }
+
+        /* Image Display for Quiz Stage */
+        .quiz-img-container {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 18px auto;
+            border-radius: 28px;
+            background: #FFFFFF;
+            border: 5px solid #FFE082;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .quiz-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .action-buttons {
@@ -148,7 +195,7 @@
         }
 
         .btn-game {
-            padding: 14px 28px;
+            padding: 14px 30px;
             border-radius: 50px;
             border: none;
             font-size: 18px;
@@ -161,33 +208,74 @@
         }
 
         .btn-tts {
-            background: #29B6F6;
-            color: white;
-            box-shadow: 0 5px 0px #0288D1;
+            background: #80CBC4;
+            color: #004D40;
+            box-shadow: 0 5px 0px #4DB6AC;
         }
 
         .btn-stt {
-            background: #FF5252;
-            color: white;
-            box-shadow: 0 5px 0px #D32F2F;
+            background: #FFAB91;
+            color: #4E1500;
+            box-shadow: 0 5px 0px #FF8A65;
         }
 
         .btn-stt.recording {
             animation: pulse-mic 1s infinite alternate;
-            background: #E53935;
+            background: #FF7043;
+            color: white;
         }
 
         @keyframes pulse-mic {
             0% { transform: scale(1); }
-            100% { transform: scale(1.06); }
+            100% { transform: scale(1.05); }
         }
 
-        /* 5 Stars & Word Feedback Section */
+        /* Quiz Options Grid */
+        .quiz-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .choice-btn {
+            background: #FFFFFF;
+            border: 3px solid #FFE0B2;
+            padding: 18px;
+            border-radius: 22px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: 0 5px 0px #FFE0B2;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-2px);
+            background: #FFF3E0;
+        }
+
+        .choice-btn.correct-choice {
+            background: var(--correct-bg) !important;
+            color: var(--correct-text) !important;
+            border-color: var(--correct-border) !important;
+            box-shadow: 0 5px 0px var(--correct-border) !important;
+        }
+
+        .choice-btn.wrong-choice {
+            background: var(--wrong-bg) !important;
+            color: var(--wrong-text) !important;
+            border-color: var(--wrong-border) !important;
+            box-shadow: 0 5px 0px var(--wrong-border) !important;
+        }
+
+        /* 5 Stars Feedback Area */
         .feedback-card {
-            background: #F1F8E9;
-            border: 3px solid #AED581;
+            background: #FAFAFA;
+            border: 3px solid #FFE0B2;
             padding: 24px;
-            border-radius: 24px;
+            border-radius: 28px;
             text-align: center;
             min-height: 180px;
             display: flex;
@@ -196,18 +284,17 @@
             justify-content: center;
         }
 
-        /* 5-Star Rating System */
         .stars-container {
             display: flex;
             gap: 10px;
             font-size: 38px;
-            color: #CFD8DC;
+            color: #E0E0E0;
             margin-bottom: 10px;
         }
 
         .stars-container i.active {
             color: #FFB300;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 6px rgba(255, 179, 0, 0.4);
             animation: star-pop 0.4s ease;
         }
 
@@ -218,57 +305,63 @@
         }
 
         .feedback-status {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            color: #37474F;
+            color: var(--text-main);
             margin-bottom: 12px;
         }
 
-        /* Words Green & Red Feedback */
         .words-feedback-box {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+            align-items: center;
             margin-top: 10px;
         }
 
         .syllable-chip {
-            padding: 8px 18px;
-            border-radius: 16px;
-            font-size: 24px;
+            padding: 8px 20px;
+            border-radius: 18px;
+            font-size: 26px;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 3px 0px rgba(0,0,0,0.1);
+            gap: 6px;
+            box-shadow: 0 3px 0px rgba(0,0,0,0.05);
         }
 
         .syllable-chip.correct {
             background: var(--correct-bg);
             color: var(--correct-text);
-            border: 3px solid #86EFAC;
+            border: 3px solid var(--correct-border);
         }
 
         .syllable-chip.wrong {
             background: var(--wrong-bg);
             color: var(--wrong-text);
-            border: 3px solid #FCA5A5;
+            border: 3px solid var(--wrong-border);
         }
 
         .syllable-chip.wrong::after {
-            content: "🔊 ฟังเสียงซ้ำ";
+            content: "🔊 ฟัง";
             font-size: 11px;
             background: var(--wrong-text);
             color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        .syllable-separator {
+            font-size: 24px;
+            font-weight: 700;
+            color: #BCAAA4;
         }
 
         .hint-footer {
             font-size: 13px;
-            color: #78909C;
+            color: var(--text-sub);
             margin-top: 12px;
             font-weight: 600;
         }
@@ -282,21 +375,26 @@
         }
 
         .btn-nav {
-            background: #78909C;
+            background: #BCAAA4;
             color: white;
             border: none;
-            padding: 12px 22px;
-            border-radius: 16px;
+            padding: 12px 24px;
+            border-radius: 18px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 0px #455A64;
+            box-shadow: 0 4px 0px #8D6E63;
+            transition: all 0.2s;
         }
 
-        .progress-indicator {
-            font-size: 18px;
-            font-weight: 700;
-            color: #455A64;
+        .btn-nav:hover {
+            background: #A1887F;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-options-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -306,16 +404,19 @@
         <!-- Banner Header -->
         <div class="header-banner">
             <h1>ENGLISH WITH PHI POR 3 🎈</h1>
-            <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับน้องๆ ป.3</p>
+            <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับเด็ก ๆ ป.3</p>
         </div>
 
         <!-- Stage Switcher -->
         <div class="stage-nav">
             <button class="stage-btn active" id="btn-stage1" onclick="switchStage(1)">
-                <i class="fa-solid fa-spell-check"></i> ด่าน 1: ออกเสียงคำเดี่ยว (20 ข้อ)
+                <i class="fa-solid fa-spell-check"></i> ด่าน 1 : คำเดี่ยว
             </button>
             <button class="stage-btn" id="btn-stage2" onclick="switchStage(2)">
-                <i class="fa-solid fa-comments"></i> ด่าน 2: ทดสอบอ่านประโยค (20 ข้อ)
+                <i class="fa-solid fa-icons"></i> ด่าน 2 : เกมทายคำศัพท์
+            </button>
+            <button class="stage-btn" id="btn-stage3" onclick="switchStage(3)">
+                <i class="fa-solid fa-comments"></i> ด่าน 3 : อ่านประโยค
             </button>
         </div>
 
@@ -324,10 +425,18 @@
             
             <div class="question-card">
                 <div class="stage-tag" id="stage-tag-text">ด่านที่ 1 : ฝึกออกเสียงคำศัพท์</div>
-                <div class="target-word" id="display-target-word">Apple</div>
-                <div class="meaning-text" id="display-meaning">(แอปเปิ้ล)</div>
                 
-                <div class="action-buttons">
+                <!-- Image for Quiz Stage -->
+                <div class="quiz-img-container" id="quiz-img-box" style="display: none;">
+                    <img id="quiz-image" src="" alt="quiz image">
+                </div>
+
+                <div class="target-word" id="display-target-word">Apple</div>
+                <div class="phonetic-text" id="display-phonetic">คำอ่าน : แอป-เปิ้ล</div>
+                <div class="meaning-text" id="display-meaning">(แปลว่า : แอปเปิ้ล)</div>
+                
+                <!-- Action Buttons Stage 1 & 3 -->
+                <div class="action-buttons" id="speech-action-group">
                     <button class="btn-game btn-tts" onclick="playTargetTTS()">
                         <i class="fa-solid fa-volume-high"></i> ฟังเสียงต้นฉบับ
                     </button>
@@ -336,6 +445,9 @@
                         <i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!
                     </button>
                 </div>
+
+                <!-- 4 Choice Options for Quiz Stage -->
+                <div class="quiz-options-grid" id="quiz-options-box" style="display: none;"></div>
             </div>
 
             <!-- Feedback Area -->
@@ -354,15 +466,14 @@
 
                 <div class="words-feedback-box" id="visual-words-result"></div>
 
-                <div class="hint-footer">
-                    💡 หากมีคำที่เป็น <span style="color:red; font-weight:bold;">สีแดง</span> สามารถกดที่ตัวคำเพื่อฟังเสียงสอนพูดเฉพาะคำนั้นได้นะ!
+                <div class="hint-footer" id="hint-footer-text">
+                    💡 หากมีคำหรือพยางค์ที่เป็น <span style="color:#C62828; font-weight:bold;">สีแดง</span> สามารถกดที่ตัวคำเพื่อฟังเสียงสอนพูดเฉพาะจุดได้นะ!
                 </div>
             </div>
 
             <!-- Navigation Controls -->
             <div class="footer-navigation">
                 <button class="btn-nav" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า</button>
-                <span class="progress-indicator" id="progress-text">ข้อที่ 1 / 20</span>
                 <button class="btn-nav" onclick="nextQuestion()">ข้อถัดไป <i class="fa-solid fa-arrow-right"></i></button>
             </div>
 
@@ -370,51 +481,79 @@
     </div>
 
     <script>
-        const stage1Data = [
-            { word: "Apple", meaning: "แอปเปิ้ล" },
-            { word: "Banana", meaning: "กล้วย" },
-            { word: "Elephant", meaning: "ช้าง" },
-            { word: "Butterfly", meaning: "ผีเสื้อ" },
-            { word: "Computer", meaning: "คอมพิวเตอร์" },
-            { word: "Teacher", meaning: "คุณครู" },
-            { word: "Student", meaning: "นักเรียน" },
-            { word: "Hospital", meaning: "โรงพยาบาล" },
-            { word: "Umbrella", meaning: "ร่ม" },
-            { word: "Bicycle", meaning: "รถจักรยาน" },
-            { word: "Pencil", meaning: "ดินสอ" },
-            { word: "Notebook", meaning: "สมุดบันทึก" },
-            { word: "Kitchen", meaning: "ห้องครัว" },
-            { word: "Football", meaning: "ฟุตบอล" },
-            { word: "Doctor", meaning: "คุณหมอ" },
-            { word: "Rainbow", meaning: "สายรุ้ง" },
-            { word: "Dolphin", meaning: "โลมา" },
-            { word: "Sunlight", meaning: "แสงแดด" },
-            { word: "Breakfast", meaning: "อาหารเช้า" },
-            { word: "Kingdom", meaning: "อาณาจักร" }
+        const rawStage1Data = [
+            { word: "Apple", syllables: ["Ap", "ple"], read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล" },
+            { word: "Banana", syllables: ["Ba", "na", "na"], read: "บะ-แน-นะ", meaning: "กล้วย" },
+            { word: "Elephant", syllables: ["El", "e", "phant"], read: "เอล-เลอ-ฟันต์", meaning: "ช้าง" },
+            { word: "Butterfly", syllables: ["But", "ter", "fly"], read: "บัต-เตอร์-ฟลาย", meaning: "ผีเสื้อ" },
+            { word: "Computer", syllables: ["Com", "pu", "ter"], read: "คอม-พิว-เตอร์", meaning: "คอมพิวเตอร์" },
+            { word: "Teacher", syllables: ["Teach", "er"], read: "ทีช-เชอร์", meaning: "คุณครู" },
+            { word: "Student", syllables: ["Stu", "dent"], read: "สติว-เดนต์", meaning: "นักเรียน" },
+            { word: "Hospital", syllables: ["Hos", "pi", "tal"], read: "ฮอส-พิ-เทิล", meaning: "โรงพยาบาล" },
+            { word: "Umbrella", syllables: ["Um", "brel", "la"], read: "อัม-เบรล-ลา", meaning: "ร่ม" },
+            { word: "Bicycle", syllables: ["Bi", "cy", "cle"], read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน" },
+            { word: "Pencil", syllables: ["Pen", "cil"], read: "เพน-ซิล", meaning: "ดินสอ" },
+            { word: "Notebook", syllables: ["Note", "book"], read: "โน้ต-บุ๊ก", meaning: "สมุดบันทึก" },
+            { word: "Kitchen", syllables: ["Kitch", "en"], read: "คิท-เช่น", meaning: "ห้องครัว" },
+            { word: "Football", syllables: ["Foot", "ball"], read: "ฟุต-บอล", meaning: "ฟุตบอล" },
+            { word: "Doctor", syllables: ["Doc", "tor"], read: "ด็อก-เตอร์", meaning: "คุณหมอ" },
+            { word: "Rainbow", syllables: ["Rain", "bow"], read: "เรน-โบว์", meaning: "สายรุ้ง" },
+            { word: "Dolphin", syllables: ["Dol", "phin"], read: "ดอล-ฟิน", meaning: "โลมา" },
+            { word: "Sunlight", syllables: ["Sun", "light"], read: "ซัน-ไลต์", meaning: "แสงแดด" },
+            { word: "Breakfast", syllables: ["Break", "fast"], read: "เบรก-ฟาสต์", meaning: "อาหารเช้า" },
+            { word: "Kingdom", syllables: ["King", "dom"], read: "คิง-ดอม", meaning: "อาณาจักร" }
         ];
 
-        const stage2Data = [
-            { word: "Good morning teacher", meaning: "อรุณสวัสดิ์คุณครู" },
-            { word: "How are you today", meaning: "วันนี้คุณสบายดีไหม" },
-            { word: "I love English class", meaning: "ฉันชอบเรียนวิชาภาษาอังกฤษ" },
-            { word: "The sun is shining bright", meaning: "พระอาทิตย์ส่องแสงสว่างไสว" },
-            { word: "Cats and dogs are cute", meaning: "แมวและสุนัขน่ารักมาก" },
-            { word: "What is your name", meaning: "คุณชื่ออะไร" },
-            { word: "Nice to meet you", meaning: "ยินดีที่ได้รู้จัก" },
-            { word: "This is a red apple", meaning: "นี่คือแอปเปิ้ลสีแดง" },
-            { word: "I can ride a bike", meaning: "ฉันสามารถปั่นจักรยานได้" },
-            { word: "She goes to school", meaning: "เธอไปโรงเรียน" },
-            { word: "He likes playing football", meaning: "เขาชอบเล่นฟุตบอล" },
-            { word: "Open your English book", meaning: "เปิดหนังสือภาษาอังกฤษของคุณ" },
-            { word: "Where is the library", meaning: "ห้องสมุดอยู่ที่ไหน" },
-            { word: "It is raining outside", meaning: "ข้างนอกฝนกำลังตก" },
-            { word: "Thank you very much", meaning: "ขอบคุณมากๆ" },
-            { word: "Have a nice day", meaning: "ขอให้เป็นวันที่ดีนะ" },
-            { word: "Wash your hands please", meaning: "กรุณาล้างมือของคุณ" },
-            { word: "I drink milk every day", meaning: "ฉันดื่มนมทุกวัน" },
-            { word: "The dog is sleeping", meaning: "สุนัขกำลังนอนหลับ" },
-            { word: "See you again tomorrow", meaning: "พรุ่งนี้พบกันใหม่นะ" }
+        // ด่าน 2: ครบ 20 ข้อ
+        const rawStage2Data = [
+            { word: "Tiger", read: "ไท-เกอร์", meaning: "เสือ", category: "หมวดสัตว์ 🐯", img: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=300&q=80", choices: ["Tiger", "Cat", "Dog", "Lion"] },
+            { word: "Elephant", read: "เอล-เลอ-ฟันต์", meaning: "ช้าง", category: "หมวดสัตว์ 🐘", img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=300&q=80", choices: ["Rabbit", "Elephant", "Monkey", "Giraffe"] },
+            { word: "Monkey", read: "มังกี้", meaning: "ลิง", category: "หมวดสัตว์ 🐒", img: "https://images.unsplash.com/photo-1540573133985-780688d1728b?w=300&q=80", choices: ["Panda", "Bear", "Monkey", "Sheep"] },
+            { word: "Rabbit", read: "แรบบิท", meaning: "กระต่าย", category: "หมวดสัตว์ 🐰", img: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=300&q=80", choices: ["Dog", "Cat", "Duck", "Rabbit"] },
+            { word: "Dolphin", read: "ดอล-ฟิน", meaning: "โลมา", category: "หมวดสัตว์ 🐬", img: "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=300&q=80", choices: ["Dolphin", "Fish", "Shark", "Whale"] },
+            { word: "Apple", read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล", category: "หมวดผลไม้ 🍎", img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80", choices: ["Banana", "Apple", "Orange", "Grape"] },
+            { word: "Banana", read: "บะ-แน-นะ", meaning: "กล้วย", category: "หมวดผลไม้ 🍌", img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&q=80", choices: ["Mango", "Banana", "Papaya", "Lemon"] },
+            { word: "Watermelon", read: "วอ-เทอร์-เมล-ลอน", meaning: "แตงโม", category: "หมวดผลไม้ 🍉", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&q=80", choices: ["Watermelon", "Coconut", "Strawberry", "Cherry"] },
+            { word: "Orange", read: "ออ-เรนจ์", meaning: "ส้ม", category: "หมวดผลไม้ 🍊", img: "https://images.unsplash.com/photo-1547514701-42782101795e?w=300&q=80", choices: ["Peach", "Orange", "Apple", "Lemon"] },
+            { word: "Strawberry", read: "สตรอว์-เบอร์-รี", meaning: "สตรอว์เบอร์รี", category: "หมวดผลไม้ 🍓", img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=300&q=80", choices: ["Grape", "Melon", "Strawberry", "Kiwi"] },
+            { word: "Carrot", read: "แคร์-รอต", meaning: "แครอท", category: "หมวดผัก 🥕", img: "https://images.unsplash.com/photo-1598170845058-12ef4a457939?w=300&q=80", choices: ["Carrot", "Potato", "Onion", "Tomato"] },
+            { word: "Broccoli", read: "บร็อก-โคลี", meaning: "บรอกโคลี", category: "หมวดผัก 🥦", img: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=300&q=80", choices: ["Cabbage", "Corn", "Broccoli", "Pumpkin"] },
+            { word: "Corn", read: "คอร์น", meaning: "ข้าวโพด", category: "หมวดผัก 🌽", img: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&q=80", choices: ["Corn", "Garlic", "Mushroom", "Pea"] },
+            { word: "Tomato", read: "โท-เม-โท", meaning: "มะเขือเทศ", category: "หมวดผัก 🍅", img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300&q=80", choices: ["Cucumber", "Tomato", "Chili", "Onion"] },
+            { word: "Pumpkin", read: "พัมป์-กิน", meaning: "ฟักทอง", category: "หมวดผัก 🎃", img: "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=300&q=80", choices: ["Potato", "Carrot", "Pumpkin", "Spinach"] },
+            { word: "Pencil", read: "เพน-ซิล", meaning: "ดินสอ", category: "หมวดการเรียน ✏️", img: "https://images.unsplash.com/photo-1585336261026-6757f541a674?w=300&q=80", choices: ["Pencil", "Pen", "Ruler", "Eraser"] },
+            { word: "Book", read: "บุ๊ก", meaning: "หนังสือ", category: "หมวดการเรียน 📖", img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80", choices: ["Bag", "Book", "Desk", "Paper"] },
+            { word: "School", read: "สกูล", meaning: "โรงเรียน", category: "หมวดสถานที่ 🏫", img: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=300&q=80", choices: ["House", "Park", "School", "Market"] },
+            { word: "Sun", read: "ซัน", meaning: "พระอาทิตย์", category: "หมวดธรรมชาติ ☀️", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300&q=80", choices: ["Moon", "Sun", "Star", "Cloud"] },
+            { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หม็ดยานพาหนะ 🚲", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=300&q=80", choices: ["Car", "Bus", "Bike", "Bicycle"] }
         ];
+
+        const rawStage3Data = [
+            { word: "Good morning teacher", read: "กู้ด มอร์-นิ่ง ทีช-เชอร์", meaning: "อรุณสวัสดิ์คุณครู" },
+            { word: "How are you today", read: "ฮาว อาร์ ยู ทู-เดย์", meaning: "วันนี้คุณสบายดีไหม" },
+            { word: "I love English class", read: "ไอ เลิฟ อิง-กลิช คลาส", meaning: "ฉันชอบเรียนวิชาภาษาอังกฤษ" },
+            { word: "The sun is shining bright", read: "เดอะ ซัน อิส ไชน-นิ่ง ไบรต์", meaning: "พระอาทิตย์ส่องแสงสว่างไสว" },
+            { word: "Cats and dogs are cute", read: "แคตส์ แอนด์ ด็อกส์ อาร์ คิวต์", meaning: "แมวและสุนัขน่ารักมาก" },
+            { word: "What is your name", read: "วอต อิส ยัวร์ เนม", meaning: "คุณชื่ออะไร" },
+            { word: "Nice to meet you", read: "ไนซ์ ทู มีต ยู", meaning: "ยินดีที่ได้รู้จัก" },
+            { word: "This is a red apple", read: "ดิส อิส อะ เรด แอป-เปิ้ล", meaning: "นี่คือแอปเปิ้ลสีแดง" },
+            { word: "I can ride a bike", read: "ไอ แคน ไรด์ อะ ไบค์", meaning: "ฉันสามารถปั่นจักรยานได้" },
+            { word: "She goes to school", read: "ชี โกส์ ทู สกูล", meaning: "เธอไปโรงเรียน" },
+            { word: "He likes playing football", read: "ฮี ไลส์ เพลย์-อิ้ง ฟุต-บอล", meaning: "เขาชอบเล่นฟุตบอล" },
+            { word: "Open your English book", read: "โอ-เพ่น ยัวร์ อิง-กลิช บุ๊ก", meaning: "เปิดหนังสือภาษาอังกฤษของคุณ" },
+            { word: "Where is the library", read: "แวร์ อิส เดอะ ไล-แบร-รี", meaning: "ห้องสมุดอยู่ที่ไหน" },
+            { word: "It is raining outside", read: "อิต อิส เรน-นิ่ง เอาต์-ไซด์", meaning: "ข้างนอกฝนกำลังตก" },
+            { word: "Thank you very much", read: "แธงก์ ยู เว-รี มัดช์", meaning: "ขอบคุณมากๆ" },
+            { word: "Have a nice day", read: "แฮฟ อะ ไนซ์ เดย์", meaning: "ขอให้เป็นวันที่ดีนะ" },
+            { word: "Wash your hands please", read: "วอช ยัวร์ แฮนด์ส พลีส", meaning: "กรุณาล้างมือของคุณ" },
+            { word: "I drink milk every day", read: "ไอ ดริงก์ มิลก์ เอฟ-รี เดย์", meaning: "ฉันดื่มนมทุกวัน" },
+            { word: "The dog is sleeping", read: "เดอะ ด็อก อิส สลีป-ปิ้ง", meaning: "สุนัขกำลังนอนหลับ" },
+            { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" }
+        ];
+
+        let stage1Data = [];
+        let stage2Data = [];
+        let stage3Data = [];
 
         let currentStage = 1;
         let currentIndex = 0;
@@ -422,12 +561,21 @@
         let recognition = null;
         let micPermissionGranted = false;
         let audioStream = null;
+        let hasAnsweredQuiz = false;
+
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
 
         function cleanText(text) {
             return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase().trim();
         }
 
-        // ขอสิทธิ์ไมค์ล่วงหน้าเพื่อให้ Browser จำ Permission ไว้ถาวรใน Session นี้
         async function requestMicPermission() {
             if (micPermissionGranted) return true;
             try {
@@ -445,24 +593,19 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             recognition = new SpeechRecognition();
             recognition.lang = 'en-US';
-            
-            // ปรับตั้งค่าให้ฟังเสียงต่อเนื่อง ไม่ปิดไมค์เอง
-            recognition.continuous = true;
+            recognition.continuous = false;
             recognition.interimResults = false;
 
             recognition.onstart = function() {
                 isRecording = true;
                 const btn = document.getElementById('record-btn');
                 btn.classList.add('recording');
-                btn.innerHTML = '<i class="fa-solid fa-stop"></i> กำลังฟังเสียง... กดอีกครั้งเมื่อพูดจบ';
-                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียงพูดแบบต่อเนื่อง...";
+                btn.innerHTML = '<i class="fa-solid fa-microphone-lines"></i> กำลังฟังเสียง... (พูดได้เลย)';
+                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียงพูด...";
             };
 
             recognition.onresult = function(event) {
-                let spokenText = '';
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    spokenText += event.results[i][0].transcript + ' ';
-                }
+                let spokenText = event.results[0][0].transcript;
                 evaluateSpeech(spokenText);
             };
 
@@ -492,30 +635,119 @@
             if (isRecording && recognition) recognition.stop();
             currentStage = stageNum;
             currentIndex = 0;
+            
+            if (stageNum === 1) stage1Data = shuffleArray(rawStage1Data);
+            if (stageNum === 2) stage2Data = shuffleArray(rawStage2Data);
+            if (stageNum === 3) stage3Data = shuffleArray(rawStage3Data);
+
             document.getElementById('btn-stage1').classList.toggle('active', stageNum === 1);
             document.getElementById('btn-stage2').classList.toggle('active', stageNum === 2);
+            document.getElementById('btn-stage3').classList.toggle('active', stageNum === 3);
+            
             loadQuestion();
         }
 
         function loadQuestion() {
             resetFeedbackArea();
-            const dataset = currentStage === 1 ? stage1Data : stage2Data;
-            const item = dataset[currentIndex];
+            hasAnsweredQuiz = false;
+
+            const speechGroup = document.getElementById('speech-action-group');
+            const quizBox = document.getElementById('quiz-options-box');
+            const imgBox = document.getElementById('quiz-img-box');
+            const targetWordEl = document.getElementById('display-target-word');
+            const phoneticEl = document.getElementById('display-phonetic');
+            const meaningEl = document.getElementById('display-meaning');
+            const hintFooter = document.getElementById('hint-footer-text');
 
             if (currentStage === 1) {
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (ข้อที่ ${currentIndex + 1}/${dataset.length})`;
-            } else {
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : ทดสอบสำเนียงอ่านประโยค (ข้อที่ ${currentIndex + 1}/${dataset.length})`;
-            }
+                const item = stage1Data[currentIndex];
+                speechGroup.style.display = 'flex';
+                quizBox.style.display = 'none';
+                imgBox.style.display = 'none';
+                phoneticEl.style.display = 'inline-block';
+                meaningEl.style.display = 'block';
+                hintFooter.style.display = 'block';
 
-            document.getElementById('display-target-word').innerText = item.word;
-            document.getElementById('display-meaning').innerText = `(${item.meaning})`;
-            document.getElementById('progress-text').innerText = `ข้อที่ ${currentIndex + 1} / ${dataset.length}`;
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (${currentIndex + 1}/${stage1Data.length})`;
+                targetWordEl.innerText = item.word;
+                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
+                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
+
+            } else if (currentStage === 2) {
+                const item = stage2Data[currentIndex];
+                speechGroup.style.display = 'none';
+                quizBox.style.display = 'grid';
+                imgBox.style.display = 'flex';
+                
+                phoneticEl.style.display = 'none';
+                meaningEl.style.display = 'none';
+                hintFooter.style.display = 'none';
+
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : เกมทายคำศัพท์ ${item.category} (${currentIndex + 1}/${stage2Data.length})`;
+                document.getElementById('quiz-image').src = item.img;
+                
+                targetWordEl.innerText = "???";
+
+                const shuffledChoices = shuffleArray(item.choices);
+                quizBox.innerHTML = "";
+                shuffledChoices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.innerText = choice;
+                    btn.onclick = function() { checkQuizAnswer(choice, item.word, btn); };
+                    quizBox.appendChild(btn);
+                });
+
+            } else if (currentStage === 3) {
+                const item = stage3Data[currentIndex];
+                speechGroup.style.display = 'flex';
+                quizBox.style.display = 'none';
+                imgBox.style.display = 'none';
+                phoneticEl.style.display = 'inline-block';
+                meaningEl.style.display = 'block';
+                hintFooter.style.display = 'block';
+
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 3 : ทดสอบสำเนียงอ่านประโยค (${currentIndex + 1}/${stage3Data.length})`;
+                targetWordEl.innerText = item.word;
+                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
+                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
+            }
+        }
+
+        function checkQuizAnswer(selected, correct, clickedBtn) {
+            if (hasAnsweredQuiz) return;
+            hasAnsweredQuiz = true;
+
+            const allBtns = document.querySelectorAll('.choice-btn');
+            const item = stage2Data[currentIndex];
+
+            if (selected === correct) {
+                clickedBtn.classList.add('correct-choice');
+                document.getElementById('display-target-word').innerText = correct;
+                document.getElementById('display-phonetic').style.display = 'inline-block';
+                document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
+                set5Stars(5);
+                speakWord(correct);
+            } else {
+                clickedBtn.classList.add('wrong-choice');
+                allBtns.forEach(btn => {
+                    if (btn.innerText === correct) btn.classList.add('correct-choice');
+                });
+                document.getElementById('display-target-word').innerText = correct;
+                document.getElementById('display-phonetic').style.display = 'inline-block';
+                document.getElementById('display-phonetic').innerText = `คำอ่าน: ${item.read}`;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
+                set5Stars(1);
+                speakWord("Wrong! It is " + correct);
+            }
         }
 
         function playTargetTTS() {
             const targetText = document.getElementById('display-target-word').innerText;
-            speakWord(targetText);
+            if (targetText !== "???") {
+                speakWord(targetText);
+            }
         }
 
         function speakWord(text) {
@@ -530,8 +762,6 @@
 
         async function toggleSTT() {
             if (!recognition) return;
-
-            // รันการขออนุญาตไมค์ก่อนครั้งแรก
             const hasPermission = await requestMicPermission();
             if (!hasPermission) return;
 
@@ -548,57 +778,96 @@
         }
 
         function evaluateSpeech(spokenText) {
-            const targetText = document.getElementById('display-target-word').innerText;
-            
-            const rawTargetWords = targetText.split(/\s+/);
-            const targetWordsClean = rawTargetWords.map(w => cleanText(w));
-            
-            const rawSpoken = cleanText(spokenText);
-            const spokenWordsClean = rawSpoken.split(/\s+/);
-
             const resultContainer = document.getElementById('visual-words-result');
             resultContainer.innerHTML = "";
+            const rawSpoken = cleanText(spokenText);
 
-            let correctCount = 0;
+            if (currentStage === 1) {
+                const currentItem = stage1Data[currentIndex];
+                const syllables = currentItem.syllables;
+                const targetWordClean = cleanText(currentItem.word);
+                let correctSyllableCount = 0;
 
-            rawTargetWords.forEach((originalWord, index) => {
-                const cleanedWord = targetWordsClean[index];
-                const chip = document.createElement('span');
-                chip.className = 'syllable-chip';
-                chip.innerText = originalWord;
-                
-                if (spokenWordsClean.includes(cleanedWord)) {
-                    chip.classList.add('correct');
-                    correctCount++;
-                } else {
-                    chip.classList.add('wrong');
-                    chip.onclick = function() {
-                        speakWord(originalWord);
-                    };
-                }
-                resultContainer.appendChild(chip);
-            });
+                const isExactMatch = rawSpoken === targetWordClean;
 
-            const accuracy = (correctCount / targetWordsClean.length) * 100;
+                syllables.forEach((syl, idx) => {
+                    const cleanSyl = cleanText(syl);
+                    const isSyllableCorrect = isExactMatch || rawSpoken.split(/\s+/).some(word => word === cleanSyl || word.startsWith(cleanSyl));
+
+                    const chip = document.createElement('span');
+                    chip.className = 'syllable-chip';
+                    chip.innerText = syl;
+
+                    if (isSyllableCorrect) {
+                        chip.classList.add('correct');
+                        correctSyllableCount++;
+                    } else {
+                        chip.classList.add('wrong');
+                        chip.onclick = function() { speakWord(syl); };
+                    }
+
+                    resultContainer.appendChild(chip);
+
+                    if (idx < syllables.length - 1) {
+                        const sep = document.createElement('span');
+                        sep.className = 'syllable-separator';
+                        sep.innerText = '-';
+                        resultContainer.appendChild(sep);
+                    }
+                });
+
+                const accuracy = (correctSyllableCount / syllables.length) * 100;
+                updateFeedbackStatus(accuracy, spokenText);
+
+            } else if (currentStage === 3) {
+                const targetText = document.getElementById('display-target-word').innerText;
+                const rawTargetWords = targetText.split(/\s+/);
+                const targetWordsClean = rawTargetWords.map(w => cleanText(w));
+                const spokenWordsClean = rawSpoken.split(/\s+/);
+                let correctCount = 0;
+
+                rawTargetWords.forEach((originalWord, index) => {
+                    const cleanedWord = targetWordsClean[index];
+                    const chip = document.createElement('span');
+                    chip.className = 'syllable-chip';
+                    chip.innerText = originalWord;
+                    
+                    if (spokenWordsClean.includes(cleanedWord)) {
+                        chip.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        chip.classList.add('wrong');
+                        chip.onclick = function() { speakWord(originalWord); };
+                    }
+                    resultContainer.appendChild(chip);
+                });
+
+                const accuracy = (correctCount / targetWordsClean.length) * 100;
+                updateFeedbackStatus(accuracy, spokenText);
+            }
+        }
+
+        // เกณฑ์การคิดดาว 1-5 ดาว ตามช่วงเปอร์เซ็นต์
+        function updateFeedbackStatus(accuracy, spokenText) {
             let stars = 1;
 
-            if (accuracy >= 90) {
-                stars = 5;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#16A34A;">🌟 สุดยอดมากๆ! สำเนียงเป๊ะครบถ้วน 5 ดาวเต็ม!</span>`;
-            } else if (accuracy >= 70) {
-                stars = 4;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#16A34A;">🎉 เก่งมากน้องๆ! อ่านออกเสียงถูกต้องเกือบทั้งหมดเลย</span>`;
-            } else if (accuracy >= 50) {
-                stars = 3;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#D97706;">👍 ทำได้ดีครับ! ลองฟังคำสีแดงแล้วกดพูดใหม่อีกรอบนะ</span>`;
-            } else if (accuracy >= 30) {
-                stars = 2;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#DC2626;">💪 พยายามอีกนิดนะ! ลองกดปุ่มฟังเสียงแล้วพูดตาม</span>`;
+            if (accuracy >= 91) {
+                stars = 5; // 91% - 100%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🌟 ยอดเยี่ยมมาก! ออกเสียงถูกต้องเป๊ะ 5 ดาว!</span>`;
+            } else if (accuracy >= 61) {
+                stars = 4; // 61% - 90%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#00796B;">👍 ดีมากเลย! ออกเสียงถูกเกือบหมดแล้ว (ได้ 4 ดาว)</span>`;
+            } else if (accuracy >= 41) {
+                stars = 3; // 41% - 60%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#E65100;">🙂 เกือบแล้ว! ลองกดฟังเสียงพยางค์สีแดงแล้วพูดตามนะ</span>`;
+            } else if (accuracy >= 21) {
+                stars = 2; // 21% - 40%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#D84315;">สู้ๆ นะ! ลองกดฟังเสียงต้นฉบับแล้วลองใหม่อีกครั้ง</span>`;
             } else {
-                stars = 1;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#DC2626;">😊 ไม่เป็นไรนะ มาฝึกฟังเสียงต้นฉบับแล้วลองพูดใหม่กัน!</span>`;
+                stars = 1; // 1% - 20%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">😊 พยายามอีกนิดนะ! ลองฟังเสียงต้นฉบับแล้วกดพูดใหม่อีกครั้ง</span>`;
             }
-
+            
             set5Stars(stars);
         }
 
@@ -615,33 +884,952 @@
 
         function resetFeedbackArea() {
             set5Stars(0);
-            document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!";
+            if (currentStage === 2) {
+                document.getElementById('feedback-status-text').innerText = "มองรูปภาพแล้วเลือกคำตอบที่ถูกต้องสิครับ!";
+            } else {
+                document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!";
+            }
             document.getElementById('visual-words-result').innerHTML = "";
+        }
+
+        function getDatasetLength() {
+            if (currentStage === 1) return stage1Data.length;
+            if (currentStage === 2) return stage2Data.length;
+            return stage3Data.length;
         }
 
         function nextQuestion() {
             if (isRecording && recognition) recognition.stop();
-            const dataset = currentStage === 1 ? stage1Data : stage2Data;
-            if (currentIndex < dataset.length - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
+            const total = getDatasetLength();
+            currentIndex = (currentIndex + 1) % total;
             loadQuestion();
         }
 
         function prevQuestion() {
             if (isRecording && recognition) recognition.stop();
-            const dataset = currentStage === 1 ? stage1Data : stage2Data;
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = dataset.length - 1;
-            }
+            const total = getDatasetLength();
+            currentIndex = (currentIndex - 1 + total) % total;
             loadQuestion();
         }
 
-        loadQuestion();
+        switchStage(1);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English with Phi Por 3 - สื่อการเรียนรู้สำหรับเด็ก ป.3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            /* โทนสีอุ่น พาสเทล (Warm Pastel Palette) */
+            --bg-color: #FFF8F0;           /* ครีมอุ่นนุ่มนวล */
+            --card-bg: #FFFFFF;
+            --primary-coral: #FFB7B2;      /* พีช คอรัล อุ่นๆ */
+            --primary-orange: #FFDAC1;     /* ส้มสว่างพาสเทล */
+            --warm-yellow: #FFE5B4;        /* เหลืองนวล */
+            --accent-warm: #E27D60;        /* ส้มอิฐอุ่นใช้เน้นข้อความ */
+            --text-main: #5C4033;          /* น้ำตาลอบอุ่น แทนสีดำ/เทา */
+            --text-sub: #8D6E63;           /* น้ำตาลอ่อน */
+            
+            /* สีสำหรับสถานะ */
+            --correct-bg: #E8F5E9;
+            --correct-text: #2E7D32;
+            --correct-border: #A5D6A7;
+            --wrong-bg: #FFEBEE;
+            --wrong-text: #C62828;
+            --wrong-border: #EF9A9A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#F5E6D3 3px, transparent 3px);
+            background-size: 32px 32px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 850px;
+            border-radius: 36px;
+            box-shadow: 0 20px 45px rgba(226, 125, 96, 0.08), 0 10px 20px rgba(0,0,0,0.03);
+            overflow: hidden;
+            border: 6px solid #FFE0B2;
+        }
+
+        /* Banner Header */
+        .header-banner {
+            background: linear-gradient(135deg, #FFB7B2, #FFDAC1);
+            color: #4A2E2B;
+            padding: 28px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-banner h1 {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .header-banner p {
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            color: #5D4037;
+            font-weight: 600;
+        }
+
+        /* Stage Nav */
+        .stage-nav {
+            display: flex;
+            background: #FFF3E0;
+            padding: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .stage-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px;
+            border: none;
+            background: white;
+            border-radius: 22px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 0px #FFE0B2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .stage-btn.active {
+            background: var(--accent-warm);
+            color: white;
+            box-shadow: 0 4px 0px #C05C43;
+        }
+
+        /* Main Content Area */
+        .game-body {
+            padding: 32px;
+        }
+
+        .question-card {
+            background: #FFFDE7;
+            border: 3px dashed #FFE082;
+            border-radius: 30px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 15px rgba(255,245,205,0.5);
+        }
+
+        .stage-tag {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-warm);
+            margin-bottom: 12px;
+        }
+
+        .target-word {
+            font-size: 46px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .phonetic-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #D84315;
+            margin-bottom: 8px;
+            background: var(--warm-yellow);
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 16px;
+        }
+
+        .meaning-text {
+            font-size: 20px;
+            color: var(--text-sub);
+            margin-bottom: 22px;
+            font-weight: 600;
+        }
+
+        /* Image Display for Quiz Stage */
+        .quiz-img-container {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 18px auto;
+            border-radius: 28px;
+            background: #FFFFFF;
+            border: 5px solid #FFE082;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .quiz-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-game {
+            padding: 14px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-tts {
+            background: #80CBC4;
+            color: #004D40;
+            box-shadow: 0 5px 0px #4DB6AC;
+        }
+
+        .btn-stt {
+            background: #FFAB91;
+            color: #4E1500;
+            box-shadow: 0 5px 0px #FF8A65;
+        }
+
+        .btn-stt.recording {
+            animation: pulse-mic 1s infinite alternate;
+            background: #FF7043;
+            color: white;
+        }
+
+        @keyframes pulse-mic {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Quiz Options Grid */
+        .quiz-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .choice-btn {
+            background: #FFFFFF;
+            border: 3px solid #FFE0B2;
+            padding: 18px;
+            border-radius: 22px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: 0 5px 0px #FFE0B2;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-2px);
+            background: #FFF3E0;
+        }
+
+        .choice-btn.correct-choice {
+            background: var(--correct-bg) !important;
+            color: var(--correct-text) !important;
+            border-color: var(--correct-border) !important;
+            box-shadow: 0 5px 0px var(--correct-border) !important;
+        }
+
+        .choice-btn.wrong-choice {
+            background: var(--wrong-bg) !important;
+            color: var(--wrong-text) !important;
+            border-color: var(--wrong-border) !important;
+            box-shadow: 0 5px 0px var(--wrong-border) !important;
+        }
+
+        /* 5 Stars Feedback Area */
+        .feedback-card {
+            background: #FAFAFA;
+            border: 3px solid #FFE0B2;
+            padding: 24px;
+            border-radius: 28px;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stars-container {
+            display: flex;
+            gap: 10px;
+            font-size: 38px;
+            color: #E0E0E0;
+            margin-bottom: 10px;
+        }
+
+        .stars-container i.active {
+            color: #FFB300;
+            text-shadow: 0 2px 6px rgba(255, 179, 0, 0.4);
+            animation: star-pop 0.4s ease;
+        }
+
+        @keyframes star-pop {
+            0% { transform: scale(0.5); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .feedback-status {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .words-feedback-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .syllable-chip {
+            padding: 8px 20px;
+            border-radius: 18px;
+            font-size: 26px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 0px rgba(0,0,0,0.05);
+        }
+
+        .syllable-chip.correct {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            border: 3px solid var(--correct-border);
+        }
+
+        .syllable-chip.wrong {
+            background: var(--wrong-bg);
+            color: var(--wrong-text);
+            border: 3px solid var(--wrong-border);
+        }
+
+        .syllable-chip.wrong::after {
+            content: "🔊 ฟัง";
+            font-size: 11px;
+            background: var(--wrong-text);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        .syllable-separator {
+            font-size: 24px;
+            font-weight: 700;
+            color: #BCAAA4;
+        }
+
+        .hint-footer {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        /* Footer Navigation */
+        .footer-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .btn-nav {
+            background: #BCAAA4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #8D6E63;
+            transition: all 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: #A1887F;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-card">
+        <!-- Banner Header -->
+        <div class="header-banner">
+            <h1>ENGLISH WITH PHI POR 3 🎈</h1>
+            <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับเด็ก ๆ ป.3</p>
+        </div>
+
+        <!-- Stage Switcher -->
+        <div class="stage-nav">
+            <button class="stage-btn active" id="btn-stage1" onclick="switchStage(1)">
+                <i class="fa-solid fa-spell-check"></i> ด่าน 1 : คำเดี่ยว
+            </button>
+            <button class="stage-btn" id="btn-stage2" onclick="switchStage(2)">
+                <i class="fa-solid fa-icons"></i> ด่าน 2 : เกมทายคำศัพท์
+            </button>
+            <button class="stage-btn" id="btn-stage3" onclick="switchStage(3)">
+                <i class="fa-solid fa-comments"></i> ด่าน 3 : อ่านประโยค
+            </button>
+        </div>
+
+        <!-- Main Body -->
+        <div class="game-body">
+            
+            <div class="question-card">
+                <div class="stage-tag" id="stage-tag-text">ด่านที่ 1 : ฝึกออกเสียงคำศัพท์</div>
+                
+                <!-- Image for Quiz Stage -->
+                <div class="quiz-img-container" id="quiz-img-box" style="display: none;">
+                    <img id="quiz-image" src="" alt="quiz image">
+                </div>
+
+                <div class="target-word" id="display-target-word">Apple</div>
+                <div class="phonetic-text" id="display-phonetic">คำอ่าน : แอป-เปิ้ล</div>
+                <div class="meaning-text" id="display-meaning">(แปลว่า : แอปเปิ้ล)</div>
+                
+                <!-- Action Buttons Stage 1 & 3 -->
+                <div class="action-buttons" id="speech-action-group">
+                    <button class="btn-game btn-tts" onclick="playTargetTTS()">
+                        <i class="fa-solid fa-volume-high"></i> ฟังเสียงต้นฉบับ
+                    </button>
+
+                    <button class="btn-game btn-stt" id="record-btn" onclick="toggleSTT()">
+                        <i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!
+                    </button>
+                </div>
+
+                <!-- 4 Choice Options for Quiz Stage -->
+                <div class="quiz-options-grid" id="quiz-options-box" style="display: none;"></div>
+            </div>
+
+            <!-- Feedback Area -->
+            <div class="feedback-card">
+                <div class="stars-container" id="stars-display">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <div class="feedback-status" id="feedback-status-text">
+                    กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อพูดออกเสียงสิครับ!
+                </div>
+
+                <div class="words-feedback-box" id="visual-words-result"></div>
+
+                <div class="hint-footer" id="hint-footer-text">
+                    💡 หากมีคำหรือพยางค์ที่เป็น <span style="color:#C62828; font-weight:bold;">สีแดง</span> สามารถกดที่ตัวคำเพื่อฟังเสียงสอนพูดเฉพาะจุดได้นะ!
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="footer-navigation">
+                <button class="btn-nav" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า</button>
+                <button class="btn-nav" onclick="nextQuestion()">ข้อถัดไป <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const rawStage1Data = [
+            { word: "Apple", syllables: ["Ap", "ple"], read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล" },
+            { word: "Banana", syllables: ["Ba", "na", "na"], read: "บะ-แน-นะ", meaning: "กล้วย" },
+            { word: "Elephant", syllables: ["El", "e", "phant"], read: "เอล-เลอ-ฟันต์", meaning: "ช้าง" },
+            { word: "Butterfly", syllables: ["But", "ter", "fly"], read: "บัต-เตอร์-ฟลาย", meaning: "ผีเสื้อ" },
+            { word: "Computer", syllables: ["Com", "pu", "ter"], read: "คอม-พิว-เตอร์", meaning: "คอมพิวเตอร์" },
+            { word: "Teacher", syllables: ["Teach", "er"], read: "ทีช-เชอร์", meaning: "คุณครู" },
+            { word: "Student", syllables: ["Stu", "dent"], read: "สติว-เดนต์", meaning: "นักเรียน" },
+            { word: "Hospital", syllables: ["Hos", "pi", "tal"], read: "ฮอส-พิ-เทิล", meaning: "โรงพยาบาล" },
+            { word: "Umbrella", syllables: ["Um", "brel", "la"], read: "อัม-เบรล-ลา", meaning: "ร่ม" },
+            { word: "Bicycle", syllables: ["Bi", "cy", "cle"], read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน" },
+            { word: "Pencil", syllables: ["Pen", "cil"], read: "เพน-ซิล", meaning: "ดินสอ" },
+            { word: "Notebook", syllables: ["Note", "book"], read: "โน้ต-บุ๊ก", meaning: "สมุดบันทึก" },
+            { word: "Kitchen", syllables: ["Kitch", "en"], read: "คิท-เช่น", meaning: "ห้องครัว" },
+            { word: "Football", syllables: ["Foot", "ball"], read: "ฟุต-บอล", meaning: "ฟุตบอล" },
+            { word: "Doctor", syllables: ["Doc", "tor"], read: "ด็อก-เตอร์", meaning: "คุณหมอ" },
+            { word: "Rainbow", syllables: ["Rain", "bow"], read: "เรน-โบว์", meaning: "สายรุ้ง" },
+            { word: "Dolphin", syllables: ["Dol", "phin"], read: "ดอล-ฟิน", meaning: "โลมา" },
+            { word: "Sunlight", syllables: ["Sun", "light"], read: "ซัน-ไลต์", meaning: "แสงแดด" },
+            { word: "Breakfast", syllables: ["Break", "fast"], read: "เบรก-ฟาสต์", meaning: "อาหารเช้า" },
+            { word: "Kingdom", syllables: ["King", "dom"], read: "คิง-ดอม", meaning: "อาณาจักร" }
+        ];
+
+        // ด่าน 2: ครบ 20 ข้อ
+        const rawStage2Data = [
+            { word: "Tiger", read: "ไท-เกอร์", meaning: "เสือ", category: "หมวดสัตว์ 🐯", img: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=300&q=80", choices: ["Tiger", "Cat", "Dog", "Lion"] },
+            { word: "Elephant", read: "เอล-เลอ-ฟันต์", meaning: "ช้าง", category: "หมวดสัตว์ 🐘", img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=300&q=80", choices: ["Rabbit", "Elephant", "Monkey", "Giraffe"] },
+            { word: "Monkey", read: "มังกี้", meaning: "ลิง", category: "หมวดสัตว์ 🐒", img: "https://images.unsplash.com/photo-1540573133985-780688d1728b?w=300&q=80", choices: ["Panda", "Bear", "Monkey", "Sheep"] },
+            { word: "Rabbit", read: "แรบบิท", meaning: "กระต่าย", category: "หมวดสัตว์ 🐰", img: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=300&q=80", choices: ["Dog", "Cat", "Duck", "Rabbit"] },
+            { word: "Dolphin", read: "ดอล-ฟิน", meaning: "โลมา", category: "หมวดสัตว์ 🐬", img: "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=300&q=80", choices: ["Dolphin", "Fish", "Shark", "Whale"] },
+            { word: "Apple", read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล", category: "หมวดผลไม้ 🍎", img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80", choices: ["Banana", "Apple", "Orange", "Grape"] },
+            { word: "Banana", read: "บะ-แน-นะ", meaning: "กล้วย", category: "หมวดผลไม้ 🍌", img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&q=80", choices: ["Mango", "Banana", "Papaya", "Lemon"] },
+            { word: "Watermelon", read: "วอ-เทอร์-เมล-ลอน", meaning: "แตงโม", category: "หมวดผลไม้ 🍉", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&q=80", choices: ["Watermelon", "Coconut", "Strawberry", "Cherry"] },
+            { word: "Orange", read: "ออ-เรนจ์", meaning: "ส้ม", category: "หมวดผลไม้ 🍊", img: "https://images.unsplash.com/photo-1547514701-42782101795e?w=300&q=80", choices: ["Peach", "Orange", "Apple", "Lemon"] },
+            { word: "Strawberry", read: "สตรอว์-เบอร์-รี", meaning: "สตรอว์เบอร์รี", category: "หมวดผลไม้ 🍓", img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=300&q=80", choices: ["Grape", "Melon", "Strawberry", "Kiwi"] },
+            { word: "Carrot", read: "แคร์-รอต", meaning: "แครอท", category: "หมวดผัก 🥕", img: "https://images.unsplash.com/photo-1598170845058-12ef4a457939?w=300&q=80", choices: ["Carrot", "Potato", "Onion", "Tomato"] },
+            { word: "Broccoli", read: "บร็อก-โคลี", meaning: "บรอกโคลี", category: "หมวดผัก 🥦", img: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=300&q=80", choices: ["Cabbage", "Corn", "Broccoli", "Pumpkin"] },
+            { word: "Corn", read: "คอร์น", meaning: "ข้าวโพด", category: "หมวดผัก 🌽", img: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&q=80", choices: ["Corn", "Garlic", "Mushroom", "Pea"] },
+            { word: "Tomato", read: "โท-เม-โท", meaning: "มะเขือเทศ", category: "หมวดผัก 🍅", img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300&q=80", choices: ["Cucumber", "Tomato", "Chili", "Onion"] },
+            { word: "Pumpkin", read: "พัมป์-กิน", meaning: "ฟักทอง", category: "หมวดผัก 🎃", img: "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=300&q=80", choices: ["Potato", "Carrot", "Pumpkin", "Spinach"] },
+            { word: "Pencil", read: "เพน-ซิล", meaning: "ดินสอ", category: "หมวดการเรียน ✏️", img: "https://images.unsplash.com/photo-1585336261026-6757f541a674?w=300&q=80", choices: ["Pencil", "Pen", "Ruler", "Eraser"] },
+            { word: "Book", read: "บุ๊ก", meaning: "หนังสือ", category: "หมวดการเรียน 📖", img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80", choices: ["Bag", "Book", "Desk", "Paper"] },
+            { word: "School", read: "สกูล", meaning: "โรงเรียน", category: "หมวดสถานที่ 🏫", img: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=300&q=80", choices: ["House", "Park", "School", "Market"] },
+            { word: "Sun", read: "ซัน", meaning: "พระอาทิตย์", category: "หมวดธรรมชาติ ☀️", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300&q=80", choices: ["Moon", "Sun", "Star", "Cloud"] },
+            { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หม็ดยานพาหนะ 🚲", img: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=300&q=80", choices: ["Car", "Bus", "Bike", "Bicycle"] }
+        ];
+
+        const rawStage3Data = [
+            { word: "Good morning teacher", read: "กู้ด มอร์-นิ่ง ทีช-เชอร์", meaning: "อรุณสวัสดิ์คุณครู" },
+            { word: "How are you today", read: "ฮาว อาร์ ยู ทู-เดย์", meaning: "วันนี้คุณสบายดีไหม" },
+            { word: "I love English class", read: "ไอ เลิฟ อิง-กลิช คลาส", meaning: "ฉันชอบเรียนวิชาภาษาอังกฤษ" },
+            { word: "The sun is shining bright", read: "เดอะ ซัน อิส ไชน-นิ่ง ไบรต์", meaning: "พระอาทิตย์ส่องแสงสว่างไสว" },
+            { word: "Cats and dogs are cute", read: "แคตส์ แอนด์ ด็อกส์ อาร์ คิวต์", meaning: "แมวและสุนัขน่ารักมาก" },
+            { word: "What is your name", read: "วอต อิส ยัวร์ เนม", meaning: "คุณชื่ออะไร" },
+            { word: "Nice to meet you", read: "ไนซ์ ทู มีต ยู", meaning: "ยินดีที่ได้รู้จัก" },
+            { word: "This is a red apple", read: "ดิส อิส อะ เรด แอป-เปิ้ล", meaning: "นี่คือแอปเปิ้ลสีแดง" },
+            { word: "I can ride a bike", read: "ไอ แคน ไรด์ อะ ไบค์", meaning: "ฉันสามารถปั่นจักรยานได้" },
+            { word: "She goes to school", read: "ชี โกส์ ทู สกูล", meaning: "เธอไปโรงเรียน" },
+            { word: "He likes playing football", read: "ฮี ไลส์ เพลย์-อิ้ง ฟุต-บอล", meaning: "เขาชอบเล่นฟุตบอล" },
+            { word: "Open your English book", read: "โอ-เพ่น ยัวร์ อิง-กลิช บุ๊ก", meaning: "เปิดหนังสือภาษาอังกฤษของคุณ" },
+            { word: "Where is the library", read: "แวร์ อิส เดอะ ไล-แบร-รี", meaning: "ห้องสมุดอยู่ที่ไหน" },
+            { word: "It is raining outside", read: "อิต อิส เรน-นิ่ง เอาต์-ไซด์", meaning: "ข้างนอกฝนกำลังตก" },
+            { word: "Thank you very much", read: "แธงก์ ยู เว-รี มัดช์", meaning: "ขอบคุณมากๆ" },
+            { word: "Have a nice day", read: "แฮฟ อะ ไนซ์ เดย์", meaning: "ขอให้เป็นวันที่ดีนะ" },
+            { word: "Wash your hands please", read: "วอช ยัวร์ แฮนด์ส พลีส", meaning: "กรุณาล้างมือของคุณ" },
+            { word: "I drink milk every day", read: "ไอ ดริงก์ มิลก์ เอฟ-รี เดย์", meaning: "ฉันดื่มนมทุกวัน" },
+            { word: "The dog is sleeping", read: "เดอะ ด็อก อิส สลีป-ปิ้ง", meaning: "สุนัขกำลังนอนหลับ" },
+            { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" }
+        ];
+
+        let stage1Data = [];
+        let stage2Data = [];
+        let stage3Data = [];
+
+        let currentStage = 1;
+        let currentIndex = 0;
+        let isRecording = false;
+        let recognition = null;
+        let micPermissionGranted = false;
+        let audioStream = null;
+        let hasAnsweredQuiz = false;
+
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function cleanText(text) {
+            return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase().trim();
+        }
+
+        async function requestMicPermission() {
+            if (micPermissionGranted) return true;
+            try {
+                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                micPermissionGranted = true;
+                return true;
+            } catch (err) {
+                console.error("Microphone Access Denied:", err);
+                alert("กรุณากด 'Allow' หรืออนุญาตให้ใช้งานไมโครโฟน เพื่อใช้ฟังก์ชันนี้ครับ");
+                return false;
+            }
+        }
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onstart = function() {
+                isRecording = true;
+                const btn = document.getElementById('record-btn');
+                btn.classList.add('recording');
+                btn.innerHTML = '<i class="fa-solid fa-microphone-lines"></i> กำลังฟังเสียง... (พูดได้เลย)';
+                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียงพูด...";
+            };
+
+            recognition.onresult = function(event) {
+                let spokenText = event.results[0][0].transcript;
+                evaluateSpeech(spokenText);
+            };
+
+            recognition.onerror = function(e) {
+                console.error("Speech Error:", e.error);
+                if (e.error !== 'no-speech') {
+                    document.getElementById('feedback-status-text').innerText = "ไม่พบเสียงพูด หรือไมค์มีปัญหา ลองกดใหม่อีกครั้งครับ";
+                }
+                stopRecordingState();
+            };
+
+            recognition.onend = function() {
+                stopRecordingState();
+            };
+        } else {
+            alert("เบราว์เซอร์นี้ไม่รองรับระบบตรวจจับเสียง แนะนำให้เปิดด้วย Google Chrome ครับ");
+        }
+
+        function stopRecordingState() {
+            isRecording = false;
+            const btn = document.getElementById('record-btn');
+            btn.classList.remove('recording');
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!';
+        }
+
+        function switchStage(stageNum) {
+            if (isRecording && recognition) recognition.stop();
+            currentStage = stageNum;
+            currentIndex = 0;
+            
+            if (stageNum === 1) stage1Data = shuffleArray(rawStage1Data);
+            if (stageNum === 2) stage2Data = shuffleArray(rawStage2Data);
+            if (stageNum === 3) stage3Data = shuffleArray(rawStage3Data);
+
+            document.getElementById('btn-stage1').classList.toggle('active', stageNum === 1);
+            document.getElementById('btn-stage2').classList.toggle('active', stageNum === 2);
+            document.getElementById('btn-stage3').classList.toggle('active', stageNum === 3);
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            resetFeedbackArea();
+            hasAnsweredQuiz = false;
+
+            const speechGroup = document.getElementById('speech-action-group');
+            const quizBox = document.getElementById('quiz-options-box');
+            const imgBox = document.getElementById('quiz-img-box');
+            const targetWordEl = document.getElementById('display-target-word');
+            const phoneticEl = document.getElementById('display-phonetic');
+            const meaningEl = document.getElementById('display-meaning');
+            const hintFooter = document.getElementById('hint-footer-text');
+
+            if (currentStage === 1) {
+                const item = stage1Data[currentIndex];
+                speechGroup.style.display = 'flex';
+                quizBox.style.display = 'none';
+                imgBox.style.display = 'none';
+                phoneticEl.style.display = 'inline-block';
+                meaningEl.style.display = 'block';
+                hintFooter.style.display = 'block';
+
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (${currentIndex + 1}/${stage1Data.length})`;
+                targetWordEl.innerText = item.word;
+                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
+                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
+
+            } else if (currentStage === 2) {
+                const item = stage2Data[currentIndex];
+                speechGroup.style.display = 'none';
+                quizBox.style.display = 'grid';
+                imgBox.style.display = 'flex';
+                
+                phoneticEl.style.display = 'none';
+                meaningEl.style.display = 'none';
+                hintFooter.style.display = 'none';
+
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : เกมทายคำศัพท์ ${item.category} (${currentIndex + 1}/${stage2Data.length})`;
+                document.getElementById('quiz-image').src = item.img;
+                
+                targetWordEl.innerText = "???";
+
+                const shuffledChoices = shuffleArray(item.choices);
+                quizBox.innerHTML = "";
+                shuffledChoices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.innerText = choice;
+                    btn.onclick = function() { checkQuizAnswer(choice, item.word, btn); };
+                    quizBox.appendChild(btn);
+                });
+
+            } else if (currentStage === 3) {
+                const item = stage3Data[currentIndex];
+                speechGroup.style.display = 'flex';
+                quizBox.style.display = 'none';
+                imgBox.style.display = 'none';
+                phoneticEl.style.display = 'inline-block';
+                meaningEl.style.display = 'block';
+                hintFooter.style.display = 'block';
+
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 3 : ทดสอบสำเนียงอ่านประโยค (${currentIndex + 1}/${stage3Data.length})`;
+                targetWordEl.innerText = item.word;
+                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
+                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
+            }
+        }
+
+        function checkQuizAnswer(selected, correct, clickedBtn) {
+            if (hasAnsweredQuiz) return;
+            hasAnsweredQuiz = true;
+
+            const allBtns = document.querySelectorAll('.choice-btn');
+            const item = stage2Data[currentIndex];
+
+            if (selected === correct) {
+                clickedBtn.classList.add('correct-choice');
+                document.getElementById('display-target-word').innerText = correct;
+                document.getElementById('display-phonetic').style.display = 'inline-block';
+                document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
+                set5Stars(5);
+                speakWord(correct);
+            } else {
+                clickedBtn.classList.add('wrong-choice');
+                allBtns.forEach(btn => {
+                    if (btn.innerText === correct) btn.classList.add('correct-choice');
+                });
+                document.getElementById('display-target-word').innerText = correct;
+                document.getElementById('display-phonetic').style.display = 'inline-block';
+                document.getElementById('display-phonetic').innerText = `คำอ่าน: ${item.read}`;
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
+                set5Stars(1);
+                speakWord("Wrong! It is " + correct);
+            }
+        }
+
+        function playTargetTTS() {
+            const targetText = document.getElementById('display-target-word').innerText;
+            if (targetText !== "???") {
+                speakWord(targetText);
+            }
+        }
+
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        async function toggleSTT() {
+            if (!recognition) return;
+            const hasPermission = await requestMicPermission();
+            if (!hasPermission) return;
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                try {
+                    window.speechSynthesis.cancel();
+                    recognition.start();
+                } catch(e) {
+                    recognition.stop();
+                }
+            }
+        }
+
+        function evaluateSpeech(spokenText) {
+            const resultContainer = document.getElementById('visual-words-result');
+            resultContainer.innerHTML = "";
+            const rawSpoken = cleanText(spokenText);
+
+            if (currentStage === 1) {
+                const currentItem = stage1Data[currentIndex];
+                const syllables = currentItem.syllables;
+                const targetWordClean = cleanText(currentItem.word);
+                let correctSyllableCount = 0;
+
+                const isExactMatch = rawSpoken === targetWordClean;
+
+                syllables.forEach((syl, idx) => {
+                    const cleanSyl = cleanText(syl);
+                    const isSyllableCorrect = isExactMatch || rawSpoken.split(/\s+/).some(word => word === cleanSyl || word.startsWith(cleanSyl));
+
+                    const chip = document.createElement('span');
+                    chip.className = 'syllable-chip';
+                    chip.innerText = syl;
+
+                    if (isSyllableCorrect) {
+                        chip.classList.add('correct');
+                        correctSyllableCount++;
+                    } else {
+                        chip.classList.add('wrong');
+                        chip.onclick = function() { speakWord(syl); };
+                    }
+
+                    resultContainer.appendChild(chip);
+
+                    if (idx < syllables.length - 1) {
+                        const sep = document.createElement('span');
+                        sep.className = 'syllable-separator';
+                        sep.innerText = '-';
+                        resultContainer.appendChild(sep);
+                    }
+                });
+
+                const accuracy = (correctSyllableCount / syllables.length) * 100;
+                updateFeedbackStatus(accuracy, spokenText);
+
+            } else if (currentStage === 3) {
+                const targetText = document.getElementById('display-target-word').innerText;
+                const rawTargetWords = targetText.split(/\s+/);
+                const targetWordsClean = rawTargetWords.map(w => cleanText(w));
+                const spokenWordsClean = rawSpoken.split(/\s+/);
+                let correctCount = 0;
+
+                rawTargetWords.forEach((originalWord, index) => {
+                    const cleanedWord = targetWordsClean[index];
+                    const chip = document.createElement('span');
+                    chip.className = 'syllable-chip';
+                    chip.innerText = originalWord;
+                    
+                    if (spokenWordsClean.includes(cleanedWord)) {
+                        chip.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        chip.classList.add('wrong');
+                        chip.onclick = function() { speakWord(originalWord); };
+                    }
+                    resultContainer.appendChild(chip);
+                });
+
+                const accuracy = (correctCount / targetWordsClean.length) * 100;
+                updateFeedbackStatus(accuracy, spokenText);
+            }
+        }
+
+        // เกณฑ์การคิดดาว 1-5 ดาว ตามช่วงเปอร์เซ็นต์
+        function updateFeedbackStatus(accuracy, spokenText) {
+            let stars = 1;
+
+            if (accuracy >= 91) {
+                stars = 5; // 91% - 100%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🌟 ยอดเยี่ยมมาก! ออกเสียงถูกต้องเป๊ะ 5 ดาว!</span>`;
+            } else if (accuracy >= 61) {
+                stars = 4; // 61% - 90%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#00796B;">👍 ดีมากเลย! ออกเสียงถูกเกือบหมดแล้ว (ได้ 4 ดาว)</span>`;
+            } else if (accuracy >= 41) {
+                stars = 3; // 41% - 60%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#E65100;">🙂 เกือบแล้ว! ลองกดฟังเสียงพยางค์สีแดงแล้วพูดตามนะ</span>`;
+            } else if (accuracy >= 21) {
+                stars = 2; // 21% - 40%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#D84315;">สู้ๆ นะ! ลองกดฟังเสียงต้นฉบับแล้วลองใหม่อีกครั้ง</span>`;
+            } else {
+                stars = 1; // 1% - 20%
+                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">😊 พยายามอีกนิดนะ! ลองฟังเสียงต้นฉบับแล้วกดพูดใหม่อีกครั้ง</span>`;
+            }
+            
+            set5Stars(stars);
+        }
+
+        function set5Stars(count) {
+            const stars = document.getElementById('stars-display').children;
+            for (let i = 0; i < 5; i++) {
+                if (i < count) {
+                    stars[i].classList.add('active');
+                } else {
+                    stars[i].classList.remove('active');
+                }
+            }
+        }
+
+        function resetFeedbackArea() {
+            set5Stars(0);
+            if (currentStage === 2) {
+                document.getElementById('feedback-status-text').innerText = "มองรูปภาพแล้วเลือกคำตอบที่ถูกต้องสิครับ!";
+            } else {
+                document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!";
+            }
+            document.getElementById('visual-words-result').innerHTML = "";
+        }
+
+        function getDatasetLength() {
+            if (currentStage === 1) return stage1Data.length;
+            if (currentStage === 2) return stage2Data.length;
+            return stage3Data.length;
+        }
+
+        function nextQuestion() {
+            if (isRecording && recognition) recognition.stop();
+            const total = getDatasetLength();
+            currentIndex = (currentIndex + 1) % total;
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (isRecording && recognition) recognition.stop();
+            const total = getDatasetLength();
+            currentIndex = (currentIndex - 1 + total) % total;
+            loadQuestion();
+        }
+
+        switchStage(1);
     </script>
 </body>
 </html>
