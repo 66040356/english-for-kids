@@ -17,7 +17,7 @@
             --primary-yellow: #FECA57;     
             --accent-green: #10AC84;       
             --accent-blue: #48DBFB;        
-            --accent-pink: #FF9FF3;        
+            --accent-pink: #FFFF3;        
             --text-main: #576574;          
             --text-dark: #222F3E;          
             --text-sub: #8395A7;           
@@ -65,7 +65,7 @@
 
         /* ------------------ หน้าแรก (HOME SCREEN) ------------------ */
         #home-screen {
-            padding: 50px 25px;
+            padding: 40px 25px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -82,7 +82,7 @@
             font-weight: 700;
             padding: 10px 26px;
             border-radius: 30px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -90,8 +90,8 @@
         }
 
         .mascot-icon {
-            font-size: 90px;
-            margin-bottom: 15px;
+            font-size: 80px;
+            margin-bottom: 10px;
             color: var(--primary-orange);
             filter: drop-shadow(0 10px 0px #FFEAA7);
             animation: float-bounce 2.5s infinite ease-in-out;
@@ -103,11 +103,11 @@
         }
 
         .home-title {
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 700;
             color: var(--text-dark);
             line-height: 1.2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-shadow: 3px 3px 0px #FFEAA7;
         }
 
@@ -115,24 +115,55 @@
             color: var(--text-sub);
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
+        }
+
+        .user-profile-badge {
+            background: #FFFFFF;
+            border: 3px solid #FECA57;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: #D35400;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 0 #FFEAA7;
+        }
+
+        .user-profile-badge button {
+            background: #EE5253;
+            color: white;
+            border: none;
+            padding: 2px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .action-home-btns {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn-start-main {
             background: linear-gradient(180deg, #FF9F43 0%, #EE5253 100%);
             color: white;
             border: 4px solid #222F3E;
-            padding: 18px 55px;
+            padding: 16px 45px;
             border-radius: 50px;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 8px 0 #222F3E;
             transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 35px;
+            gap: 12px;
         }
 
         .btn-start-main:hover {
@@ -140,9 +171,25 @@
             box-shadow: 0 11px 0 #222F3E;
         }
 
-        .btn-start-main:active {
-            transform: translateY(5px);
-            box-shadow: 0 3px 0 #222F3E;
+        .btn-dashboard {
+            background: linear-gradient(180deg, #48DBFB 0%, #0ABDE3 100%);
+            color: #222F3E;
+            border: 4px solid #222F3E;
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #222F3E;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-dashboard:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0 #222F3E;
         }
 
         .quick-stage-wrapper {
@@ -187,11 +234,6 @@
             box-shadow: 0 8px 0 #FFEAA7;
         }
 
-        .btn-quick-stage:active {
-            transform: translateY(2px);
-            box-shadow: 0 3px 0 #FFEAA7;
-        }
-
         /* ------------------ หน้าเกม (GAME SCREEN) ------------------ */
         #game-screen {
             display: none;
@@ -200,7 +242,7 @@
         .header-banner {
             background: linear-gradient(135deg, #FECA57, #FF9F43);
             color: #222F3E;
-            padding: 22px 20px;
+            padding: 22px 70px;
             text-align: center;
             position: relative;
             border-bottom: 5px solid #E67E22;
@@ -227,9 +269,8 @@
             font-weight: 700;
         }
 
-        .btn-home-icon {
+        .btn-home-icon, .btn-dash-icon {
             position: absolute;
-            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             background: #FFFFFF;
@@ -247,7 +288,10 @@
             transition: all 0.15s ease;
         }
 
-        .btn-home-icon:hover {
+        .btn-home-icon { left: 20px; }
+        .btn-dash-icon { right: 20px; }
+
+        .btn-home-icon:hover, .btn-dash-icon:hover {
             transform: translateY(-50%) scale(1.08);
             background: #FFF9E6;
         }
@@ -287,9 +331,7 @@
             box-shadow: 0 4px 0px #D35400;
         }
 
-        .game-body {
-            padding: 32px;
-        }
+        .game-body { padding: 32px; }
 
         .question-card {
             background: #FFFBF0;
@@ -359,10 +401,6 @@
             transition: transform 0.3s ease;
         }
 
-        .quiz-img-container img:hover {
-            transform: scale(1.05);
-        }
-
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -394,26 +432,22 @@
             box-shadow: 0 8px 0px #222F3E;
         }
 
-        .btn-tts:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0px #222F3E;
-        }
-
         .btn-stt {
             background: #FF6B6B;
             color: white;
             box-shadow: 0 6px 0px #222F3E;
         }
 
-        .btn-stt:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 0px #222F3E;
-        }
-
         .btn-stt.recording {
             animation: pulse-mic 1s infinite alternate;
             background: #EE5253;
             color: white;
+        }
+
+        .btn-stt.processing {
+            background: #FECA57;
+            color: #222F3E;
+            cursor: wait;
         }
 
         @keyframes pulse-mic {
@@ -553,6 +587,7 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 25px;
+            gap: 10px;
         }
 
         .btn-nav {
@@ -574,16 +609,104 @@
             box-shadow: 0 7px 0px #222F3E;
         }
 
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: #FFFFFF;
+            border: 5px solid #222F3E;
+            border-radius: 30px;
+            padding: 30px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 0 #222F3E;
+        }
+
+        .modal-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .input-name {
+            width: 100%;
+            padding: 12px;
+            font-size: 20px;
+            border: 3px solid #FECA57;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .dash-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: #FFF9E6;
+            border: 3px solid #FFEAA7;
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #E67E22;
+        }
+
+        .dash-stage-section {
+            text-align: left;
+            margin-bottom: 12px;
+        }
+
+        .dash-stage-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #222F3E;
+            margin-bottom: 4px;
+        }
+
+        .weak-words-list {
+            max-height: 100px;
+            overflow-y: auto;
+            text-align: left;
+            background: #FFEEF0;
+            border: 2px solid #EE5253;
+            padding: 8px;
+            border-radius: 15px;
+        }
+
+        .weak-word-item {
+            display: inline-block;
+            background: white;
+            color: #EE5253;
+            padding: 4px 10px;
+            border-radius: 10px;
+            margin: 3px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
         @media (max-width: 600px) {
-            .quiz-options-grid {
-                grid-template-columns: 1fr;
-            }
-            .quick-stages {
-                flex-direction: column;
-            }
-            .home-title {
-                font-size: 32px;
-            }
+            .quiz-options-grid { grid-template-columns: 1fr; }
+            .quick-stages { flex-direction: column; }
+            .home-title { font-size: 32px; }
+            .footer-navigation { justify-content: space-between; }
+            .btn-nav { font-size: 14px; padding: 10px 18px; }
         }
     </style>
 </head>
@@ -591,16 +714,26 @@
 
     <div class="game-card">
 
-        <!-- ================= หน้าแรก (HOME SCREEN) ================= -->
+        <!-- หน้าแรก (HOME SCREEN) -->
         <div id="home-screen">
             <div class="home-badge"><i class="fa-solid fa-star"></i> สื่อการเรียนรู้ออกเสียงสำหรับเด็ก ป.3</div>
             <div class="mascot-icon"><i class="fa-solid fa-book-open-reader"></i></div>
             <h1 class="home-title">ENGLISH WITH<br>PHI POR 3</h1>
             <p class="home-subtitle">ฝึกทักษะการฟังและออกเสียงภาษาอังกฤษแสนสนุก!</p>
 
-            <button class="btn-start-main" onclick="startGame(1)">
-                <i class="fa-solid fa-gamepad"></i> เริ่มเล่นเกมเลย!
-            </button>
+            <div class="user-profile-badge" id="profile-display">
+                <i class="fa-solid fa-user-ninja"></i> <span id="current-user-name">นักเรียน</span>
+                <button onclick="openNameModal()"><i class="fa-solid fa-pen"></i> เปลี่ยน</button>
+            </div>
+
+            <div class="action-home-btns">
+                <button class="btn-start-main" onclick="startGame(1)">
+                    <i class="fa-solid fa-gamepad"></i> เริ่มเล่นเกม!
+                </button>
+                <button class="btn-dashboard" onclick="openDashboard()">
+                    <i class="fa-solid fa-chart-line"></i> สรุปผล
+                </button>
+            </div>
 
             <div class="quick-stage-wrapper">
                 <div class="quick-stage-title">หรือเลือกลัดเข้าสู่ด่านที่ต้องการ:</div>
@@ -609,7 +742,7 @@
                         <i class="fa-solid fa-spell-check"></i> ด่าน 1: คำเดี่ยว
                     </button>
                     <button class="btn-quick-stage" onclick="startGame(2)">
-                        <i class="fa-solid fa-icons"></i> ด่าน 2: ทายคำศัพท์
+                        <i class="fa-solid fa-icons"></i> ด่าน 2: เกมทายคำศัพท์
                     </button>
                     <button class="btn-quick-stage" onclick="startGame(3)">
                         <i class="fa-solid fa-comments"></i> ด่าน 3: อ่านประโยค
@@ -618,14 +751,19 @@
             </div>
         </div>
 
-        <!-- ================= หน้าเกม (GAME SCREEN) ================= -->
+        <!-- หน้าเกม (GAME SCREEN) -->
         <div id="game-screen">
             <div class="header-banner">
                 <button class="btn-home-icon" onclick="goHome()" title="กลับหน้าแรก">
                     <i class="fa-solid fa-house"></i>
                 </button>
+
                 <h1><i class="fa-solid fa-trophy"></i> ENGLISH WITH PHI POR 3</h1>
                 <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับเด็ก ๆ ป.3</p>
+
+                <button class="btn-dash-icon" onclick="openDashboard()" title="ดูสรุปผลคะแนน">
+                    <i class="fa-solid fa-chart-line"></i>
+                </button>
             </div>
 
             <div class="stage-nav">
@@ -645,7 +783,6 @@
                 <div class="question-card">
                     <div class="stage-tag" id="stage-tag-text">ด่านที่ 1 : ฝึกออกเสียงคำศัพท์</div>
                     
-                    <!-- รูปภาพสมจริงสำหรับด่านที่ 2 -->
                     <div class="quiz-img-container" id="quiz-img-box" style="display: none;">
                         <img id="quiz-real-img" src="" alt="Quiz Image" onerror="handleImageError(this)">
                     </div>
@@ -677,7 +814,7 @@
                     </div>
 
                     <div class="feedback-status" id="feedback-status-text">
-                        กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อพูดออกเสียงสิครับ!
+                        กำลังเตรียมระบบจดจำเสียง Whisper Web...
                     </div>
 
                     <div class="words-feedback-box" id="visual-words-result"></div>
@@ -697,8 +834,63 @@
 
     </div>
 
+    <!-- MODAL ใส่ชื่อนักเรียน -->
+    <div class="modal-overlay" id="name-modal">
+        <div class="modal-card">
+            <div class="modal-title">✏️ พิมพ์ชื่อของหนูหน่อยครับ</div>
+            <input type="text" class="input-name" id="student-name-input" placeholder="ใส่ชื่อนักเรียนที่นี่..." maxlength="20">
+            <button class="btn-start-main" style="padding: 10px 30px; font-size: 18px;" onclick="saveStudentName()">บันทึก</button>
+        </div>
+    </div>
+
+    <!-- MODAL แดชบอร์ดสรุปผล -->
+    <div class="modal-overlay" id="dash-modal">
+        <div class="modal-card">
+            <div class="modal-title">📊 สรุปพัฒนาการการเรียนรู้</div>
+            <p><strong id="dash-student-name">น้องเรียนดี</strong></p>
+            
+            <div class="dash-stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number" id="dash-total-stars">0</div>
+                    <div>ดาวรวมทั้งหมด ⭐</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="dash-total-completed">0</div>
+                    <div>ข้อที่ฝึกซ้อมแล้ว 🎯</div>
+                </div>
+            </div>
+
+            <div style="text-align: left; font-weight: bold; margin-bottom: 10px;">คำศัพท์/ประโยคที่ควรฝึกเพิ่ม (แยกตามด่าน):</div>
+            
+            <div class="dash-stage-section">
+                <div class="dash-stage-title">📌 ด่าน 1 (คำเดี่ยว):</div>
+                <div class="weak-words-list" id="dash-weak-stage1"></div>
+            </div>
+
+            <div class="dash-stage-section">
+                <div class="dash-stage-title">📌 ด่าน 2 (เกมทายคำศัพท์):</div>
+                <div class="weak-words-list" id="dash-weak-stage2"></div>
+            </div>
+
+            <div class="dash-stage-section">
+                <div class="dash-stage-title">📌 ด่าน 3 (อ่านประโยค):</div>
+                <div class="weak-words-list" id="dash-weak-stage3"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <button class="btn-nav" onclick="closeDashboard()">ปิดหน้าต่าง</button>
+                <button class="btn-nav" style="background: #EE5253;" onclick="resetStudentData()">ลบข้อมูลเรียน</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- โหลด Transformers.js สำหรับ Whisper Web -->
+    <script type="module">
+        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0';
+        window.transformersPipeline = pipeline;
+    </script>
+
     <script>
-        // เพิ่มลิงก์รูปภาพ Monkey และ Carrot เรียบร้อยครับ
         const realImages = {
             Tiger: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=600&q=80",
             Elephant: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=600&q=80",
@@ -719,7 +911,13 @@
             Book: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
             School: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80",
             Sun: "sun.jpg",
-            Bicycle: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80"
+            Bicycle: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80",
+            /* รูปภาพเพิ่มเติมด่าน 2 */
+            Speedboat: "speedboat.jpg",
+            Rocket: "rocket.jpg",
+            Duck: "duck.jpg",
+            Cow: "cow.jpg",
+            Owl: "owl.jpg"
         };
 
         const rawStage1Data = [
@@ -742,7 +940,12 @@
             { word: "Dolphin", syllables: ["Dol", "phin"], read: "ดอล-ฟิน", meaning: "โลมา" },
             { word: "Sunlight", syllables: ["Sun", "light"], read: "ซัน-ไลต์", meaning: "แสงแดด" },
             { word: "Breakfast", syllables: ["Break", "fast"], read: "เบรก-ฟาสต์", meaning: "อาหารเช้า" },
-            { word: "Kingdom", syllables: ["King", "dom"], read: "คิง-ดอม", meaning: "อาณาจักร" }
+            { word: "Kingdom", syllables: ["King", "dom"], read: "คิง-ดอม", meaning: "อาณาจักร" },
+            { word: "Airplane", syllables: ["Air", "plane"], read: "แอร์-เพลน", meaning: "เครื่องบิน" },
+            { word: "Motorcycle", syllables: ["Mo", "tor", "cy", "cle"], read: "มอ-เตอร์-ไซ-เคิล", meaning: "รถจักรยานยนต์" },
+            { word: "Helicopter", syllables: ["Hel", "i", "cop", "ter"], read: "เฮ-ลิ-ค็อป-เตอร์", meaning: "เฮลิคอปเตอร์" },
+            { word: "Dinosaur", syllables: ["Di", "no", "saur"], read: "ได-โน-เสาร์", meaning: "ไดโนเสาร์" },
+            { word: "Kangaroo", syllables: ["Kan", "ga", "roo"], read: "แคง-กา-รู", meaning: "จิงโจ้" }
         ];
 
         const rawStage2Data = [
@@ -765,7 +968,16 @@
             { word: "Book", read: "บุ๊ก", meaning: "หนังสือ", category: "หมวดการเรียน 📖", choices: ["Bag", "Book", "Desk", "Paper"] },
             { word: "School", read: "สกูล", meaning: "โรงเรียน", category: "หมวดสถานที่ 🏫", choices: ["House", "Park", "School", "Market"] },
             { word: "Sun", read: "ซัน", meaning: "พระอาทิตย์", category: "หมวดธรรมชาติ ☀️", choices: ["Moon", "Sun", "Star", "Cloud"] },
-            { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หมวดยานพาหนะ 🚲", choices: ["Car", "Bus", "Bike", "Bicycle"] }
+            { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หมวดยานพาหนะ 🚲", choices: ["Car", "Bus", "Bike", "Bicycle"] },
+            
+            /* เพิ่มคำศัพท์ใหม่ ด่าน 2 */
+            // หมวดยานพาหนะ 2 คำ
+            { word: "Speedboat", read: "สปีด-โบ้ต", meaning: "เรือยนต์", category: "หมวดยานพาหนะ 🚤", choices: ["Ship", "Speedboat", "Boat", "Submarine"] },
+            { word: "Rocket", read: "ร็อก-เก็ต", meaning: "จรวด", category: "หมวดยานพาหนะ 🚀", choices: ["Airplane", "Helicopter", "Rocket", "Drone"] },
+            // หมวดสัตว์ 3 คำ
+            { word: "Duck", read: "ดั๊ก", meaning: "เป็ด", category: "หมวดสัตว์ 🦆", choices: ["Chicken", "Duck", "Bird", "Goose"] },
+            { word: "Cow", read: "คาว", meaning: "วัว", category: "หมวดสัตว์ 🐄", choices: ["Horse", "Pig", "Cow", "Sheep"] },
+            { word: "Owl", read: "เอาล์", meaning: "นกฮูก", category: "หมวดสัตว์ 🦉", choices: ["Eagle", "Bat", "Owl", "Parrot"] }
         ];
 
         const rawStage3Data = [
@@ -788,7 +1000,14 @@
             { word: "Wash your hands please", read: "วอช ยัวร์ แฮนด์ส พลีส", meaning: "กรุณาล้างมือของคุณ" },
             { word: "I drink milk every day", read: "ไอ ดริงก์ มิลก์ เอฟ-รี เดย์", meaning: "ฉันดื่มนมทุกวัน" },
             { word: "The dog is sleeping", read: "เดอะ ด็อก อิส สลีป-ปิ้ง", meaning: "สุนัขกำลังนอนหลับ" },
-            { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" }
+            { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" },
+            
+            /* เพิ่มประโยคใหม่ ด่าน 3 (จำนวน 5 ข้อ) */
+            { word: "I like to eat ice cream", read: "ไอ ไลค์ ทู อีต ไอซ์ ครีม", meaning: "ฉันชอบกินไอศกรีม" },
+            { word: "We play in the park", read: "วี เพลย์ อิน เดอะ พาร์ก", meaning: "พวกเราเล่นในสวนสาธารณะ" },
+            { word: "Please close the door", read: "พลีส โคลส เดอะ ดอร์", meaning: "กรุณาปิดประตู" },
+            { word: "My mother is cooking", read: "มาย มา-เธอร์ อิส คุก-กิ้ง", meaning: "คุณแม่ของฉันกำลังทำอาหาร" },
+            { word: "The bird is flying high", read: "เดอะ เบิร์ด อิส ฟลาย-อิ้ง ไฮ", meaning: "นกกำลังบินสูง" }
         ];
 
         let stage1Data = [];
@@ -798,10 +1017,135 @@
         let currentStage = 1;
         let currentIndex = 0;
         let isRecording = false;
-        let recognition = null;
-        let micPermissionGranted = false;
-        let audioStream = null;
         let hasAnsweredQuiz = false;
+
+        // Whisper Web & Recording Variables
+        let transcriber = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let audioContext = null;
+        let analyser = null;
+        let microphone = null;
+        let silenceTimer = null;
+
+        let studentData = {
+            name: "นักเรียน",
+            totalStars: 0,
+            completedQuestions: 0,
+            weakWords: { stage1: [], stage2: [], stage3: [] }
+        };
+
+        window.onload = async function() {
+            loadStudentData();
+            if (studentData.name === "นักเรียน") {
+                openNameModal();
+            }
+            initWhisper();
+        };
+
+        async function initWhisper() {
+            try {
+                if (window.transformersPipeline) {
+                    transcriber = await window.transformersPipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en');
+                    document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อพูดออกเสียงสิครับ!";
+                } else {
+                    setTimeout(initWhisper, 1000);
+                }
+            } catch (e) {
+                console.error("Whisper Load Error:", e);
+                document.getElementById('feedback-status-text').innerText = "ไม่สามารถโหลดระบบได้ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่";
+            }
+        }
+
+        function loadStudentData() {
+            const saved = localStorage.getItem('phiPor3_studentData');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed.weakWords)) {
+                    parsed.weakWords = { stage1: [], stage2: [], stage3: [] };
+                }
+                studentData = parsed;
+            }
+            document.getElementById('current-user-name').innerText = studentData.name;
+        }
+
+        function saveStudentData() {
+            localStorage.setItem('phiPor3_studentData', JSON.stringify(studentData));
+            document.getElementById('current-user-name').innerText = studentData.name;
+        }
+
+        function openNameModal() { document.getElementById('name-modal').style.display = 'flex'; }
+
+        function saveStudentName() {
+            const nameInput = document.getElementById('student-name-input').value.trim();
+            if (nameInput) {
+                studentData.name = nameInput;
+                saveStudentData();
+            }
+            document.getElementById('name-modal').style.display = 'none';
+        }
+
+        function openDashboard() {
+            document.getElementById('dash-student-name').innerText = studentData.name;
+            document.getElementById('dash-total-stars').innerText = studentData.totalStars;
+            document.getElementById('dash-total-completed').innerText = studentData.completedQuestions;
+            
+            renderWeakList('dash-weak-stage1', studentData.weakWords.stage1);
+            renderWeakList('dash-weak-stage2', studentData.weakWords.stage2);
+            renderWeakList('dash-weak-stage3', studentData.weakWords.stage3);
+
+            document.getElementById('dash-modal').style.display = 'flex';
+        }
+
+        function renderWeakList(elementId, wordsArray) {
+            const listEl = document.getElementById(elementId);
+            listEl.innerHTML = "";
+            if (!wordsArray || wordsArray.length === 0) {
+                listEl.innerHTML = "<span style='color:#10AC84; font-size:12px;'>✨ ไม่พบคำที่ผิดในด่านนี้</span>";
+            } else {
+                wordsArray.forEach(word => {
+                    const tag = document.createElement('span');
+                    tag.className = 'weak-word-item';
+                    tag.innerText = word;
+                    listEl.appendChild(tag);
+                });
+            }
+        }
+
+        function closeDashboard() { document.getElementById('dash-modal').style.display = 'none'; }
+
+        function resetStudentData() {
+            if (confirm("ต้องการลบข้อมูลสถิติของ " + studentData.name + " ทั้งหมดใช่หรือไม่?")) {
+                studentData.totalStars = 0;
+                studentData.completedQuestions = 0;
+                studentData.weakWords = { stage1: [], stage2: [], stage3: [] };
+                saveStudentData();
+                openDashboard();
+            }
+        }
+
+        function recordWeakWord(word) {
+            const stageKey = 'stage' + currentStage;
+            if (!studentData.weakWords[stageKey].includes(word)) {
+                studentData.weakWords[stageKey].push(word);
+                saveStudentData();
+            }
+        }
+
+        function removeWeakWord(word) {
+            const stageKey = 'stage' + currentStage;
+            const index = studentData.weakWords[stageKey].indexOf(word);
+            if (index > -1) {
+                studentData.weakWords[stageKey].splice(index, 1);
+                saveStudentData();
+            }
+        }
+
+        function addStarsAndProgress(starsCount) {
+            studentData.totalStars += starsCount;
+            studentData.completedQuestions += 1;
+            saveStudentData();
+        }
 
         function startGame(stageTarget) {
             document.getElementById("home-screen").style.display = "none";
@@ -810,7 +1154,7 @@
         }
 
         function goHome() {
-            if (isRecording && recognition) recognition.stop();
+            stopRecording();
             document.getElementById("game-screen").style.display = "none";
             document.getElementById("home-screen").style.display = "flex";
         }
@@ -834,63 +1178,118 @@
             img.src = `https://placehold.co/500x500/FECA57/222F3E?text=${currentWord}`;
         }
 
-        async function requestMicPermission() {
-            if (micPermissionGranted) return true;
-            try {
-                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                micPermissionGranted = true;
-                return true;
-            } catch (err) {
-                console.error("Microphone Access Denied:", err);
-                alert("กรุณากด 'Allow' หรืออนุญาตให้ใช้งานไมโครโฟน เพื่อใช้ฟังก์ชันนี้ครับ");
-                return false;
+        function toggleSTT() {
+            if (!transcriber) {
+                alert("ระบบกำลังโหลด กรุณารอสักครู่แล้วลองใหม่ครับ");
+                return;
+            }
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
             }
         }
 
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            recognition = new SpeechRecognition();
-            recognition.lang = 'en-US';
-            recognition.continuous = false;
-            recognition.interimResults = false;
+        async function startRecording() {
+            try {
+                window.speechSynthesis.cancel();
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioChunks = [];
+                mediaRecorder = new MediaRecorder(stream);
 
-            recognition.onstart = function() {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                microphone = audioContext.createMediaStreamSource(stream);
+                microphone.connect(analyser);
+                analyser.fftSize = 512;
+
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+
+                mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+
+                mediaRecorder.onstop = async () => {
+                    if (audioContext) audioContext.close();
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    processAudioWithWhisper(audioBlob);
+                };
+
+                mediaRecorder.start();
                 isRecording = true;
+
                 const btn = document.getElementById('record-btn');
                 btn.classList.add('recording');
-                btn.innerHTML = '<i class="fa-solid fa-microphone-lines"></i> กำลังฟังเสียง... (พูดได้เลย)';
-                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียงพูด...";
-            };
+                btn.innerHTML = '<i class="fa-solid fa-microphone-lines"></i> กำลังฟังเสียง...';
+                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียง... พูดจบแล้วหยุด ระบบจะตรวจจับให้อัตโนมัติ";
 
-            recognition.onresult = function(event) {
-                let spokenText = event.results[0][0].transcript;
-                evaluateSpeech(spokenText);
-            };
+                let hasSpoken = false;
+                function detectSilence() {
+                    if (!isRecording) return;
 
-            recognition.onerror = function(e) {
-                console.error("Speech Error:", e.error);
-                if (e.error !== 'no-speech') {
-                    document.getElementById('feedback-status-text').innerText = "ไม่พบเสียงพูด หรือไมค์มีปัญหา ลองกดใหม่อีกครั้งครับ";
+                    analyser.getByteFrequencyData(dataArray);
+                    let sum = 0;
+                    for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
+                    let average = sum / bufferLength;
+
+                    if (average > 12) {
+                        hasSpoken = true;
+                        clearTimeout(silenceTimer);
+                        silenceTimer = null;
+                    } else if (hasSpoken && !silenceTimer) {
+                        silenceTimer = setTimeout(() => {
+                            stopRecording();
+                        }, 1500);
+                    }
+
+                    requestAnimationFrame(detectSilence);
                 }
-                stopRecordingState();
-            };
 
-            recognition.onend = function() {
-                stopRecordingState();
-            };
-        } else {
-            alert("เบราว์เซอร์นี้ไม่รองรับระบบตรวจจับเสียง แนะนำให้เปิดด้วย Google Chrome ครับ");
+                detectSilence();
+
+            } catch (err) {
+                console.error("Mic Access Error:", err);
+                alert("ไม่สามารถเข้าถึงไมโครโฟนได้ กรุณาอนุญาตใช้งานไมโครโฟนในเบราว์เซอร์");
+            }
         }
 
-        function stopRecordingState() {
-            isRecording = false;
-            const btn = document.getElementById('record-btn');
-            btn.classList.remove('recording');
-            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!';
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                clearTimeout(silenceTimer);
+                silenceTimer = null;
+                isRecording = false;
+                mediaRecorder.stop();
+
+                const btn = document.getElementById('record-btn');
+                btn.classList.remove('recording');
+                btn.classList.add('processing');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Whisper กำลังวิเคราะห์...';
+                document.getElementById('feedback-status-text').innerText = "🤖 Whisper Web กำลังประมวลผลเสียงพูดของคุณ...";
+            }
+        }
+
+        async function processAudioWithWhisper(audioBlob) {
+            try {
+                const arrayBuffer = await audioBlob.arrayBuffer();
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+                const decodedAudio = await audioCtx.decodeAudioData(arrayBuffer);
+                const audioData = decodedAudio.getChannelData(0);
+
+                const result = await transcriber(audioData);
+                const spokenText = result.text || "";
+
+                evaluateSpeech(spokenText);
+            } catch (e) {
+                console.error("Whisper Process Error:", e);
+                document.getElementById('feedback-status-text').innerText = "เกิดข้อผิดพลาดในการประมวลผลเสียง ลองใหม่อีกครั้งครับ";
+            } finally {
+                const btn = document.getElementById('record-btn');
+                btn.classList.remove('processing');
+                btn.innerHTML = '<i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!';
+            }
         }
 
         function switchStage(stageNum) {
-            if (isRecording && recognition) recognition.stop();
+            stopRecording();
             currentStage = stageNum;
             currentIndex = 0;
             
@@ -988,6 +1387,8 @@
                 document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
                 document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
                 set5Stars(5);
+                addStarsAndProgress(5);
+                removeWeakWord(correct);
                 speakWord(correct);
             } else {
                 clickedBtn.classList.add('wrong-choice');
@@ -999,6 +1400,8 @@
                 document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
                 document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
                 set5Stars(1);
+                addStarsAndProgress(1);
+                recordWeakWord(correct);
                 speakWord("Wrong! It is " + correct);
             }
         }
@@ -1017,23 +1420,6 @@
                 utterance.lang = 'en-US';
                 utterance.rate = 0.8;
                 window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        async function toggleSTT() {
-            if (!recognition) return;
-            const hasPermission = await requestMicPermission();
-            if (!hasPermission) return;
-
-            if (isRecording) {
-                recognition.stop();
-            } else {
-                try {
-                    window.speechSynthesis.cancel();
-                    recognition.start();
-                } catch(e) {
-                    recognition.stop();
-                }
             }
         }
 
@@ -1077,6 +1463,11 @@
                 });
 
                 const accuracy = (correctSyllableCount / syllables.length) * 100;
+                if (accuracy < 60) {
+                    recordWeakWord(currentItem.word);
+                } else {
+                    removeWeakWord(currentItem.word);
+                }
                 updateFeedbackStatus(accuracy, spokenText);
 
             } else if (currentStage === 3) {
@@ -1103,6 +1494,11 @@
                 });
 
                 const accuracy = (correctCount / targetWordsClean.length) * 100;
+                if (accuracy < 60) {
+                    recordWeakWord(targetText);
+                } else {
+                    removeWeakWord(targetText);
+                }
                 updateFeedbackStatus(accuracy, spokenText);
             }
         }
@@ -1128,6 +1524,7 @@
             }
             
             set5Stars(stars);
+            addStarsAndProgress(stars);
         }
 
         function set5Stars(count) {
@@ -1158,14 +1555,14 @@
         }
 
         function nextQuestion() {
-            if (isRecording && recognition) recognition.stop();
+            stopRecording();
             const total = getDatasetLength();
             currentIndex = (currentIndex + 1) % total;
             loadQuestion();
         }
 
         function prevQuestion() {
-            if (isRecording && recognition) recognition.stop();
+            stopRecording();
             const total = getDatasetLength();
             currentIndex = (currentIndex - 1 + total) % total;
             loadQuestion();
