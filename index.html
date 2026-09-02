@@ -736,16 +736,16 @@
             </div>
 
             <div class="quick-stage-wrapper">
-                <div class="quick-stage-title">หรือเลือกลัดเข้าสู่ด่านที่ต้องการ:</div>
+                <div class="quick-stage-title">หรือเลือกลัดเข้าสู่ด่านที่ต้องการ</div>
                 <div class="quick-stages">
                     <button class="btn-quick-stage" onclick="startGame(1)">
-                        <i class="fa-solid fa-spell-check"></i> ด่าน 1: คำเดี่ยว
+                        <i class="fa-solid fa-spell-check"></i> ด่าน 1 : คำเดี่ยว
                     </button>
                     <button class="btn-quick-stage" onclick="startGame(2)">
-                        <i class="fa-solid fa-icons"></i> ด่าน 2: เกมทายคำศัพท์
+                        <i class="fa-solid fa-icons"></i> ด่าน 2 : เกมทายคำศัพท์
                     </button>
                     <button class="btn-quick-stage" onclick="startGame(3)">
-                        <i class="fa-solid fa-comments"></i> ด่าน 3: อ่านประโยค
+                        <i class="fa-solid fa-comments"></i> ด่าน 3 : อ่านประโยค
                     </button>
                 </div>
             </div>
@@ -814,7 +814,7 @@
                     </div>
 
                     <div class="feedback-status" id="feedback-status-text">
-                        กำลังเตรียมระบบจดจำเสียง Whisper Web...
+                        กำลังเตรียมระบบจดจำเสียง...
                     </div>
 
                     <div class="words-feedback-box" id="visual-words-result"></div>
@@ -860,7 +860,7 @@
                 </div>
             </div>
 
-            <div style="text-align: left; font-weight: bold; margin-bottom: 10px;">คำศัพท์/ประโยคที่ควรฝึกเพิ่ม (แยกตามด่าน):</div>
+            <div style="text-align: left; font-weight: bold; margin-bottom: 10px;">คำศัพท์/ประโยคที่ควรฝึกเพิ่ม (แยกตามด่าน)</div>
             
             <div class="dash-stage-section">
                 <div class="dash-stage-title">📌 ด่าน 1 (คำเดี่ยว):</div>
@@ -1262,8 +1262,8 @@
                 const btn = document.getElementById('record-btn');
                 btn.classList.remove('recording');
                 btn.classList.add('processing');
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Whisper กำลังวิเคราะห์...';
-                document.getElementById('feedback-status-text').innerText = "🤖 Whisper Web กำลังประมวลผลเสียงพูดของคุณ...";
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังวิเคราะห์...';
+                document.getElementById('feedback-status-text').innerText = "🤖 กำลังประมวลผลเสียงพูดของคุณ...";
             }
         }
 
