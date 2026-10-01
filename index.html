@@ -934,7 +934,7 @@
         </div>
     </div>
 
-    <!-- MODAL แจ้งเตือนเล่นครบด่าน (อัปเดตเพิ่มปุ่ม 'ด่านต่อไป') -->
+    <!-- MODAL แจ้งเตือนเล่นครบด่าน -->
     <div class="modal-overlay" id="stage-complete-modal">
         <div class="modal-card">
             <div style="font-size: 60px; color: #FF9F43; margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i></div>
@@ -955,9 +955,9 @@
             <p style="font-size: 16px; color: var(--text-main); margin-bottom: 20px; font-weight: 600;">เก่งมาก ๆ ครับ! หนูอยากไปด่านต่อไป หรือเริ่มเล่นด่านนี้ใหม่อีกครั้งดีครับ?</p>
 
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <!-- ปุ่มด่านต่อไปที่เพิ่มเข้ามา -->
-                <button class="btn-next-stage" onclick="goToNextStage()">
-                    <i class="fa-solid fa-forward"></i> ด่านต่อไป
+                <!-- ปุ่มด่านถัดไป แสดงเมื่อเล่นจบด่าน 1 หรือด่าน 2 -->
+                <button class="btn-next-stage" id="btn-modal-next-stage" onclick="goToNextStage()">
+                    <i class="fa-solid fa-forward"></i> ด่านถัดไป
                 </button>
                 <button class="btn-start-main" style="padding: 12px 24px; font-size: 18px;" onclick="restartCurrentStage()">
                     <i class="fa-solid fa-rotate-right"></i> เริ่มเล่นใหม่อีกครั้ง
@@ -1718,15 +1718,23 @@
             document.getElementById('complete-correct-count').innerText = stageCorrectCount;
             document.getElementById('complete-wrong-count').innerText = stageWrongCount;
 
+            // ตรวจสอบด่านปัจจุบัน: ถ้าเป็นด่าน 1 หรือ 2 ให้แสดงปุ่มด่านถัดไป แต่ถ้าเป็นด่าน 3 ให้ซ่อนปุ่มด่านถัดไป
+            const nextBtn = document.getElementById('btn-modal-next-stage');
+            if (currentStage === 1 || currentStage === 2) {
+                nextBtn.style.display = 'inline-flex';
+            } else {
+                nextBtn.style.display = 'none';
+            }
+
             document.getElementById('stage-complete-modal').style.display = 'flex';
         }
 
-        // --- ฟังก์ชันสำหรับการเปลี่ยนไปยังด่านต่อไป ---
+        // --- ฟังก์ชันสำหรับการเปลี่ยนไปยังด่านถัดไป ---
         function goToNextStage() {
             document.getElementById('stage-complete-modal').style.display = 'none';
             let nextStage = currentStage + 1;
             if (nextStage > 3) {
-                nextStage = 1; // หากจบด่าน 3 แล้วจะวนกลับไปเริ่มที่ด่าน 1
+                nextStage = 1;
             }
             switchStage(nextStage);
         }
