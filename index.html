@@ -898,7 +898,7 @@
         <div class="modal-card">
             <div style="font-size: 60px; color: #EE5253; margin-bottom: 10px;"><i class="fa-solid fa-face-frown-open"></i></div>
             <div class="modal-title" style="font-size: 26px; color: #EE5253;">คุณผิดติดต่อกันมาเยอะแล้วนะ!</div>
-            <p style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.5;">
+            <p id="consecutive-wrong-text" style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.5;">
                 ตั้งใจทำหน่อยนะครับ สู้ๆ! ลองกดฟังเสียงต้นฉบับทบทวนอีกทีนะ 💪
             </p>
             <button class="btn-start-main" style="padding: 12px 35px; font-size: 20px;" onclick="closeConsecutiveWrongModal()">
@@ -1184,6 +1184,12 @@
         /* ฟังก์ชันควบคุม Modal เตือนเมื่อผิดติดต่อกัน 3 ข้อ */
         function checkConsecutiveWrongAlert() {
             if (consecutiveWrongCount >= 3) {
+                const textEl = document.getElementById('consecutive-wrong-text');
+                if (currentStage === 2) {
+                    textEl.innerText = "ตั้งใจทำหน่อยนะครับ สู้ๆ! ลองดูรูปภาพบทเรียนทบทวนอีกทีนะ 💪";
+                } else {
+                    textEl.innerText = "ตั้งใจทำหน่อยนะครับ สู้ๆ! ลองกดฟังเสียงต้นฉบับทบทวนอีกทีนะ 💪";
+                }
                 document.getElementById('consecutive-wrong-modal').style.display = 'flex';
             }
         }
