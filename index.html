@@ -3,1649 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English with Phi Por 3 - สื่อการเรียนรู้สำหรับเด็ก ป.3</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>ระบบแบบทดสอบโต้ตอบ</title>
     <style>
-        :root {
-            --bg-color: #FFF9F0;           
-            --card-bg: #FFFFFF;
-            --primary-orange: #FF9F43;     
-            --primary-yellow: #FECA57;     
-            --accent-green: #10AC84;       
-            --accent-blue: #48DBFB;        
-            --accent-pink: #FF7675;        
-            --text-main: #576574;          
-            --text-dark: #222F3E;          
-            --text-sub: #8395A7;           
-            
-            --correct-bg: #E3FCF7;
-            --correct-text: #10AC84;
-            --correct-border: #10AC84;
-            --wrong-bg: #FFEEF0;
-            --wrong-text: #EE5253;
-            --wrong-border: #EE5253;
-        }
-
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Fredoka', 'Kanit', sans-serif;
+            font-family: 'Sarabun', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(#FFD29D 15%, transparent 16%),
-                radial-gradient(#FFD29D 15%, transparent 16%);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0;
             padding: 20px;
-            color: var(--text-main);
         }
 
-        .game-card {
-            background: var(--card-bg);
+        .quiz-card {
+            background-color: #ffffff;
             width: 100%;
-            max-width: 850px;
-            border-radius: 40px;
-            box-shadow: 0 20px 0px #F3A683, 0 30px 40px rgba(0,0,0,0.08);
-            overflow: hidden;
-            border: 6px solid #FFEAA7;
-            position: relative;
-        }
-
-        /* ------------------ หน้าแรก (HOME SCREEN) ------------------ */
-        #home-screen {
-            padding: 40px 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 580px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #FFF5E6 100%);
-        }
-
-        .home-badge {
-            background-color: #FFEAA7;
-            color: #D63031;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 10px 26px;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 0 #FDCB6E;
-        }
-
-        .mascot-icon {
-            font-size: 80px;
-            margin-bottom: 10px;
-            color: var(--primary-orange);
-            filter: drop-shadow(0 10px 0px #FFEAA7);
-            animation: float-bounce 2.5s infinite ease-in-out;
-        }
-
-        @keyframes float-bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-
-        .home-title {
-            font-size: 40px;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.2;
-            margin-bottom: 8px;
-            text-shadow: 3px 3px 0px #FFEAA7;
-        }
-
-        .home-subtitle {
-            color: var(--text-sub);
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .user-profile-badge {
-            background: #FFFFFF;
-            border: 3px solid #FECA57;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 700;
-            color: #D35400;
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 0 #FFEAA7;
-        }
-
-        .user-profile-badge button {
-            background: #EE5253;
-            color: white;
-            border: none;
-            padding: 2px 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .action-home-btns {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-start-main {
-            background: linear-gradient(180deg, #FF9F43 0%, #EE5253 100%);
-            color: white;
-            border: 4px solid #222F3E;
-            padding: 16px 45px;
-            border-radius: 50px;
-            font-size: 24px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 0 #222F3E;
-            transition: all 0.15s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-start-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 11px 0 #222F3E;
-        }
-
-        .btn-dashboard {
-            background: linear-gradient(180deg, #48DBFB 0%, #0ABDE3 100%);
-            color: #222F3E;
-            border: 4px solid #222F3E;
-            padding: 16px 30px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 0 #222F3E;
-            transition: all 0.15s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-dashboard:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 11px 0 #222F3E;
-        }
-
-        .quick-stage-wrapper {
-            width: 100%;
-            max-width: 620px;
-        }
-
-        .quick-stage-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-sub);
-            margin-bottom: 14px;
-        }
-
-        .quick-stages {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .btn-quick-stage {
-            flex: 1;
-            background-color: #FFFFFF;
-            border: 3px solid #FFEAA7;
-            padding: 14px 10px;
-            border-radius: 20px;
-            color: #E67E22;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 5px 0 #FFEAA7;
-        }
-
-        .btn-quick-stage:hover {
-            background-color: #FFF9E6;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 0 #FFEAA7;
-        }
-
-        /* ------------------ หน้าเกม (GAME SCREEN) ------------------ */
-        #game-screen {
-            display: none;
-        }
-
-        .header-banner {
-            background: linear-gradient(135deg, #FECA57, #FF9F43);
-            color: #222F3E;
-            padding: 22px 70px;
-            text-align: center;
-            position: relative;
-            border-bottom: 5px solid #E67E22;
-        }
-
-        .header-banner h1 {
-            font-size: 30px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .header-banner p {
-            font-size: 15px;
-            background: rgba(255, 255, 255, 0.6);
-            display: inline-block;
-            padding: 4px 20px;
-            border-radius: 20px;
-            color: #222F3E;
-            font-weight: 700;
-        }
-
-        .btn-home-icon, .btn-dash-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #FFFFFF;
-            border: 3px solid #222F3E;
-            color: #222F3E;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 0 #222F3E;
-            transition: all 0.15s ease;
-        }
-
-        .btn-home-icon { left: 20px; }
-        .btn-dash-icon { right: 20px; }
-
-        .btn-home-icon:hover, .btn-dash-icon:hover {
-            transform: translateY(-50%) scale(1.08);
-            background: #FFF9E6;
-        }
-
-        .stage-nav {
-            display: flex;
-            background: #FFF9E6;
-            padding: 14px;
-            gap: 10px;
-            flex-wrap: wrap;
-            border-bottom: 3px solid #FFEAA7;
-        }
-
-        .stage-btn {
-            flex: 1;
-            min-width: 200px;
-            padding: 14px;
-            border: 3px solid #FFEAA7;
-            background: white;
-            border-radius: 22px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-sub);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 0px #FFEAA7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .stage-btn.active {
-            background: var(--primary-orange);
-            color: white;
-            border-color: #E67E22;
-            box-shadow: 0 4px 0px #D35400;
-        }
-
-        .game-body { padding: 32px; }
-
-        .question-card {
-            background: #FFFBF0;
-            border: 4px dashed #FECA57;
-            border-radius: 32px;
-            padding: 28px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: inset 0 0 15px rgba(254, 202, 87, 0.2);
-        }
-
-        .stage-tag {
-            font-size: 16px;
-            font-weight: 700;
-            color: #E67E22;
-            margin-bottom: 12px;
-            background: #FFEAA7;
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 20px;
-        }
-
-        .target-word {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
-
-        .phonetic-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #D35400;
-            margin-bottom: 8px;
-            background: #FFEAA7;
-            display: inline-block;
-            padding: 6px 22px;
-            border-radius: 18px;
-        }
-
-        .meaning-text {
-            font-size: 20px;
-            color: var(--text-sub);
-            margin-bottom: 22px;
-            font-weight: 600;
-        }
-
-        .quiz-img-container {
-            width: 260px;
-            height: 220px;
-            margin: 0 auto 18px auto;
-            border-radius: 28px;
-            background: #FFFFFF;
-            border: 5px solid #FECA57;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .quiz-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn-game {
-            padding: 15px 32px;
-            border-radius: 50px;
-            border: 3px solid #222F3E;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.15s ease;
-        }
-
-        .btn-tts {
-            background: var(--accent-blue);
-            color: #222F3E;
-            box-shadow: 0 6px 0px #222F3E;
-        }
-
-        .btn-tts:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 0px #222F3E;
-        }
-
-        .btn-stt {
-            background: #FF6B6B;
-            color: white;
-            box-shadow: 0 6px 0px #222F3E;
-        }
-
-        .btn-stt.recording {
-            animation: pulse-mic 1s infinite alternate;
-            background: #EE5253;
-            color: white;
-        }
-
-        .btn-stt.processing {
-            background: #FECA57;
-            color: #222F3E;
-            cursor: wait;
-        }
-
-        @keyframes pulse-mic {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-
-        .quiz-options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 15px;
-        }
-
-        .choice-btn {
-            background: #FFFFFF;
-            border: 3px solid #222F3E;
-            padding: 18px;
-            border-radius: 24px;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-dark);
-            cursor: pointer;
-            box-shadow: 0 6px 0px #222F3E;
-            transition: all 0.15s ease;
-        }
-
-        .choice-btn:hover {
-            transform: translateY(-3px);
-            background: #FFF9E6;
-            box-shadow: 0 9px 0px #222F3E;
-        }
-
-        .choice-btn.correct-choice {
-            background: var(--correct-bg) !important;
-            color: var(--correct-text) !important;
-            border-color: var(--correct-border) !important;
-            box-shadow: 0 6px 0px var(--correct-border) !important;
-        }
-
-        .choice-btn.wrong-choice {
-            background: var(--wrong-bg) !important;
-            color: var(--wrong-text) !important;
-            border-color: var(--wrong-border) !important;
-            box-shadow: 0 6px 0px var(--wrong-border) !important;
-        }
-
-        .feedback-card {
-            background: #FFFFFF;
-            border: 3px solid #FFEAA7;
+            max-width: 600px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             padding: 24px;
-            border-radius: 28px;
-            text-align: center;
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 0 #FFF5E6;
         }
 
-        .stars-container {
-            display: flex;
-            gap: 12px;
-            font-size: 40px;
-            color: #DFE4EA;
-            margin-bottom: 10px;
-        }
-
-        .stars-container i.active {
-            color: #FFD32A;
-            text-shadow: 0 3px 8px rgba(255, 211, 42, 0.5);
-            animation: star-pop 0.4s ease;
-        }
-
-        @keyframes star-pop {
-            0% { transform: scale(0.5); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-
-        .feedback-status {
-            font-size: 19px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .encouragement-box {
-            font-size: 15px;
-            font-weight: 700;
-            padding: 8px 18px;
-            border-radius: 15px;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        .encouragement-box.good {
-            background: #E3FCF7;
-            color: #10AC84;
-            border: 2px solid #10AC84;
-        }
-
-        .encouragement-box.warn {
-            background: #FFEEF0;
-            color: #EE5253;
-            border: 2px solid #EE5253;
-        }
-
-        .encouragement-box.info {
-            background: #E8F4FE;
-            color: #0984E3;
-            border: 2px solid #74B9FF;
-        }
-
-        .words-feedback-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .syllable-chip {
-            padding: 8px 22px;
-            border-radius: 20px;
-            font-size: 26px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 0px rgba(0,0,0,0.05);
-        }
-
-        .syllable-chip.correct {
-            background: var(--correct-bg);
-            color: var(--correct-text);
-            border: 3px solid var(--correct-border);
-        }
-
-        .syllable-chip.wrong {
-            background: var(--wrong-bg);
-            color: var(--wrong-text);
-            border: 3px solid var(--wrong-border);
-        }
-
-        .syllable-separator {
-            font-size: 24px;
-            font-weight: 700;
-            color: #C8D6E5;
-        }
-
-        .hint-footer {
-            font-size: 14px;
-            color: var(--text-sub);
-            margin-top: 12px;
-            font-weight: 600;
-        }
-
-        .footer-navigation {
+        .header-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 25px;
-            gap: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        .btn-nav {
-            background: #8395A7;
-            color: white;
-            border: 3px solid #222F3E;
-            padding: 12px 26px;
-            border-radius: 20px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 0px #222F3E;
-            transition: all 0.15s ease;
+        .stage-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #2c3e50;
         }
 
-        .btn-nav:hover {
-            background: #576574;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 0px #222F3E;
+        .question-number {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            font-weight: 600;
         }
 
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .modal-card {
-            background: #FFFFFF;
-            border: 5px solid #222F3E;
-            border-radius: 30px;
-            padding: 30px;
-            width: 90%;
-            max-width: 550px;
-            text-align: center;
-            box-shadow: 0 10px 0 #222F3E;
-        }
-
-        .modal-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-        }
-
-        .input-name {
-            width: 100%;
-            padding: 12px;
-            font-size: 20px;
-            border: 3px solid #FECA57;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            outline: none;
-        }
-
-        .dash-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .stat-box {
-            background: #FFF9E6;
-            border: 3px solid #FFEAA7;
-            padding: 15px;
-            border-radius: 20px;
-        }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: #E67E22;
-        }
-
-        .dash-stage-section {
-            text-align: left;
-            margin-bottom: 12px;
-        }
-
-        .dash-stage-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #222F3E;
-            margin-bottom: 4px;
-        }
-
-        .weak-words-list {
-            max-height: 100px;
-            overflow-y: auto;
-            text-align: left;
-            background: #FFEEF0;
-            border: 2px solid #EE5253;
-            padding: 8px;
-            border-radius: 15px;
-        }
-
-        .weak-word-item {
-            display: inline-block;
-            background: white;
-            color: #EE5253;
-            padding: 4px 10px;
+        /* กล่องแสดงข้อความเตือน/ให้กำลังใจ */
+        .encouragement-box {
+            padding: 12px 16px;
             border-radius: 10px;
-            margin: 3px;
-            font-weight: 700;
-            font-size: 13px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        @media (max-width: 600px) {
-            .quiz-options-grid { grid-template-columns: 1fr; }
-            .quick-stages { flex-direction: column; }
-            .home-title { font-size: 32px; }
-            .footer-navigation { justify-content: space-between; }
-            .btn-nav { font-size: 14px; padding: 10px 18px; }
+        .encouragement-box.info {
+            background-color: #eef6ff;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+
+        .encouragement-box.good {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .encouragement-box.warn {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .option-btn {
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #f5f7fa;
+            border-color: #2196f3;
+        }
+
+        .option-btn.correct {
+            background-color: #e8f5e9 !important;
+            border-color: #4caf50 !important;
+            color: #2e7d32 !important;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: #ffebee !important;
+            border-color: #ef5350 !important;
+            color: #c62828 !important;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 16px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #1976d2;
+        }
+
+        .btn-secondary {
+            background-color: #eceff1;
+            color: #455a64;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #cfd8dc;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
 
-    <div class="game-card">
-
-        <!-- หน้าแรก (HOME SCREEN) -->
-        <div id="home-screen">
-            <div class="home-badge"><i class="fa-solid fa-star"></i> สื่อการเรียนรู้ออกเสียงสำหรับเด็ก ป.3</div>
-            <div class="mascot-icon"><i class="fa-solid fa-book-open-reader"></i></div>
-            <h1 class="home-title">ENGLISH WITH<br>PHI POR 3</h1>
-            <p class="home-subtitle">ฝึกทักษะการฟังและออกเสียงภาษาอังกฤษแสนสนุก!</p>
-
-            <div class="user-profile-badge" id="profile-display">
-                <i class="fa-solid fa-user-ninja"></i> <span id="current-user-name">นักเรียน</span>
-                <button onclick="openNameModal()"><i class="fa-solid fa-pen"></i> เปลี่ยน</button>
-            </div>
-
-            <div class="action-home-btns">
-                <button class="btn-start-main" onclick="startGame(1)">
-                    <i class="fa-solid fa-gamepad"></i> เริ่มเล่นเกม!
-                </button>
-                <button class="btn-dashboard" onclick="openDashboard()">
-                    <i class="fa-solid fa-chart-line"></i> สรุปผล
-                </button>
-            </div>
-
-            <div class="quick-stage-wrapper">
-                <div class="quick-stage-title">หรือเลือกลัดเข้าสู่ด่านที่ต้องการ</div>
-                <div class="quick-stages">
-                    <button class="btn-quick-stage" onclick="startGame(1)">
-                        <i class="fa-solid fa-spell-check"></i> ด่าน 1 : คำเดี่ยว
-                    </button>
-                    <button class="btn-quick-stage" onclick="startGame(2)">
-                        <i class="fa-solid fa-icons"></i> ด่าน 2 : เกมทายคำศัพท์
-                    </button>
-                    <button class="btn-quick-stage" onclick="startGame(3)">
-                        <i class="fa-solid fa-comments"></i> ด่าน 3 : อ่านประโยค
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- หน้าเกม (GAME SCREEN) -->
-        <div id="game-screen">
-            <div class="header-banner">
-                <button class="btn-home-icon" onclick="goHome()" title="กลับหน้าแรก">
-                    <i class="fa-solid fa-house"></i>
-                </button>
-
-                <h1><i class="fa-solid fa-trophy"></i> ENGLISH WITH PHI POR 3</h1>
-                <p>สื่อการเรียนรู้ออกเสียงภาษาอังกฤษสำหรับเด็ก ๆ ป.3</p>
-
-                <button class="btn-dash-icon" onclick="openDashboard()" title="ดูสรุปผลคะแนน">
-                    <i class="fa-solid fa-chart-line"></i>
-                </button>
-            </div>
-
-            <div class="stage-nav">
-                <button class="stage-btn active" id="btn-stage1" onclick="switchStage(1)">
-                    <i class="fa-solid fa-spell-check"></i> ด่าน 1 : คำเดี่ยว
-                </button>
-                <button class="stage-btn" id="btn-stage2" onclick="switchStage(2)">
-                    <i class="fa-solid fa-icons"></i> ด่าน 2 : เกมทายคำศัพท์
-                </button>
-                <button class="stage-btn" id="btn-stage3" onclick="switchStage(3)">
-                    <i class="fa-solid fa-comments"></i> ด่าน 3 : อ่านประโยค
-                </button>
-            </div>
-
-            <div class="game-body">
-                
-                <div class="question-card">
-                    <div class="stage-tag" id="stage-tag-text">ด่านที่ 1 : ฝึกออกเสียงคำศัพท์</div>
-                    
-                    <div class="quiz-img-container" id="quiz-img-box" style="display: none;">
-                        <img id="quiz-real-img" src="" alt="Quiz Image" onerror="handleImageError(this)">
-                    </div>
-
-                    <div class="target-word" id="display-target-word">Apple</div>
-                    <div class="phonetic-text" id="display-phonetic">คำอ่าน : แอป-เปิ้ล</div>
-                    <div class="meaning-text" id="display-meaning">(แปลว่า : แอปเปิ้ล)</div>
-                    
-                    <div class="action-buttons" id="speech-action-group">
-                        <button class="btn-game btn-tts" onclick="playTargetTTS()">
-                            <i class="fa-solid fa-volume-high"></i> ฟังเสียงต้นฉบับ
-                        </button>
-
-                        <button class="btn-game btn-stt" id="record-btn" onclick="toggleSTT()">
-                            <i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!
-                        </button>
-                    </div>
-
-                    <div class="quiz-options-grid" id="quiz-options-box" style="display: none;"></div>
-                </div>
-
-                <div class="feedback-card">
-                    <div class="stars-container" id="stars-display">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <div class="feedback-status" id="feedback-status-text">
-                        กำลังเตรียมระบบจดจำเสียง...
-                    </div>
-
-                    <div class="words-feedback-box" id="visual-words-result"></div>
-
-                    <div class="hint-footer" id="hint-footer-text">
-                        💡 หากมีคำหรือพยางค์ที่เป็น <span style="color:#EE5253; font-weight:bold;">สีแดง</span> สามารถกดที่ตัวคำเพื่อฟังเสียงสอนพูดเฉพาะจุดได้นะ!
-                    </div>
-                </div>
-
-                <div class="footer-navigation">
-                    <button class="btn-nav" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า</button>
-                    <button class="btn-nav" onclick="nextQuestion()">ข้อถัดไป <i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-
-            </div>
-        </div>
-
+<div class="quiz-card">
+    <!-- ส่วนหัวข้อด่าน และแสดงเลขข้อ -->
+    <div class="header-info">
+        <div class="stage-title" id="stageTitle">ด่านที่ 1</div>
+        <div class="question-number" id="questionNumber">(ข้อที่ 1/5)</div>
     </div>
 
-    <!-- MODAL ใส่ชื่อนักเรียน -->
-    <div class="modal-overlay" id="name-modal">
-        <div class="modal-card">
-            <div class="modal-title">✏️ พิมพ์ชื่อของหนูหน่อยครับ</div>
-            <input type="text" class="input-name" id="student-name-input" placeholder="ใส่ชื่อนักเรียนที่นี่..." maxlength="20">
-            <button class="btn-start-main" style="padding: 10px 30px; font-size: 18px;" onclick="saveStudentName()">บันทึก</button>
-        </div>
+    <!-- แถบแจ้งเตือน / ให้กำลังใจ (อัปเดตตัวเลขเรียลไทม์) -->
+    <div id="encouragementContainer"></div>
+
+    <!-- คำถาม -->
+    <div class="question-text" id="questionText">กำลังโหลดคำถาม...</div>
+
+    <!-- ตัวเลือกตอบ -->
+    <div class="options-group" id="optionsGroup"></div>
+
+    <!-- ปุ่มนำทาง -->
+    <div class="nav-controls">
+        <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">ข้อก่อนหน้า</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">ข้อถัดไป</button>
     </div>
+</div>
 
-    <!-- MODAL แดชบอร์ดสรุปผล -->
-    <div class="modal-overlay" id="dash-modal">
-        <div class="modal-card">
-            <div class="modal-title">📊 สรุปพัฒนาการการเรียนรู้</div>
-            <p><strong id="dash-student-name">น้องเรียนดี</strong></p>
-            
-            <div class="dash-stats-grid">
-                <div class="stat-box">
-                    <div class="stat-number" id="dash-total-stars">0</div>
-                    <div>ดาวรวมทั้งหมด ⭐</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="dash-total-completed">0</div>
-                    <div>ข้อที่ฝึกซ้อมแล้ว 🎯</div>
-                </div>
-            </div>
+<script>
+    // ข้อมูลแบบทดสอบตัวอย่าง
+    const quizData = [
+        {
+            stage: 1,
+            stageName: "ด่านที่ 1: ความรู้ทั่วไป",
+            questions: [
+                { id: 101, question: "1. ประเทศไทยมีกี่ฤดูหลัก?", options: ["2 ฤดู", "3 ฤดู", "4 ฤดู", "5 ฤดู"], answer: 1 },
+                { id: 102, question: "2. เมืองหลวงของประเทศไทยคือเมืองใด?", options: ["เชียงใหม่", "ภูเก็ต", "กรุงเทพมหานคร", "ชลบุรี"], answer: 2 },
+                { id: 103, question: "3. แม่น้ำสายใดเป็นแม่น้ำสายหลักของภาคกลาง?", options: ["แม่น้ำเจ้าพระยา", "แม่น้ำโขง", "แม่น้ำชี", "แม่น้ำตาปี"], answer: 0 },
+                { id: 104, question: "4. สีประจำวันอาทิตย์คือสีอะไร?", options: ["สีเหลือง", "สีชมพู", "สีแดง", "สีเขียว"], answer: 2 },
+                { id: 105, question: "5. สัตว์ชนิดใดเป็นสัตว์ประจำชาติไทย?", options: ["เสือ", "ช้าง", "ม้า", "ลิง"], answer: 1 }
+            ]
+        }
+    ];
 
-            <div style="text-align: left; font-weight: bold; margin-bottom: 10px;">คำศัพท์/ประโยคที่ควรฝึกเพิ่ม (แยกตามด่าน)</div>
-            
-            <div class="dash-stage-section">
-                <div class="dash-stage-title">📌 ด่าน 1 (คำเดี่ยว)</div>
-                <div class="weak-words-list" id="dash-weak-stage1"></div>
-            </div>
+    let currentStageIndex = 0;
+    let currentQuestionIndex = 0;
+    let stageCorrectCount = 0;
+    let stageWrongCount = 0;
 
-            <div class="dash-stage-section">
-                <div class="dash-stage-title">📌 ด่าน 2 (เกมทายคำศัพท์)</div>
-                <div class="weak-words-list" id="dash-weak-stage2"></div>
-            </div>
+    // บันทึกสถานะการตอบของแต่ละข้อป้องกันการคิดคะแนนซ้ำ { questionId: { selected: number, isCorrect: boolean } }
+    let userAnswers = {};
 
-            <div class="dash-stage-section">
-                <div class="dash-stage-title">📌 ด่าน 3 (อ่านประโยค)</div>
-                <div class="weak-words-list" id="dash-weak-stage3"></div>
-            </div>
+    function initQuiz() {
+        renderQuestion();
+    }
 
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-                <button class="btn-nav" onclick="closeDashboard()">ปิดหน้าต่าง</button>
-                <button class="btn-nav" style="background: #EE5253;" onclick="resetStudentData()">ลบข้อมูลเรียน</button>
-            </div>
-        </div>
-    </div>
+    function renderQuestion() {
+        const currentStage = quizData[currentStageIndex];
+        const totalQuestions = currentStage.questions.length;
+        const q = currentStage.questions[currentQuestionIndex];
 
-    <!-- โหลด Transformers.js สำหรับ Whisper Web -->
-    <script type="module">
-        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0';
-        window.transformersPipeline = pipeline;
-    </script>
+        // 1. แสดงชื่อด่านและตำแหน่งข้อปัจจุบัน
+        document.getElementById("stageTitle").innerText = currentStage.stageName;
+        document.getElementById("questionNumber").innerText = `(ข้อที่ ${currentQuestionIndex + 1}/${totalQuestions})`;
 
-    <script>
-        const realImages = {
-            Tiger: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=600&q=80",
-            Elephant: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=600&q=80",
-            Monkey: "monkey.jpg",
-            Rabbit: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=600&q=80",
-            Dolphin: "https://images.unsplash.com/photo-1570481662006-a3a1374699e8?auto=format&fit=crop&w=600&q=80",
-            Apple: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80",
-            Banana: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80",
-            Watermelon: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80",
-            Orange: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=600&q=80",
-            Strawberry: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80",
-            Carrot: "carot.jpg",
-            Broccoli: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=600&q=80",
-            Corn: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80",
-            Tomato: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80",
-            Pumpkin: "https://images.unsplash.com/photo-1570586437263-ab629fccc818?auto=format&fit=crop&w=600&q=80",
-            Pencil: "pensil.png",
-            Book: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
-            School: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80",
-            Sun: "sun.jpg",
-            Bicycle: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80",
-            Speedboat: "speedboat.jpg",
-            Rocket: "rocket.jpg",
-            Duck: "duck.jpg",
-            Cow: "cow.jpg",
-            Owl: "owl.jpg"
-        };
+        // 2. แสดงข้อความแจ้งเตือน/ให้กำลังใจ
+        renderEncouragementMessage();
 
-        const rawStage1Data = [
-            { word: "Apple", syllables: ["Ap", "ple"], read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล" },
-            { word: "Banana", syllables: ["Ba", "na", "na"], read: "บะ-แน-นะ", meaning: "กล้วย" },
-            { word: "Elephant", syllables: ["El", "e", "phant"], read: "เอล-เลอ-ฟันต์", meaning: "ช้าง" },
-            { word: "Butterfly", syllables: ["But", "ter", "fly"], read: "บัต-เตอร์-ฟลาย", meaning: "ผีเสื้อ" },
-            { word: "Computer", syllables: ["Com", "pu", "ter"], read: "คอม-พิว-เตอร์", meaning: "คอมพิวเตอร์" },
-            { word: "Teacher", syllables: ["Teach", "er"], read: "ทีช-เชอร์", meaning: "คุณครู" },
-            { word: "Student", syllables: ["Stu", "dent"], read: "สติว-เดนต์", meaning: "นักเรียน" },
-            { word: "Hospital", syllables: ["Hos", "pi", "tal"], read: "ฮอส-พิ-เทิล", meaning: "โรงพยาบาล" },
-            { word: "Umbrella", syllables: ["Um", "brel", "la"], read: "อัม-เบรล-ลา", meaning: "ร่ม" },
-            { word: "Bicycle", syllables: ["Bi", "cy", "cle"], read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน" },
-            { word: "Pencil", syllables: ["Pen", "cil"], read: "เพน-ซิล", meaning: "ดินสอ" },
-            { word: "Notebook", syllables: ["Note", "book"], read: "โน้ต-บุ๊ก", meaning: "สมุดบันทึก" },
-            { word: "Kitchen", syllables: ["Kitch", "en"], read: "คิท-เช่น", meaning: "ห้องครัว" },
-            { word: "Football", syllables: ["Foot", "ball"], read: "ฟุต-บอล", meaning: "ฟุตบอล" },
-            { word: "Doctor", syllables: ["Doc", "tor"], read: "ด็อก-เตอร์", meaning: "คุณหมอ" },
-            { word: "Rainbow", syllables: ["Rain", "bow"], read: "เรน-โบว์", meaning: "สายรุ้ง" },
-            { word: "Dolphin", syllables: ["Dol", "phin"], read: "ดอล-ฟิน", meaning: "โลมา" },
-            { word: "Sunlight", syllables: ["Sun", "light"], read: "ซัน-ไลต์", meaning: "แสงแดด" },
-            { word: "Breakfast", syllables: ["Break", "fast"], read: "เบรก-ฟาสต์", meaning: "อาหารเช้า" },
-            { word: "Kingdom", syllables: ["King", "dom"], read: "คิง-ดอม", meaning: "อาณาจักร" },
-            { word: "Airplane", syllables: ["Air", "plane"], read: "แอร์-เพลน", meaning: "เครื่องบิน" },
-            { word: "Motorcycle", syllables: ["Mo", "tor", "cy", "cle"], read: "มอ-เตอร์-ไซ-เคิล", meaning: "รถจักรยานยนต์" },
-            { word: "Helicopter", syllables: ["Hel", "i", "cop", "ter"], read: "เฮ-ลิ-ค็อป-เตอร์", meaning: "เฮลิคอปเตอร์" },
-            { word: "Dinosaur", syllables: ["Di", "no", "saur"], read: "ได-โน-เสาร์", meaning: "ไดโนเสาร์" },
-            { word: "Kangaroo", syllables: ["Kan", "ga", "roo"], read: "แคง-กา-รู", meaning: "จิงโจ้" }
-        ];
+        // 3. แสดงคำถาม
+        document.getElementById("questionText").innerText = q.question;
 
-        const rawStage2Data = [
-            { word: "Tiger", read: "ไท-เกอร์", meaning: "เสือ", category: "หมวดสัตว์ 🐯", choices: ["Tiger", "Cat", "Dog", "Lion"] },
-            { word: "Elephant", read: "เอล-เลอ-ฟันต์", meaning: "ช้าง", category: "หมวดสัตว์ 🐘", choices: ["Rabbit", "Elephant", "Monkey", "Giraffe"] },
-            { word: "Monkey", read: "มังกี้", meaning: "ลิง", category: "หมวดสัตว์ 🐒", choices: ["Panda", "Bear", "Monkey", "Sheep"] },
-            { word: "Rabbit", read: "แรบบิท", meaning: "กระต่าย", category: "หมวดสัตว์ 🐰", choices: ["Dog", "Cat", "Duck", "Rabbit"] },
-            { word: "Dolphin", read: "ดอล-ฟิน", meaning: "โลมา", category: "หมวดสัตว์ 🐬", choices: ["Dolphin", "Fish", "Shark", "Whale"] },
-            { word: "Apple", read: "แอป-เปิ้ล", meaning: "แอปเปิ้ล", category: "หมวดผลไม้ 🍎", choices: ["Banana", "Apple", "Orange", "Grape"] },
-            { word: "Banana", read: "บะ-แน-นะ", meaning: "กล้วย", category: "หมวดผลไม้ 🍌", choices: ["Mango", "Banana", "Papaya", "Lemon"] },
-            { word: "Watermelon", read: "วอ-เทอร์-เมล-ลอน", meaning: "แตงโม", category: "หมวดผลไม้ 🍉", choices: ["Watermelon", "Coconut", "Strawberry", "Cherry"] },
-            { word: "Orange", read: "ออ-เรนจ์", meaning: "ส้ม", category: "หมวดผลไม้ 🍊", choices: ["Peach", "Orange", "Apple", "Lemon"] },
-            { word: "Strawberry", read: "สตรอว์-เบอร์-รี", meaning: "สตรอว์เบอร์รี", category: "หมวดผลไม้ 🍓", choices: ["Grape", "Melon", "Strawberry", "Kiwi"] },
-            { word: "Carrot", read: "แคร์-รอต", meaning: "แครอท", category: "หมวดผัก 🥕", choices: ["Carrot", "Potato", "Onion", "Tomato"] },
-            { word: "Broccoli", read: "บร็อก-โคลี", meaning: "บรอกโคลี", category: "หมวดผัก 🥦", choices: ["Cabbage", "Corn", "Broccoli", "Pumpkin"] },
-            { word: "Corn", read: "คอร์น", meaning: "ข้าวโพด", category: "หมวดผัก 🌽", choices: ["Corn", "Garlic", "Mushroom", "Pea"] },
-            { word: "Tomato", read: "โท-เม-โท", meaning: "มะเขือเทศ", category: "หมวดผัก 🍅", choices: ["Cucumber", "Tomato", "Chili", "Onion"] },
-            { word: "Pumpkin", read: "พัมป์-กิน", meaning: "ฟักทอง", category: "หมวดผัก 🎃", choices: ["Potato", "Carrot", "Pumpkin", "Spinach"] },
-            { word: "Pencil", read: "เพน-ซิล", meaning: "ดินสอ", category: "หมวดการเรียน ✏️", choices: ["Pencil", "Pen", "Ruler", "Eraser"] },
-            { word: "Book", read: "บุ๊ก", meaning: "หนังสือ", category: "หมวดการเรียน 📖", choices: ["Bag", "Book", "Desk", "Paper"] },
-            { word: "School", read: "สกูล", meaning: "โรงเรียน", category: "หมวดสถานที่ 🏫", choices: ["House", "Park", "School", "Market"] },
-            { word: "Sun", read: "ซัน", meaning: "พระอาทิตย์", category: "หมวดธรรมชาติ ☀️", choices: ["Moon", "Sun", "Star", "Cloud"] },
-            { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หมวดยานพาหนะ 🚲", choices: ["Car", "Bus", "Bike", "Bicycle"] },
-            { word: "Speedboat", read: "สปีด-โบ้ต", meaning: "เรือยนต์", category: "หมวดยานพาหนะ 🚤", choices: ["Ship", "Speedboat", "Boat", "Submarine"] },
-            { word: "Rocket", read: "ร็อก-เก็ต", meaning: "จรวด", category: "หมวดยานพาหนะ 🚀", choices: ["Airplane", "Helicopter", "Rocket", "Drone"] },
-            { word: "Duck", read: "ดั๊ก", meaning: "เป็ด", category: "หมวดสัตว์ 🦆", choices: ["Chicken", "Duck", "Bird", "Goose"] },
-            { word: "Cow", read: "คาว", meaning: "วัว", category: "หมวดสัตว์ 🐄", choices: ["Horse", "Pig", "Cow", "Sheep"] },
-            { word: "Owl", read: "เอาล์", meaning: "นกฮูก", category: "หมวดสัตว์ 🦉", choices: ["Eagle", "Bat", "Owl", "Parrot"] }
-        ];
+        // 4. แสดงตัวเลือก
+        const optionsGroup = document.getElementById("optionsGroup");
+        optionsGroup.innerHTML = "";
 
-        const rawStage3Data = [
-            { word: "Good morning teacher", read: "กู้ด มอร์-นิ่ง ทีช-เชอร์", meaning: "อรุณสวัสดิ์คุณครู" },
-            { word: "How are you today", read: "ฮาว อาร์ ยู ทู-เดย์", meaning: "วันนี้คุณสบายดีไหม" },
-            { word: "I love English class", read: "ไอ เลิฟ อิง-กลิช คลาส", meaning: "ฉันชอบเรียนวิชาภาษาอังกฤษ" },
-            { word: "The sun is shining bright", read: "เดอะ ซัน อิส ไชน-นิ่ง ไบรต์", meaning: "พระอาทิตย์ส่องแสงสว่างไสว" },
-            { word: "Cats and dogs are cute", read: "แคตส์ แอนด์ ด็อกส์ อาร์ คิวต์", meaning: "แมวและสุนัขน่ารักมาก" },
-            { word: "What is your name", read: "วอต อิส ยัวร์ เนม", meaning: "คุณชื่ออะไร" },
-            { word: "Nice to meet you", read: "ไนซ์ ทู มีต ยู", meaning: "ยินดีที่ได้รู้จัก" },
-            { word: "This is a red apple", read: "ดิส อิส อะ เรด แอป-เปิ้ล", meaning: "นี่คือแอปเปิ้ลสีแดง" },
-            { word: "I can ride a bike", read: "ไอ แคน ไรด์ อะ ไบค์", meaning: "ฉันสามารถปั่นจักรยานได้" },
-            { word: "She goes to school", read: "ชี โกส์ ทู สกูล", meaning: "เธอไปโรงเรียน" },
-            { word: "He likes playing football", read: "ฮี ไลส์ เพลย์-อิ้ง ฟุต-บอล", meaning: "เขาชอบเล่นฟุตบอล" },
-            { word: "Open your English book", read: "โอ-เพ่น ยัวร์ อิง-กลิช บุ๊ก", meaning: "เปิดหนังสือภาษาอังกฤษของคุณ" },
-            { word: "Where is the library", read: "แวร์ อิส เดอะ ไล-แบร-รี", meaning: "ห้องสมุดอยู่ที่ไหน" },
-            { word: "It is raining outside", read: "อิต อิส เรน-นิ่ง เอาต์-ไซด์", meaning: "ข้างนอกฝนกำลังตก" },
-            { word: "Thank you very much", read: "แธงก์ ยู เว-รี มัดช์", meaning: "ขอบคุณมากๆ" },
-            { word: "Have a nice day", read: "แฮฟ อะ ไนซ์ เดย์", meaning: "ขอให้เป็นวันที่ดีนะ" },
-            { word: "Wash your hands please", read: "วอช ยัวร์ แฮนด์ส พลีส", meaning: "กรุณาล้างมือของคุณ" },
-            { word: "I drink milk every day", read: "ไอ ดริงก์ มิลก์ เอฟ-รี เดย์", meaning: "ฉันดื่มนมทุกวัน" },
-            { word: "The dog is sleeping", read: "เดอะ ด็อก อิส สลีป-ปิ้ง", meaning: "สุนัขกำลังนอนหลับ" },
-            { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" },
-            { word: "I like to eat ice cream", read: "ไอ ไลค์ ทู อีต ไอซ์ ครีม", meaning: "ฉันชอบกินไอศกรีม" },
-            { word: "We play in the park", read: "วี เพลย์ อิน เดอะ พาร์ก", meaning: "พวกเราเล่นในสวนสาธารณะ" },
-            { word: "Please close the door", read: "พลีส โคลส เดอะ ดอร์", meaning: "กรุณาปิดประตู" },
-            { word: "My mother is cooking", read: "มาย มา-เธอร์ อิส คุก-กิ้ง", meaning: "คุณแม่ของฉันกำลังทำอาหาร" },
-            { word: "The bird is flying high", read: "เดอะ เบิร์ด อิส ฟลาย-อิ้ง ไฮ", meaning: "นกกำลังบินสูง" }
-        ];
+        const savedAnswer = userAnswers[q.id];
 
-        let stage1Data = [];
-        let stage2Data = [];
-        let stage3Data = [];
+        q.options.forEach((optText, index) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerText = optText;
 
-        let currentStage = 1;
-        let currentIndex = 0;
-        let isRecording = false;
-        let hasAnsweredQuiz = false;
-
-        // ตัวแปรสำหรับบันทึกคะแนนในด่านปัจจุบัน
-        let stageCorrectCount = 0;
-        let stageWrongCount = 0;
-        let answeredQuestions = new Set(); // บันทึกข้อที่เคยทำแล้วเพื่อไม่ให้นับคะแนนซ้ำ
-
-        // Whisper Web & Recording Variables
-        let transcriber = null;
-        let mediaRecorder = null;
-        let audioChunks = [];
-        let audioContext = null;
-        let analyser = null;
-        let microphone = null;
-        let silenceTimer = null;
-
-        let studentData = {
-            name: "นักเรียน",
-            totalStars: 0,
-            completedQuestions: 0,
-            weakWords: { stage1: [], stage2: [], stage3: [] }
-        };
-
-        window.onload = async function() {
-            loadStudentData();
-            if (studentData.name === "นักเรียน") {
-                openNameModal();
-            }
-            initWhisper();
-        };
-
-        async function initWhisper() {
-            try {
-                if (window.transformersPipeline) {
-                    transcriber = await window.transformersPipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en');
-                    document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อพูดออกเสียงสิครับ!";
-                } else {
-                    setTimeout(initWhisper, 1000);
+            // หากเคยตอบข้อนี้ไปแล้ว ให้เฉลยและปิดการกดซ้ำ
+            if (savedAnswer !== undefined) {
+                btn.disabled = true;
+                if (index === q.answer) {
+                    btn.classList.add("correct");
                 }
-            } catch (e) {
-                console.error("Whisper Load Error:", e);
-                document.getElementById('feedback-status-text').innerText = "ไม่สามารถโหลดระบบได้ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่";
-            }
-        }
-
-        function loadStudentData() {
-            const saved = localStorage.getItem('phiPor3_studentData');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (Array.isArray(parsed.weakWords)) {
-                    parsed.weakWords = { stage1: [], stage2: [], stage3: [] };
+                if (index === savedAnswer.selected && !savedAnswer.isCorrect) {
+                    btn.classList.add("wrong");
                 }
-                studentData = parsed;
-            }
-            document.getElementById('current-user-name').innerText = studentData.name;
-        }
-
-        function saveStudentData() {
-            localStorage.setItem('phiPor3_studentData', JSON.stringify(studentData));
-            document.getElementById('current-user-name').innerText = studentData.name;
-        }
-
-        function openNameModal() { document.getElementById('name-modal').style.display = 'flex'; }
-
-        function saveStudentName() {
-            const nameInput = document.getElementById('student-name-input').value.trim();
-            if (nameInput) {
-                studentData.name = nameInput;
-                saveStudentData();
-            }
-            document.getElementById('name-modal').style.display = 'none';
-        }
-
-        function openDashboard() {
-            document.getElementById('dash-student-name').innerText = studentData.name;
-            document.getElementById('dash-total-stars').innerText = studentData.totalStars;
-            document.getElementById('dash-total-completed').innerText = studentData.completedQuestions;
-            
-            renderWeakList('dash-weak-stage1', studentData.weakWords.stage1);
-            renderWeakList('dash-weak-stage2', studentData.weakWords.stage2);
-            renderWeakList('dash-weak-stage3', studentData.weakWords.stage3);
-
-            document.getElementById('dash-modal').style.display = 'flex';
-        }
-
-        function renderWeakList(elementId, wordsArray) {
-            const listEl = document.getElementById(elementId);
-            listEl.innerHTML = "";
-            if (!wordsArray || wordsArray.length === 0) {
-                listEl.innerHTML = "<span style='color:#10AC84; font-size:12px;'>✨ ไม่พบคำที่ผิดในด่านนี้</span>";
             } else {
-                wordsArray.forEach(word => {
-                    const tag = document.createElement('span');
-                    tag.className = 'weak-word-item';
-                    tag.innerText = word;
-                    listEl.appendChild(tag);
-                });
-            }
-        }
-
-        function closeDashboard() { document.getElementById('dash-modal').style.display = 'none'; }
-
-        function resetStudentData() {
-            if (confirm("ต้องการลบข้อมูลสถิติของ " + studentData.name + " ทั้งหมดใช่หรือไม่?")) {
-                studentData.totalStars = 0;
-                studentData.completedQuestions = 0;
-                studentData.weakWords = { stage1: [], stage2: [], stage3: [] };
-                saveStudentData();
-                openDashboard();
-            }
-        }
-
-        function recordWeakWord(word) {
-            const stageKey = 'stage' + currentStage;
-            if (!studentData.weakWords[stageKey].includes(word)) {
-                studentData.weakWords[stageKey].push(word);
-                saveStudentData();
-            }
-        }
-
-        function removeWeakWord(word) {
-            const stageKey = 'stage' + currentStage;
-            const index = studentData.weakWords[stageKey].indexOf(word);
-            if (index > -1) {
-                studentData.weakWords[stageKey].splice(index, 1);
-                saveStudentData();
-            }
-        }
-
-        function addStarsAndProgress(starsCount) {
-            studentData.totalStars += starsCount;
-            studentData.completedQuestions += 1;
-            saveStudentData();
-        }
-
-        function startGame(stageTarget) {
-            document.getElementById("home-screen").style.display = "none";
-            document.getElementById("game-screen").style.display = "block";
-            switchStage(stageTarget);
-        }
-
-        function goHome() {
-            stopRecording();
-            document.getElementById("game-screen").style.display = "none";
-            document.getElementById("home-screen").style.display = "flex";
-        }
-
-        function shuffleArray(array) {
-            let arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        function cleanText(text) {
-            return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase().trim();
-        }
-
-        function handleImageError(img) {
-            const currentWord = stage2Data[currentIndex]?.word || "Question";
-            img.onerror = null; 
-            img.src = `https://placehold.co/500x500/FECA57/222F3E?text=${currentWord}`;
-        }
-
-        // ฟังก์ชันสร้างข้อความกระตุ้นเชิงบวกสะท้อนผล
-        function getEncouragementMessage() {
-            const totalAnswered = stageCorrectCount + stageWrongCount;
-            if (totalAnswered === 0) {
-                return `<div class="encouragement-box info">🎯 เริ่มต้นสู้ๆ นะครับ! ด่านนี้ยังไม่ได้ตอบข้อไหนเลย</div>`;
+                btn.onclick = () => selectOption(index);
             }
 
-            const isHighWrong = stageWrongCount > stageCorrectCount && stageWrongCount >= 2;
-            const isHighCorrect = (stageCorrectCount / totalAnswered) >= 0.7;
+            optionsGroup.appendChild(btn);
+        });
 
-            let badgeHtml = "";
-            if (isHighWrong) {
-                badgeHtml = `<div class="encouragement-box warn">⚠️ ตั้งใจหน่อยนะคุณ ผิดมา ${stageWrongCount} ข้อแล้ว (ถูก ${stageCorrectCount} ข้อ) พยายามอีกนิด!</div>`;
-            } else if (isHighCorrect) {
-                badgeHtml = `<div class="encouragement-box good">🎉 เก่งมาก! คุณตอบถูกมาแล้ว ${stageCorrectCount} ข้อ (ผิด ${stageWrongCount} ข้อ) ทำดีแล้วขอให้ทำดีต่อไปครับ!</div>`;
+        // 5. จัดการสถานะปุ่ม "ข้อก่อนหน้า" และ "ข้อถัดไป"
+        document.getElementById("prevBtn").disabled = (currentQuestionIndex === 0);
+        document.getElementById("nextBtn").disabled = (currentQuestionIndex === totalQuestions - 1);
+    }
+
+    function selectOption(selectedIndex) {
+        const currentStage = quizData[currentStageIndex];
+        const q = currentStage.questions[currentQuestionIndex];
+
+        // ตรวจสอบความถูกต้อง
+        const isCorrect = (selectedIndex === q.answer);
+
+        // คำนวณเพิ่มคะแนนเฉพาะข้อที่ยังไม่เคยตอบ
+        if (userAnswers[q.id] === undefined) {
+            if (isCorrect) {
+                stageCorrectCount++;
             } else {
-                badgeHtml = `<div class="encouragement-box info">📊 คะแนนด่านนี้: ถูก ${stageCorrectCount} ข้อ | ผิด ${stageWrongCount} ข้อ</div>`;
+                stageWrongCount++;
             }
 
-            return badgeHtml;
+            // บันทึกการตอบ
+            userAnswers[q.id] = {
+                selected: selectedIndex,
+                isCorrect: isCorrect
+            };
         }
 
-        function recordQuestionResult(isCorrect) {
-            if (!answeredQuestions.has(currentIndex)) {
-                answeredQuestions.add(currentIndex);
-                if (isCorrect) {
-                    stageCorrectCount++;
-                } else {
-                    stageWrongCount++;
-                }
-            }
+        // แสดงผลใหม่ทันทีเพื่ออัปเดตสีและตัวเลขสถิติ
+        renderQuestion();
+    }
+
+    function renderEncouragementMessage() {
+        const container = document.getElementById("encouragementContainer");
+        const totalAnswered = stageCorrectCount + stageWrongCount;
+
+        if (totalAnswered === 0) {
+            container.innerHTML = `<div class="encouragement-box info">🎯 เริ่มต้นสู้ๆ นะครับ! ด่านนี้ยังไม่ได้ตอบข้อไหนเลย</div>`;
+            return;
         }
 
-        function toggleSTT() {
-            if (!transcriber) {
-                alert("ระบบกำลังโหลด กรุณารอสักครู่แล้วลองใหม่ครับ");
-                return;
-            }
-            if (isRecording) {
-                stopRecording();
-            } else {
-                startRecording();
-            }
+        const isHighWrong = stageWrongCount > stageCorrectCount && stageWrongCount >= 2;
+        const isHighCorrect = (stageCorrectCount / totalAnswered) >= 0.7;
+
+        if (isHighWrong) {
+            container.innerHTML = `<div class="encouragement-box warn">⚠️ ตั้งใจหน่อยนะคุณ ผิดมา ${stageWrongCount} ข้อแล้ว (ถูก ${stageCorrectCount} ข้อ) พยายามอีกนิด!</div>`;
+        } else if (isHighCorrect) {
+            container.innerHTML = `<div class="encouragement-box good">🎉 เก่งมาก! คุณตอบถูกมาแล้ว ${stageCorrectCount} ข้อ (ผิด ${stageWrongCount} ข้อ) ทำดีแล้วขอให้ทำดีต่อไปครับ!</div>`;
+        } else {
+            container.innerHTML = `<div class="encouragement-box info">📊 คะแนนด่านนี้: ถูก ${stageCorrectCount} ข้อ | ผิด ${stageWrongCount} ข้อ</div>`;
         }
+    }
 
-        async function startRecording() {
-            try {
-                window.speechSynthesis.cancel();
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                audioChunks = [];
-                mediaRecorder = new MediaRecorder(stream);
-
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                microphone = audioContext.createMediaStreamSource(stream);
-                microphone.connect(analyser);
-                analyser.fftSize = 512;
-
-                const bufferLength = analyser.frequencyBinCount;
-                const dataArray = new Uint8Array(bufferLength);
-
-                mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
-
-                mediaRecorder.onstop = async () => {
-                    if (audioContext) audioContext.close();
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    processAudioWithWhisper(audioBlob);
-                };
-
-                mediaRecorder.start();
-                isRecording = true;
-
-                const btn = document.getElementById('record-btn');
-                btn.classList.add('recording');
-                btn.innerHTML = '<i class="fa-solid fa-microphone-lines"></i> กำลังฟังเสียง...';
-                document.getElementById('feedback-status-text').innerText = "🎤 กำลังฟังเสียง... พูดจบแล้วหยุด ระบบจะตรวจจับให้อัตโนมัติ";
-
-                let hasSpoken = false;
-                function detectSilence() {
-                    if (!isRecording) return;
-
-                    analyser.getByteFrequencyData(dataArray);
-                    let sum = 0;
-                    for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
-                    let average = sum / bufferLength;
-
-                    if (average > 12) {
-                        hasSpoken = true;
-                        clearTimeout(silenceTimer);
-                        silenceTimer = null;
-                    } else if (hasSpoken && !silenceTimer) {
-                        silenceTimer = setTimeout(() => {
-                            stopRecording();
-                        }, 1500);
-                    }
-
-                    requestAnimationFrame(detectSilence);
-                }
-
-                detectSilence();
-
-            } catch (err) {
-                console.error("Mic Access Error:", err);
-                alert("ไม่สามารถเข้าถึงไมโครโฟนได้ กรุณาอนุญาตใช้งานไมโครโฟนในเบราว์เซอร์");
-            }
+    function nextQuestion() {
+        const currentStage = quizData[currentStageIndex];
+        if (currentQuestionIndex < currentStage.questions.length - 1) {
+            currentQuestionIndex++;
+            renderQuestion();
         }
+    }
 
-        function stopRecording() {
-            if (mediaRecorder && isRecording) {
-                clearTimeout(silenceTimer);
-                silenceTimer = null;
-                isRecording = false;
-                mediaRecorder.stop();
-
-                const btn = document.getElementById('record-btn');
-                btn.classList.remove('recording');
-                btn.classList.add('processing');
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังวิเคราะห์...';
-                document.getElementById('feedback-status-text').innerText = "🤖 กำลังประมวลผลเสียงพูดของคุณ...";
-            }
+    function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            renderQuestion();
         }
+    }
 
-        async function processAudioWithWhisper(audioBlob) {
-            try {
-                const arrayBuffer = await audioBlob.arrayBuffer();
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
-                const decodedAudio = await audioCtx.decodeAudioData(arrayBuffer);
-                const audioData = decodedAudio.getChannelData(0);
+    // เริ่มต้นทำงาน
+    initQuiz();
+</script>
 
-                const result = await transcriber(audioData);
-                const spokenText = result.text || "";
-
-                evaluateSpeech(spokenText);
-            } catch (e) {
-                console.error("Whisper Process Error:", e);
-                document.getElementById('feedback-status-text').innerText = "เกิดข้อผิดพลาดในการประมวลผลเสียง ลองใหม่อีกครั้งครับ";
-            } finally {
-                const btn = document.getElementById('record-btn');
-                btn.classList.remove('processing');
-                btn.innerHTML = '<i class="fa-solid fa-microphone"></i> กดแล้วพูดออกเสียงเลย!';
-            }
-        }
-
-        function switchStage(stageNum) {
-            stopRecording();
-            currentStage = stageNum;
-            currentIndex = 0;
-            
-            // รีเซ็ตสถิติด่านใหม่
-            stageCorrectCount = 0;
-            stageWrongCount = 0;
-            answeredQuestions.clear();
-
-            if (stageNum === 1) stage1Data = shuffleArray(rawStage1Data);
-            if (stageNum === 2) stage2Data = shuffleArray(rawStage2Data);
-            if (stageNum === 3) stage3Data = shuffleArray(rawStage3Data);
-
-            document.getElementById('btn-stage1').classList.toggle('active', stageNum === 1);
-            document.getElementById('btn-stage2').classList.toggle('active', stageNum === 2);
-            document.getElementById('btn-stage3').classList.toggle('active', stageNum === 3);
-            
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            resetFeedbackArea();
-            hasAnsweredQuiz = false;
-
-            const speechGroup = document.getElementById('speech-action-group');
-            const quizBox = document.getElementById('quiz-options-box');
-            const imgBox = document.getElementById('quiz-img-box');
-            const imgEl = document.getElementById('quiz-real-img');
-            const targetWordEl = document.getElementById('display-target-word');
-            const phoneticEl = document.getElementById('display-phonetic');
-            const meaningEl = document.getElementById('display-meaning');
-            const hintFooter = document.getElementById('hint-footer-text');
-
-            const totalQ = getDatasetLength();
-
-            if (currentStage === 1) {
-                const item = stage1Data[currentIndex];
-                speechGroup.style.display = 'flex';
-                quizBox.style.display = 'none';
-                imgBox.style.display = 'none';
-                phoneticEl.style.display = 'inline-block';
-                meaningEl.style.display = 'block';
-                hintFooter.style.display = 'block';
-
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (ข้อที่ ${currentIndex + 1}/${totalQ})`;
-                targetWordEl.innerText = item.word;
-                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
-                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
-
-            } else if (currentStage === 2) {
-                const item = stage2Data[currentIndex];
-                speechGroup.style.display = 'none';
-                quizBox.style.display = 'grid';
-                imgBox.style.display = 'flex';
-                
-                phoneticEl.style.display = 'none';
-                meaningEl.style.display = 'none';
-                hintFooter.style.display = 'none';
-
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : เกมทายคำศัพท์ ${item.category} (ข้อที่ ${currentIndex + 1}/${totalQ})`;
-                
-                imgEl.src = realImages[item.word] || `https://placehold.co/500x500/FECA57/222F3E?text=${item.word}`;
-
-                targetWordEl.innerText = "???";
-
-                const shuffledChoices = shuffleArray(item.choices);
-                quizBox.innerHTML = "";
-                shuffledChoices.forEach(choice => {
-                    const btn = document.createElement('button');
-                    btn.className = 'choice-btn';
-                    btn.innerText = choice;
-                    btn.onclick = function() { checkQuizAnswer(choice, item.word, btn); };
-                    quizBox.appendChild(btn);
-                });
-
-            } else if (currentStage === 3) {
-                const item = stage3Data[currentIndex];
-                speechGroup.style.display = 'flex';
-                quizBox.style.display = 'none';
-                imgBox.style.display = 'none';
-                phoneticEl.style.display = 'inline-block';
-                meaningEl.style.display = 'block';
-                hintFooter.style.display = 'block';
-
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 3 : อ่านประโยค (ข้อที่ ${currentIndex + 1}/${totalQ})`;
-                targetWordEl.innerText = item.word;
-                phoneticEl.innerText = `คำอ่าน : ${item.read}`;
-                meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
-            }
-        }
-
-        function checkQuizAnswer(selected, correct, clickedBtn) {
-            if (hasAnsweredQuiz) return;
-            hasAnsweredQuiz = true;
-
-            const allBtns = document.querySelectorAll('.choice-btn');
-            const item = stage2Data[currentIndex];
-
-            if (selected === correct) {
-                recordQuestionResult(true);
-                clickedBtn.classList.add('correct-choice');
-                document.getElementById('display-target-word').innerText = correct;
-                document.getElementById('display-phonetic').style.display = 'inline-block';
-                document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
-                document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
-                set5Stars(5);
-                addStarsAndProgress(5);
-                removeWeakWord(correct);
-                speakWord(correct);
-            } else {
-                recordQuestionResult(false);
-                clickedBtn.classList.add('wrong-choice');
-                allBtns.forEach(btn => {
-                    if (btn.innerText === correct) btn.classList.add('correct-choice');
-                });
-                document.getElementById('display-target-word').innerText = correct;
-                document.getElementById('display-phonetic').style.display = 'inline-block';
-                document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
-                document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
-                set5Stars(1);
-                addStarsAndProgress(1);
-                recordWeakWord(correct);
-                speakWord("Wrong! It is " + correct);
-            }
-        }
-
-        function playTargetTTS() {
-            const targetText = document.getElementById('display-target-word').innerText;
-            if (targetText !== "???") {
-                speakWord(targetText);
-            }
-        }
-
-        function speakWord(text) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.8;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        function evaluateSpeech(spokenText) {
-            const resultContainer = document.getElementById('visual-words-result');
-            resultContainer.innerHTML = "";
-            const rawSpoken = cleanText(spokenText);
-
-            if (currentStage === 1) {
-                const currentItem = stage1Data[currentIndex];
-                const syllables = currentItem.syllables;
-                const targetWordClean = cleanText(currentItem.word);
-                let correctSyllableCount = 0;
-
-                const isExactMatch = rawSpoken === targetWordClean;
-
-                syllables.forEach((syl, idx) => {
-                    const cleanSyl = cleanText(syl);
-                    const isSyllableCorrect = isExactMatch || rawSpoken.split(/\s+/).some(word => word === cleanSyl || word.startsWith(cleanSyl));
-
-                    const chip = document.createElement('span');
-                    chip.className = 'syllable-chip';
-                    chip.innerText = syl;
-
-                    if (isSyllableCorrect) {
-                        chip.classList.add('correct');
-                        correctSyllableCount++;
-                    } else {
-                        chip.classList.add('wrong');
-                        chip.onclick = function() { speakWord(syl); };
-                    }
-
-                    resultContainer.appendChild(chip);
-
-                    if (idx < syllables.length - 1) {
-                        const sep = document.createElement('span');
-                        sep.className = 'syllable-separator';
-                        sep.innerText = '-';
-                        resultContainer.appendChild(sep);
-                    }
-                });
-
-                const accuracy = (correctSyllableCount / syllables.length) * 100;
-                const isPassed = accuracy >= 60;
-                recordQuestionResult(isPassed);
-
-                if (!isPassed) {
-                    recordWeakWord(currentItem.word);
-                } else {
-                    removeWeakWord(currentItem.word);
-                }
-                updateFeedbackStatus(accuracy, spokenText);
-
-            } else if (currentStage === 3) {
-                const targetText = document.getElementById('display-target-word').innerText;
-                const rawTargetWords = targetText.split(/\s+/);
-                const targetWordsClean = rawTargetWords.map(w => cleanText(w));
-                const spokenWordsClean = rawSpoken.split(/\s+/);
-                let correctCount = 0;
-
-                rawTargetWords.forEach((originalWord, index) => {
-                    const cleanedWord = targetWordsClean[index];
-                    const chip = document.createElement('span');
-                    chip.className = 'syllable-chip';
-                    chip.innerText = originalWord;
-                    
-                    if (spokenWordsClean.includes(cleanedWord)) {
-                        chip.classList.add('correct');
-                        correctCount++;
-                    } else {
-                        chip.classList.add('wrong');
-                        chip.onclick = function() { speakWord(originalWord); };
-                    }
-                    resultContainer.appendChild(chip);
-                });
-
-                const accuracy = (correctCount / targetWordsClean.length) * 100;
-                const isPassed = accuracy >= 60;
-                recordQuestionResult(isPassed);
-
-                if (!isPassed) {
-                    recordWeakWord(targetText);
-                } else {
-                    removeWeakWord(targetText);
-                }
-                updateFeedbackStatus(accuracy, spokenText);
-            }
-        }
-
-        function updateFeedbackStatus(accuracy, spokenText) {
-            let stars = 1;
-            let statusText = "";
-
-            if (accuracy >= 91) {
-                stars = 5;
-                statusText = `<span style="color:var(--correct-text);">🌟 ยอดเยี่ยมมาก! ออกเสียงถูกต้องเป๊ะ 5 ดาว!</span>`;
-            } else if (accuracy >= 61) {
-                stars = 4;
-                statusText = `<span style="color:#0984e3;">👍 ดีมากเลย! ออกเสียงถูกเกือบหมดแล้ว (ได้ 4 ดาว)</span>`;
-            } else if (accuracy >= 41) {
-                stars = 3;
-                statusText = `<span style="color:#e67e22;">🙂 เกือบแล้ว! ลองกดฟังเสียงพยางค์สีแดงแล้วพูดตามนะ</span>`;
-            } else if (accuracy >= 21) {
-                stars = 2;
-                statusText = `<span style="color:#d35400;">สู้ๆ นะ! ลองกดฟังเสียงต้นฉบับแล้วลองใหม่อีกครั้ง</span>`;
-            } else {
-                stars = 1;
-                statusText = `<span style="color:var(--wrong-text);">😊 พยายามอีกนิดนะ! ลองฟังเสียงต้นฉบับแล้วกดพูดใหม่อีกครั้ง</span>`;
-            }
-            
-            document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}${statusText}`;
-            set5Stars(stars);
-            addStarsAndProgress(stars);
-        }
-
-        function set5Stars(count) {
-            const stars = document.getElementById('stars-display').children;
-            for (let i = 0; i < 5; i++) {
-                if (i < count) {
-                    stars[i].classList.add('active');
-                } else {
-                    stars[i].classList.remove('active');
-                }
-            }
-        }
-
-        function resetFeedbackArea() {
-            set5Stars(0);
-            const statusBox = document.getElementById('feedback-status-text');
-            const encourageMsg = getEncouragementMessage();
-
-            if (currentStage === 2) {
-                statusBox.innerHTML = `${encourageMsg}<div>มองรูปภาพแล้วเลือกคำตอบที่ถูกต้องสิครับ!</div>`;
-            } else {
-                statusBox.innerHTML = `${encourageMsg}<div>กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!</div>`;
-            }
-            document.getElementById('visual-words-result').innerHTML = "";
-        }
-
-        function getDatasetLength() {
-            if (currentStage === 1) return stage1Data.length;
-            if (currentStage === 2) return stage2Data.length;
-            return stage3Data.length;
-        }
-
-        function nextQuestion() {
-            stopRecording();
-            const total = getDatasetLength();
-            currentIndex = (currentIndex + 1) % total;
-            loadQuestion();
-        }
-
-        function prevQuestion() {
-            stopRecording();
-            const total = getDatasetLength();
-            currentIndex = (currentIndex - 1 + total) % total;
-            loadQuestion();
-        }
-    </script>
 </body>
 </html>
