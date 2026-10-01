@@ -653,7 +653,7 @@
             border-radius: 30px;
             padding: 30px;
             width: 90%;
-            max-width: 550px;
+            max-width: 580px;
             text-align: center;
             box-shadow: 0 10px 0 #222F3E;
         }
@@ -727,6 +727,28 @@
             margin: 3px;
             font-weight: 700;
             font-size: 13px;
+        }
+
+        /* ปุ่มเพิ่มเติมสำหรับ Modal ด่านต่อไป */
+        .btn-next-stage {
+            background: linear-gradient(180deg, #10AC84 0%, #0984E3 100%);
+            color: white;
+            border: 4px solid #222F3E;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #222F3E;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-next-stage:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #222F3E;
         }
 
         @media (max-width: 600px) {
@@ -912,7 +934,7 @@
         </div>
     </div>
 
-    <!-- MODAL แจ้งเตือนเล่นครบด่าน -->
+    <!-- MODAL แจ้งเตือนเล่นครบด่าน (อัปเดตเพิ่มปุ่ม 'ด่านต่อไป') -->
     <div class="modal-overlay" id="stage-complete-modal">
         <div class="modal-card">
             <div style="font-size: 60px; color: #FF9F43; margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i></div>
@@ -930,13 +952,17 @@
                 </div>
             </div>
 
-            <p style="font-size: 16px; color: var(--text-main); margin-bottom: 20px; font-weight: 600;">เก่งมาก ๆ ครับ! หนูอยากเริ่มเล่นด่านนี้ใหม่อีกครั้ง หรือจะไปด่านอื่นดีครับ?</p>
+            <p style="font-size: 16px; color: var(--text-main); margin-bottom: 20px; font-weight: 600;">เก่งมาก ๆ ครับ! หนูอยากไปด่านต่อไป หรือเริ่มเล่นด่านนี้ใหม่อีกครั้งดีครับ?</p>
 
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn-start-main" style="padding: 12px 28px; font-size: 18px;" onclick="restartCurrentStage()">
+                <!-- ปุ่มด่านต่อไปที่เพิ่มเข้ามา -->
+                <button class="btn-next-stage" onclick="goToNextStage()">
+                    <i class="fa-solid fa-forward"></i> ด่านต่อไป
+                </button>
+                <button class="btn-start-main" style="padding: 12px 24px; font-size: 18px;" onclick="restartCurrentStage()">
                     <i class="fa-solid fa-rotate-right"></i> เริ่มเล่นใหม่อีกครั้ง
                 </button>
-                <button class="btn-nav" style="padding: 12px 24px; font-size: 18px;" onclick="closeStageCompleteModal()">
+                <button class="btn-nav" style="padding: 12px 20px; font-size: 18px;" onclick="closeStageCompleteModal()">
                     <i class="fa-solid fa-house"></i> หน้าหลัก
                 </button>
             </div>
@@ -1071,12 +1097,10 @@
         let isRecording = false;
         let hasAnsweredQuiz = false;
 
-        // ตัวแปรสำหรับบันทึกคะแนนในด่านปัจจุบัน
         let stageCorrectCount = 0;
         let stageWrongCount = 0;
-        let answeredQuestions = new Set(); // บันทึกข้อที่เคยทำแล้วเพื่อไม่ให้นับคะแนนซ้ำ
+        let answeredQuestions = new Set();
 
-        // Whisper Web & Recording Variables
         let transcriber = null;
         let mediaRecorder = null;
         let audioChunks = [];
@@ -1235,7 +1259,6 @@
             img.src = `https://placehold.co/500x500/FECA57/222F3E?text=${currentWord}`;
         }
 
-        // ฟังก์ชันสร้างข้อความกระตุ้นเชิงบวกสะท้อนผล
         function getEncouragementMessage() {
             const totalAnswered = stageCorrectCount + stageWrongCount;
             if (totalAnswered === 0) {
@@ -1383,7 +1406,6 @@
             currentStage = stageNum;
             currentIndex = 0;
             
-            // รีเซ็ตสถิติด่านใหม่
             stageCorrectCount = 0;
             stageWrongCount = 0;
             answeredQuestions.clear();
@@ -1668,7 +1690,6 @@
             stopRecording();
             const total = getDatasetLength();
             
-            // เช็คว่าทำครบ 25 ข้อในด่านปัจจุบันแล้วหรือยัง
             if (currentIndex + 1 >= total) {
                 showStageCompleteModal();
                 return;
@@ -1685,7 +1706,7 @@
             loadQuestion();
         }
 
-        // --- ส่วนที่เพิ่มเข้ามาใหม่: ระบบแจ้งเตือนเมื่อเล่นจบครบ 25 ข้อในแต่ละด่าน ---
+        // --- แสดง Modal เมื่อเล่นจบครบด่าน ---
         function showStageCompleteModal() {
             const stageNames = {
                 1: "ด่านที่ 1 : ฝึกออกเสียงคำเดี่ยว",
@@ -1698,6 +1719,16 @@
             document.getElementById('complete-wrong-count').innerText = stageWrongCount;
 
             document.getElementById('stage-complete-modal').style.display = 'flex';
+        }
+
+        // --- ฟังก์ชันสำหรับการเปลี่ยนไปยังด่านต่อไป ---
+        function goToNextStage() {
+            document.getElementById('stage-complete-modal').style.display = 'none';
+            let nextStage = currentStage + 1;
+            if (nextStage > 3) {
+                nextStage = 1; // หากจบด่าน 3 แล้วจะวนกลับไปเริ่มที่ด่าน 1
+            }
+            switchStage(nextStage);
         }
 
         function restartCurrentStage() {
