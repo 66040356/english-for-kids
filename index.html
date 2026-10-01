@@ -17,7 +17,7 @@
             --primary-yellow: #FECA57;     
             --accent-green: #10AC84;       
             --accent-blue: #48DBFB;        
-            --accent-pink: #FFFF3;        
+            --accent-pink: #FF7675;        
             --text-main: #576574;          
             --text-dark: #222F3E;          
             --text-sub: #8395A7;           
@@ -350,7 +350,7 @@
             margin-bottom: 12px;
             background: #FFEAA7;
             display: inline-block;
-            padding: 4px 16px;
+            padding: 6px 20px;
             border-radius: 20px;
         }
 
@@ -530,10 +530,38 @@
         }
 
         .feedback-status {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .encouragement-box {
+            font-size: 15px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .encouragement-box.good {
+            background: #E3FCF7;
+            color: #10AC84;
+            border: 2px solid #10AC84;
+        }
+
+        .encouragement-box.warn {
+            background: #FFEEF0;
+            color: #EE5253;
+            border: 2px solid #EE5253;
+        }
+
+        .encouragement-box.info {
+            background: #E8F4FE;
+            color: #0984E3;
+            border: 2px solid #74B9FF;
         }
 
         .words-feedback-box {
@@ -912,7 +940,6 @@
             School: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80",
             Sun: "sun.jpg",
             Bicycle: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80",
-            /* รูปภาพเพิ่มเติมด่าน 2 */
             Speedboat: "speedboat.jpg",
             Rocket: "rocket.jpg",
             Duck: "duck.jpg",
@@ -969,12 +996,8 @@
             { word: "School", read: "สกูล", meaning: "โรงเรียน", category: "หมวดสถานที่ 🏫", choices: ["House", "Park", "School", "Market"] },
             { word: "Sun", read: "ซัน", meaning: "พระอาทิตย์", category: "หมวดธรรมชาติ ☀️", choices: ["Moon", "Sun", "Star", "Cloud"] },
             { word: "Bicycle", read: "ไบ-ซิ-เคิล", meaning: "รถจักรยาน", category: "หมวดยานพาหนะ 🚲", choices: ["Car", "Bus", "Bike", "Bicycle"] },
-            
-            /* เพิ่มคำศัพท์ใหม่ ด่าน 2 */
-            // หมวดยานพาหนะ 2 คำ
             { word: "Speedboat", read: "สปีด-โบ้ต", meaning: "เรือยนต์", category: "หมวดยานพาหนะ 🚤", choices: ["Ship", "Speedboat", "Boat", "Submarine"] },
             { word: "Rocket", read: "ร็อก-เก็ต", meaning: "จรวด", category: "หมวดยานพาหนะ 🚀", choices: ["Airplane", "Helicopter", "Rocket", "Drone"] },
-            // หมวดสัตว์ 3 คำ
             { word: "Duck", read: "ดั๊ก", meaning: "เป็ด", category: "หมวดสัตว์ 🦆", choices: ["Chicken", "Duck", "Bird", "Goose"] },
             { word: "Cow", read: "คาว", meaning: "วัว", category: "หมวดสัตว์ 🐄", choices: ["Horse", "Pig", "Cow", "Sheep"] },
             { word: "Owl", read: "เอาล์", meaning: "นกฮูก", category: "หมวดสัตว์ 🦉", choices: ["Eagle", "Bat", "Owl", "Parrot"] }
@@ -1001,8 +1024,6 @@
             { word: "I drink milk every day", read: "ไอ ดริงก์ มิลก์ เอฟ-รี เดย์", meaning: "ฉันดื่มนมทุกวัน" },
             { word: "The dog is sleeping", read: "เดอะ ด็อก อิส สลีป-ปิ้ง", meaning: "สุนัขกำลังนอนหลับ" },
             { word: "See you again tomorrow", read: "ซี ยู อะ-เกน ทู-มอ-โรว์", meaning: "พรุ่งนี้พบกันใหม่นะ" },
-            
-            /* เพิ่มประโยคใหม่ ด่าน 3 (จำนวน 5 ข้อ) */
             { word: "I like to eat ice cream", read: "ไอ ไลค์ ทู อีต ไอซ์ ครีม", meaning: "ฉันชอบกินไอศกรีม" },
             { word: "We play in the park", read: "วี เพลย์ อิน เดอะ พาร์ก", meaning: "พวกเราเล่นในสวนสาธารณะ" },
             { word: "Please close the door", read: "พลีส โคลส เดอะ ดอร์", meaning: "กรุณาปิดประตู" },
@@ -1018,6 +1039,11 @@
         let currentIndex = 0;
         let isRecording = false;
         let hasAnsweredQuiz = false;
+
+        // ตัวแปรสำหรับบันทึกคะแนนในด่านปัจจุบัน
+        let stageCorrectCount = 0;
+        let stageWrongCount = 0;
+        let answeredQuestions = new Set(); // บันทึกข้อที่เคยทำแล้วเพื่อไม่ให้นับคะแนนซ้ำ
 
         // Whisper Web & Recording Variables
         let transcriber = null;
@@ -1178,6 +1204,39 @@
             img.src = `https://placehold.co/500x500/FECA57/222F3E?text=${currentWord}`;
         }
 
+        // ฟังก์ชันสร้างข้อความกระตุ้นเชิงบวกสะท้อนผล
+        function getEncouragementMessage() {
+            const totalAnswered = stageCorrectCount + stageWrongCount;
+            if (totalAnswered === 0) {
+                return `<div class="encouragement-box info">🎯 เริ่มต้นสู้ๆ นะครับ! ด่านนี้ยังไม่ได้ตอบข้อไหนเลย</div>`;
+            }
+
+            const isHighWrong = stageWrongCount > stageCorrectCount && stageWrongCount >= 2;
+            const isHighCorrect = (stageCorrectCount / totalAnswered) >= 0.7;
+
+            let badgeHtml = "";
+            if (isHighWrong) {
+                badgeHtml = `<div class="encouragement-box warn">⚠️ ตั้งใจหน่อยนะคุณ ผิดมา ${stageWrongCount} ข้อแล้ว (ถูก ${stageCorrectCount} ข้อ) พยายามอีกนิด!</div>`;
+            } else if (isHighCorrect) {
+                badgeHtml = `<div class="encouragement-box good">🎉 เก่งมาก! คุณตอบถูกมาแล้ว ${stageCorrectCount} ข้อ (ผิด ${stageWrongCount} ข้อ) ทำดีแล้วขอให้ทำดีต่อไปครับ!</div>`;
+            } else {
+                badgeHtml = `<div class="encouragement-box info">📊 คะแนนด่านนี้: ถูก ${stageCorrectCount} ข้อ | ผิด ${stageWrongCount} ข้อ</div>`;
+            }
+
+            return badgeHtml;
+        }
+
+        function recordQuestionResult(isCorrect) {
+            if (!answeredQuestions.has(currentIndex)) {
+                answeredQuestions.add(currentIndex);
+                if (isCorrect) {
+                    stageCorrectCount++;
+                } else {
+                    stageWrongCount++;
+                }
+            }
+        }
+
         function toggleSTT() {
             if (!transcriber) {
                 alert("ระบบกำลังโหลด กรุณารอสักครู่แล้วลองใหม่ครับ");
@@ -1293,6 +1352,11 @@
             currentStage = stageNum;
             currentIndex = 0;
             
+            // รีเซ็ตสถิติด่านใหม่
+            stageCorrectCount = 0;
+            stageWrongCount = 0;
+            answeredQuestions.clear();
+
             if (stageNum === 1) stage1Data = shuffleArray(rawStage1Data);
             if (stageNum === 2) stage2Data = shuffleArray(rawStage2Data);
             if (stageNum === 3) stage3Data = shuffleArray(rawStage3Data);
@@ -1317,6 +1381,8 @@
             const meaningEl = document.getElementById('display-meaning');
             const hintFooter = document.getElementById('hint-footer-text');
 
+            const totalQ = getDatasetLength();
+
             if (currentStage === 1) {
                 const item = stage1Data[currentIndex];
                 speechGroup.style.display = 'flex';
@@ -1326,7 +1392,7 @@
                 meaningEl.style.display = 'block';
                 hintFooter.style.display = 'block';
 
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (${currentIndex + 1}/${stage1Data.length})`;
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 1 : ฝึกออกเสียงคำศัพท์ (ข้อที่ ${currentIndex + 1}/${totalQ})`;
                 targetWordEl.innerText = item.word;
                 phoneticEl.innerText = `คำอ่าน : ${item.read}`;
                 meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
@@ -1341,7 +1407,7 @@
                 meaningEl.style.display = 'none';
                 hintFooter.style.display = 'none';
 
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : เกมทายคำศัพท์ ${item.category} (${currentIndex + 1}/${stage2Data.length})`;
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 2 : เกมทายคำศัพท์ ${item.category} (ข้อที่ ${currentIndex + 1}/${totalQ})`;
                 
                 imgEl.src = realImages[item.word] || `https://placehold.co/500x500/FECA57/222F3E?text=${item.word}`;
 
@@ -1366,7 +1432,7 @@
                 meaningEl.style.display = 'block';
                 hintFooter.style.display = 'block';
 
-                document.getElementById('stage-tag-text').innerText = `ด่านที่ 3 : ทดสอบสำเนียงอ่านประโยค (${currentIndex + 1}/${stage3Data.length})`;
+                document.getElementById('stage-tag-text').innerText = `ด่านที่ 3 : อ่านประโยค (ข้อที่ ${currentIndex + 1}/${totalQ})`;
                 targetWordEl.innerText = item.word;
                 phoneticEl.innerText = `คำอ่าน : ${item.read}`;
                 meaningEl.innerText = `(แปลว่า : ${item.meaning})`;
@@ -1381,16 +1447,18 @@
             const item = stage2Data[currentIndex];
 
             if (selected === correct) {
+                recordQuestionResult(true);
                 clickedBtn.classList.add('correct-choice');
                 document.getElementById('display-target-word').innerText = correct;
                 document.getElementById('display-phonetic').style.display = 'inline-block';
                 document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
+                document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}<span style="color:var(--correct-text);">🎉 ถูกต้องครับ! เก่งมากๆ เลย!</span>`;
                 set5Stars(5);
                 addStarsAndProgress(5);
                 removeWeakWord(correct);
                 speakWord(correct);
             } else {
+                recordQuestionResult(false);
                 clickedBtn.classList.add('wrong-choice');
                 allBtns.forEach(btn => {
                     if (btn.innerText === correct) btn.classList.add('correct-choice');
@@ -1398,7 +1466,7 @@
                 document.getElementById('display-target-word').innerText = correct;
                 document.getElementById('display-phonetic').style.display = 'inline-block';
                 document.getElementById('display-phonetic').innerText = `คำอ่าน : ${item.read}`;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
+                document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}<span style="color:var(--wrong-text);">❌ ยังไม่ถูกต้องนะ คำที่ถูกคือ ${correct}</span>`;
                 set5Stars(1);
                 addStarsAndProgress(1);
                 recordWeakWord(correct);
@@ -1463,7 +1531,10 @@
                 });
 
                 const accuracy = (correctSyllableCount / syllables.length) * 100;
-                if (accuracy < 60) {
+                const isPassed = accuracy >= 60;
+                recordQuestionResult(isPassed);
+
+                if (!isPassed) {
                     recordWeakWord(currentItem.word);
                 } else {
                     removeWeakWord(currentItem.word);
@@ -1494,7 +1565,10 @@
                 });
 
                 const accuracy = (correctCount / targetWordsClean.length) * 100;
-                if (accuracy < 60) {
+                const isPassed = accuracy >= 60;
+                recordQuestionResult(isPassed);
+
+                if (!isPassed) {
                     recordWeakWord(targetText);
                 } else {
                     removeWeakWord(targetText);
@@ -1505,24 +1579,26 @@
 
         function updateFeedbackStatus(accuracy, spokenText) {
             let stars = 1;
+            let statusText = "";
 
             if (accuracy >= 91) {
                 stars = 5;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--correct-text);">🌟 ยอดเยี่ยมมาก! ออกเสียงถูกต้องเป๊ะ 5 ดาว!</span>`;
+                statusText = `<span style="color:var(--correct-text);">🌟 ยอดเยี่ยมมาก! ออกเสียงถูกต้องเป๊ะ 5 ดาว!</span>`;
             } else if (accuracy >= 61) {
                 stars = 4;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#0984e3;">👍 ดีมากเลย! ออกเสียงถูกเกือบหมดแล้ว (ได้ 4 ดาว)</span>`;
+                statusText = `<span style="color:#0984e3;">👍 ดีมากเลย! ออกเสียงถูกเกือบหมดแล้ว (ได้ 4 ดาว)</span>`;
             } else if (accuracy >= 41) {
                 stars = 3;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#e67e22;">🙂 เกือบแล้ว! ลองกดฟังเสียงพยางค์สีแดงแล้วพูดตามนะ</span>`;
+                statusText = `<span style="color:#e67e22;">🙂 เกือบแล้ว! ลองกดฟังเสียงพยางค์สีแดงแล้วพูดตามนะ</span>`;
             } else if (accuracy >= 21) {
                 stars = 2;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:#d35400;">สู้ๆ นะ! ลองกดฟังเสียงต้นฉบับแล้วลองใหม่อีกครั้ง</span>`;
+                statusText = `<span style="color:#d35400;">สู้ๆ นะ! ลองกดฟังเสียงต้นฉบับแล้วลองใหม่อีกครั้ง</span>`;
             } else {
                 stars = 1;
-                document.getElementById('feedback-status-text').innerHTML = `<span style="color:var(--wrong-text);">😊 พยายามอีกนิดนะ! ลองฟังเสียงต้นฉบับแล้วกดพูดใหม่อีกครั้ง</span>`;
+                statusText = `<span style="color:var(--wrong-text);">😊 พยายามอีกนิดนะ! ลองฟังเสียงต้นฉบับแล้วกดพูดใหม่อีกครั้ง</span>`;
             }
             
+            document.getElementById('feedback-status-text').innerHTML = `${getEncouragementMessage()}${statusText}`;
             set5Stars(stars);
             addStarsAndProgress(stars);
         }
@@ -1540,10 +1616,13 @@
 
         function resetFeedbackArea() {
             set5Stars(0);
+            const statusBox = document.getElementById('feedback-status-text');
+            const encourageMsg = getEncouragementMessage();
+
             if (currentStage === 2) {
-                document.getElementById('feedback-status-text').innerText = "มองรูปภาพแล้วเลือกคำตอบที่ถูกต้องสิครับ!";
+                statusBox.innerHTML = `${encourageMsg}<div>มองรูปภาพแล้วเลือกคำตอบที่ถูกต้องสิครับ!</div>`;
             } else {
-                document.getElementById('feedback-status-text').innerText = "กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!";
+                statusBox.innerHTML = `${encourageMsg}<div>กดปุ่มฟังเสียง หรือกดปุ่มไมโครโฟนเพื่อเริ่มพูดออกเสียงสิครับ!</div>`;
             }
             document.getElementById('visual-words-result').innerHTML = "";
         }
