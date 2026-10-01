@@ -893,6 +893,20 @@
         </div>
     </div>
 
+    <!-- MODAL แจ้งเตือนเมื่อตอบผิดติดต่อกัน 3 ข้อ -->
+    <div class="modal-overlay" id="consecutive-wrong-modal">
+        <div class="modal-card">
+            <div style="font-size: 60px; color: #EE5253; margin-bottom: 10px;"><i class="fa-solid fa-face-frown-open"></i></div>
+            <div class="modal-title" style="font-size: 26px; color: #EE5253;">คุณผิดติดต่อกันมาเยอะแล้วนะ!</div>
+            <p style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; line-height: 1.5;">
+                ตั้งใจทำหน่อยนะครับ สู้ๆ! ลองกดฟังเสียงต้นฉบับทบทวนอีกทีนะ 💪
+            </p>
+            <button class="btn-start-main" style="padding: 12px 35px; font-size: 20px;" onclick="closeConsecutiveWrongModal()">
+                รับทราบ! ลุยต่อ
+            </button>
+        </div>
+    </div>
+
     <!-- MODAL แดชบอร์ดสรุปผล -->
     <div class="modal-overlay" id="dash-modal">
         <div class="modal-card">
@@ -1099,6 +1113,7 @@
 
         let stageCorrectCount = 0;
         let stageWrongCount = 0;
+        let consecutiveWrongCount = 0; // ตัวแปรนับจำนวนข้อที่ผิดติดต่อกัน
         let answeredQuestions = new Set();
 
         let transcriber = null;
@@ -1164,6 +1179,17 @@
                 saveStudentData();
             }
             document.getElementById('name-modal').style.display = 'none';
+        }
+
+        /* ฟังก์ชันควบคุม Modal เตือนเมื่อผิดติดต่อกัน 3 ข้อ */
+        function checkConsecutiveWrongAlert() {
+            if (consecutiveWrongCount >= 3) {
+                document.getElementById('consecutive-wrong-modal').style.display = 'flex';
+            }
+        }
+
+        function closeConsecutiveWrongModal() {
+            document.getElementById('consecutive-wrong-modal').style.display = 'none';
         }
 
         function openDashboard() {
@@ -1285,8 +1311,11 @@
                 answeredQuestions.add(currentIndex);
                 if (isCorrect) {
                     stageCorrectCount++;
+                    consecutiveWrongCount = 0; // รีเซ็ตเมื่อตอบถูก
                 } else {
                     stageWrongCount++;
+                    consecutiveWrongCount++; // เพิ่มจำนวนข้อผิดติดต่อกัน
+                    checkConsecutiveWrongAlert(); // เช็คป๊อปอัปเตือนเมื่อผิดติดกัน 3 ข้อ
                 }
             }
         }
@@ -1408,6 +1437,7 @@
             
             stageCorrectCount = 0;
             stageWrongCount = 0;
+            consecutiveWrongCount = 0; // รีเซ็ตจำนวนผิดติดกันเมื่อสลับด่าน
             answeredQuestions.clear();
 
             if (stageNum === 1) stage1Data = shuffleArray(rawStage1Data);
